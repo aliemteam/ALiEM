@@ -1,0 +1,5 @@
+wp-content
+node_modules
+dist
+.env
+data
