@@ -1,0 +1,353 @@
+
+@import url('../Avada/style.css')
+
+@require 'colors'
+
+// TODO Fix !important tags
+
+*
+    font-family 'Open Sans'
+
+sub
+sup
+    font-size 75%
+    line-height 0
+    position relative
+    vertical-align baseline
+sub
+    bottom -.25em
+sup
+    top -0.5em
+
+
+// Header
+
+.fusion-header .fusion-row
+    .fusion-logo
+        max-width 80%
+        height 60px
+        img
+            max-height 50px
+        a
+        a img
+            line-height 60px
+            vertical-align middle
+
+.fusion-main-menu
+    top -1px
+    .sub-menu
+        border-top 3px solid $primary !important
+    ul li a:hover
+        border-color $primary !important
+        color $primary !important
+    .fusion-widget-cart-counter a:hover:before
+        color $primary !important
+    .current-menu-ancestor
+    .current-menu-item
+    .current-menu-parent
+    .current_page_item
+        a
+            color $color1 !important
+            border-color $color1 !important
+            font-weight 600
+
+.fusion-page-title-bar
+    display none
+
+#aliem-header-searchbar
+    border-radius 3px
+
+.fusion-mobile-menu-icons
+    height 60px
+    width 0
+    float right
+
+
+.fusion-icon.fusion-icon-bars
+    height 60px
+    line-height 60px
+    padding 0 10px
+    margin 0
+
+@media (max-width: 800px)
+    .fusion-header
+        padding 0 10px !important
+
+
+//      Home Page
+// ----------------------
+
+// Remove date stamps from beside posts
+.fusion-date-and-formats
+    display none
+.fusion-post-content.post-content
+    margin-left 0
+
+// Fix duplicate read more tags
+.fusion-post-content-container p:last-of-type
+    display none
+
+// Bold post titles
+#main h2.entry-title
+    font-weight 700 !important
+
+// Pagination buttons
+.pagination
+.page-links
+.woocommerce-pagination
+.bbp-pagination .bbp-pagination-links
+    margin 0 !important
+
+// Fix distorted content / images on mobile
+@media (max-width 800px)
+    .home .post img
+        display block
+        float none
+        margin auto auto 20px auto
+
+// Disable author links
+.vcard .fn a
+    pointer-events none
+    cursor default
+    color $text
+
+
+//    Blog Pages
+// ------------------------
+
+.single-navigation
+    margin-bottom 20px !important
+    a:first-of-type
+        float left
+        padding-left 10px
+
+.us_wrapper .us_button
+    width 50px
+
+.post-content
+    h2
+        font-weight 700 !important
+        font-size 20px
+        line-height 30px
+    h3
+        font-weight 700 !important
+        text-transform uppercase
+        letter-spacing .1em
+    h4
+        font-weight 700
+    ul li
+        line-height 1.6em !important
+        margin-bottom 0px !important
+
+// Fix meta info location
+.single
+    .post
+        display flex
+        flex-direction column
+        .fusion-meta-info
+            order 0
+            border 0
+        .post-content
+            order 1
+        #respond.comment-respond
+            order 1
+        .related-posts
+            order 2
+        #disqus_thread
+            order 3
+
+// Image caption boxes
+.wp-caption-text
+    background $color2
+    margin 0 !important
+    padding-top 5px
+.wp-caption
+    background $color2
+    padding 10px
+    box-shadow 0 0 8px $color3
+    border 1px solid $color4
+
+
+//      Sidebar
+// --------------------------
+.fusion-content-widget-area .widget
+.sidebar .widget
+    margin-bottom 0 !important
+
+.widget-text
+    padding 15px 0 !important
+    border-bottom 2px solid $color5 !important
+
+#sidebar
+    p
+    div
+    a
+        font-size 0.95em !important // FIXME
+    h4
+        font-weight 600 !important
+        text-transform uppercase
+        letter-spacing 0.1em // FIXME
+        margin-bottom 10px
+
+
+//       Footer
+// --------------------------------
+.fusion-footer-widget-area
+    border-top 0 !important
+    line-height 20px
+    .widget-title
+        letter-spacing 0.1em // FIXME
+        margin 0
+
+.fusion-footer-widget-column
+    margin-bottom 0
+
+.fusion-footer .widget_text
+    border-bottom 0 !important
+
+
+//         Content
+// -----------------------
+
+#content
+    a
+        &:hover
+            text-decoration underline !important
+        &:visited
+            color $color6
+
+#main .post h2
+    a
+    a:hover
+        color $text !important
+
+//     Tables
+// -----------------
+table
+    border-collapse collapse
+    border-spacing 0
+    width 100%
+    margin-bottom 1em
+    border none
+    box-shadow 0 0 8px $color3
+    th
+    thead td
+        background-color $primary
+        text-align left
+        font-weight 700
+        color white
+    tr
+        border-left 1px solid $color3
+        border-right 1px solid $color3
+        &:last-of-type
+            border-bottom 1px solid $color3
+        &:nth-child(odd)
+            background-color $color7
+        &:hover
+            background-color $color8
+        td
+            border-top 1px solid $color4
+            padding 0.8em
+            vertical-align top
+    tfoot
+        background-color $color8
+        font-size 0.8em
+        tr
+        tr:hover
+            background-color $color8 !important
+        td
+            text-align justify !important
+            padding 0 0.8em !important
+            border-bottom 1px solid $color3
+
+// Better image alignment on mobile
+@media (max-width 800px)
+    .post .post-content img
+        float none
+        display table-header-group
+
+
+//        Pages
+// -----------------------------
+
+// Disable gigantic image
+.fusion-flexslider
+    display none
+
+
+//      Plugin-related
+// -------------------------
+
+// Academic Bloggers Toolkit
+.abt_PR_heading
+    border-bottom 4px solid $primary
+    font-weight 800
+    font-size 20px !important
+    color $text !important
+    &:active
+        border-bottom 1px solid $primary
+        padding-top 18px
+
+.abt_PR_info
+    line-height 14px
+
+.abt_chat_bubble
+    border-color $color4
+    border-left 1px solid $color4
+    border-top 1px solid $color4
+    box-shadow 1px 1px 1px $color4
+    &:after
+        border-left 1px solid $color4
+        border-bottom 1px solid $color4
+
+#abt-smart-bib
+    background $color7
+    box-shadow 0 0 8px $color3
+    padding 10px
+    &::before
+        content 'References'
+        font-size 1.3em
+    .abt-url
+        padding-left 23px
+
+.csl-entry
+    .csl-left-margin
+        float left
+        padding 0 4px 0 0
+        font-weight 600
+    .csl-right-inline
+        padding-left 23px
+        display block
+
+// Shortcodes Ultimate
+.su-lightbox
+    display block
+    position fixed !important
+    z-index 999
+    bottom -5px !important
+    left 2% !important
+    span
+        line-height 40px !important
+        font-size 1.3em !important
+
+// Image Box Shortcode
+.img-box
+    background-color $color7
+    padding 10px 10px 0 10px
+    font-size 0.8em
+    box-shadow 0 0 8px $color3
+    text-align justify
+    margin-bottom 1em
+
+// Fixed mobile footer padding
+.footer-area
+    padding 20px 30px 10px
+
+// Top search bar
+.header-v3 .alignright input
+    margin-top 6.5px
+    border-radius 3px
+
+@media (max-width 800px)
+    .header-v3 .alignright input
+        margin: 0
