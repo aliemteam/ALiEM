@@ -49,6 +49,14 @@ Template: Avada
 `
 
 // ==================================================
+//                     Static
+// ==================================================
+gulp.task('static', () =>
+    gulp.src('aliem/**/*.php', { base: './' })
+    .pipe(gulp.dest('dist'))
+);
+
+// ==================================================
 //                     Styles
 // ==================================================
 
@@ -72,28 +80,46 @@ gulp.task('stylus:prod', () =>
 );
 
 
+
+gulp.task('build', gulp.parallel('static', 'stylus:prod'));
+
+
 // ==================================================
 //               Plugin/Theme Fixes
 // ==================================================
 
+const avada = {
+    addEditors: {
+        regex: /\/\/ Render the HTML wrappers for the [\s\S]+\$metadata;$/m,
+        replacement: `
+        $editors = '';
+        if ( get_post_meta(get_the_id(), 'editors', true) ) {
+    		$editors = sprintf('<span class="fusion-inline-sep">|</span><span>Editors: %s</span>', get_post_meta(get_the_id(), 'editors', true));
+    	}
+        // FIXED Render the HTML wrappers for the different layouts
+        if ( $metadata ) {
+            $metadata = $author . $date . $metadata . $editors;
+        `,
+    },
+    imageSizes: {
+        regex: /add_action\( 'after_setup_theme', array\( \$this, 'add_image_size' \) \);/,
+        replacement: '',
+    }
+}
+
+
 gulp.task('fix-theme', () => {
 
-    const editorsRegex = /\/\/ Render the HTML wrappers for the [\s\S]+\$metadata;$/m;
-    const editorsReplacement = `
-    if ( get_post_meta(get_the_id(), 'editors', true) ) {
-		$editors = sprintf('<span class="fusion-inline-sep">|</span><span>Editors: %s</span>', get_post_meta(get_the_id(), 'editors', true));
-	}
-    // FIXED Render the HTML wrappers for the different layouts
-    if ( $metadata ) {
-        $metadata = $author . $date . $metadata . $editors;
-    `;
+    const avadaFunctions = gulp
+        .src('./wp-content/themes/Avada/includes/avada-functions.php', { base: './' })
+        .pipe(replace(avada.addEditors.regex, avada.addEditors.replacement))
+        .pipe(gulp.dest('./'));
 
-    const avadaFunctions = gulp.src(
-        './wp-content/themes/Avada/includes/avada-functions.php', { base: './' }
-    )
-    .pipe(replace(editorsRegex, editorsReplacement))
-    .pipe(gulp.dest('./'));
+    const classAvadaInit = gulp
+        .src('./wp-content/themes/Avada/includes/class-avada-init.php', { base: './' })
+        .pipe(replace(avada.imageSizes.regex, avada.imageSizes.replacement))
+        .pipe(gulp.dest('./'));
 
-    return merge(avadaFunctions);
+    return merge(avadaFunctions, classAvadaInit);
 
 });

@@ -9,3 +9,14 @@ function parseAuthors($content) {
     $content = $authors;
     return $content;
 }
+
+
+// Remove stockpile of image sizes created by Avada et al
+function unset_image_sizes() {
+    foreach(get_intermediate_image_sizes() as $size) {
+        if (!in_array($size, ['thumbnail', 'medium', 'medium-large', 'large'])) {
+            remove_image_size($size);
+        }
+    }
+}
+add_action('init', 'unset_image_sizes');
