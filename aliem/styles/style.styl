@@ -25,21 +25,23 @@ sup
 .fusion-header .fusion-row
     .fusion-logo
         max-width 80%
-        height 60px
         img
-            max-height 50px
+            max-height 40px
+            width auto
         a
         a img
-            line-height 60px
+            line-height 65px
             vertical-align middle
 
 .fusion-main-menu
     top -1px
     .sub-menu
         border-top 3px solid $primary !important
-    ul li a:hover
-        border-color $primary !important
-        color $primary !important
+    ul li a
+        color $gray
+        &:hover
+            border-color transparent !important
+            color $primary !important
     .fusion-widget-cart-counter a:hover:before
         color $primary !important
     .current-menu-ancestor
@@ -72,6 +74,7 @@ sup
 @media (max-width: 800px)
     .fusion-header
         padding 0 10px !important
+        background $color5 !important
 
 
 //      Home Page

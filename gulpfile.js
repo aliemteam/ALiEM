@@ -4,6 +4,11 @@
 const gulp = require('gulp');
 const replace = require('gulp-replace');
 const merge = require('merge-stream');
+const del = require('del');
+const browserSync = require('browser-sync').create();
+
+// SVG
+const svgmin = require('gulp-svgmin');
 
 // CSS
 const stylus = require('gulp-stylus');
@@ -11,7 +16,10 @@ const poststylus = require('poststylus');
 const autoprefixer = require('autoprefixer')({ browsers: ['last 2 versions'] });
 const sourcemaps = require('gulp-sourcemaps');
 const insert = require('gulp-insert');
+const csso = require('gulp-csso');
 
+// JS
+const uglify = require('gulp-uglify');
 
 // ==================================================
 //                Configurations
@@ -49,12 +57,29 @@ Template: Avada
 `
 
 // ==================================================
+//                     Utility
+// ==================================================
+gulp.task('del', (done) => {
+    del(['dist/aliem/**', '!dist/aliem']).then(() => done());
+});
+
+gulp.task('reload', (done) => { browserSync.reload(); done(); });
+
+// ==================================================
 //                     Static
 // ==================================================
-gulp.task('static', () =>
-    gulp.src('aliem/**/*.php', { base: './' })
-    .pipe(gulp.dest('dist'))
-);
+gulp.task('static', () => {
+    const php = gulp
+        .src('aliem/**/*.php', { base: './' })
+        .pipe(gulp.dest('dist'));
+
+    const svg = gulp
+        .src('aliem/assets/*.svg', { base: './'} )
+        .pipe(svgmin())
+        .pipe(gulp.dest('dist'));
+
+    return merge(php, svg);
+});
 
 // ==================================================
 //                     Styles
@@ -81,7 +106,27 @@ gulp.task('stylus:prod', () =>
 
 
 
-gulp.task('build', gulp.parallel('static', 'stylus:prod'));
+gulp.task('build', gulp.series(
+    'del',
+    gulp.parallel('static', 'stylus:prod')
+));
+
+gulp.task('default', gulp.series(
+    'del',
+    gulp.parallel('static', 'stylus:dev'), () => {
+
+            browserSync.init({
+                proxy: 'localhost:8080'
+            });
+
+            gulp.watch('aliem/**/*.styl', gulp.series('stylus:dev'));
+
+            gulp.watch([
+                'aliem/**/*',
+                '!aliem/**/*.styl',
+            ], gulp.series('static', 'reload'));
+    }
+));
 
 
 // ==================================================
@@ -121,5 +166,21 @@ gulp.task('fix-theme', () => {
         .pipe(gulp.dest('./'));
 
     return merge(avadaFunctions, classAvadaInit);
+
+});
+
+gulp.task('fix-plugins', () => {
+
+    const fancyAuthorBoxJS = gulp
+        .src('wp-content/plugins/fanciest-author-box/**/*.js', { base: './' })
+        .pipe(uglify(uglifyConfig))
+        .pipe(gulp.dest('.'));
+
+    const fancyAuthorBoxCSS = gulp
+        .src('wp-content/plugins/fanciest-author-box/**/*.css', { base: './' })
+        .pipe(csso())
+        .pipe(gulp.dest('.'));
+
+    return merge(fancyAuthorBoxCSS, fancyAuthorBoxJS)
 
 });
