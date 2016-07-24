@@ -87,13 +87,13 @@ gulp.task('static', () => {
 
 gulp.task('stylus:dev', () =>
     gulp
-       .src('aliem/styles/style.styl', { base: './aliem/styles' })
-       .pipe(sourcemaps.init())
-       .pipe(stylus(stylusConfig))
-       .pipe(sourcemaps.write('.'))
-       .pipe(insert.prepend(styleHeader))
-       .pipe(gulp.dest('dist/aliem'))
-       .pipe(browserSync.stream({ match: '**/*.css' }))
+        .src('aliem/styles/style.styl', { base: './aliem/styles' })
+        .pipe(sourcemaps.init())
+        .pipe(stylus(stylusConfig))
+        .pipe(insert.prepend(styleHeader))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('dist/aliem'))
+        .pipe(browserSync.stream({ match: '**/*.css' }))
 );
 
 gulp.task('stylus:prod', () =>
@@ -106,10 +106,7 @@ gulp.task('stylus:prod', () =>
 
 
 
-gulp.task('build', gulp.series(
-    'del',
-    gulp.parallel('static', 'stylus:prod')
-));
+gulp.task('build', gulp.series('del', gulp.parallel('static', 'stylus:prod')));
 
 gulp.task('default', gulp.series(
     'del',
@@ -169,18 +166,22 @@ gulp.task('fix-theme', () => {
 
 });
 
-gulp.task('fix-plugins', () => {
+gulp.task('shrink-plugin', () => {
+    if (! process.argv[3]) {
+        console.log("You must specify a plugin directory name (eg. '--academic-bloggers-toolkit')");
+        process.exit();
+    }
+    const plugin = process.argv[3].substring(2);
 
-    const fancyAuthorBoxJS = gulp
-        .src('wp-content/plugins/fanciest-author-box/**/*.js', { base: './' })
+    const js = gulp
+        .src(`wp-content/plugins/${plugin}/**/*.js`, { base: './' })
         .pipe(uglify(uglifyConfig))
         .pipe(gulp.dest('.'));
 
-    const fancyAuthorBoxCSS = gulp
-        .src('wp-content/plugins/fanciest-author-box/**/*.css', { base: './' })
+    const css = gulp
+        .src(`wp-content/plugins/${plugin}/**/*.css`, { base: './' })
         .pipe(csso())
         .pipe(gulp.dest('.'));
 
-    return merge(fancyAuthorBoxCSS, fancyAuthorBoxJS)
-
+    return merge(css, js);
 });
