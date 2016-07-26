@@ -191,7 +191,38 @@ sup
         text-transform uppercase
         letter-spacing 0.1em // FIXME
         margin-bottom 10px
-
+    .widget
+        margin 15px 0
+    .widget-title
+        text-align center
+    .fusion-tabs-widget
+        .popular-post-item-container
+            display flex
+            align-items center
+        .popular-post-heading
+            text-align center
+            font-weight 600
+            padding 5px
+            background $primary
+            color white
+            min-width 75px
+        .popular-post-holder
+            padding 5px
+            &.comments
+                padding 0
+        .popular-post-image
+            height 75px
+            min-width 75px
+            background-size cover
+            background-repeat no-repeat
+            background-position center
+        .comment-post-title
+            border-bottom solid $primary
+            padding 2px 0 5px
+            margin-bottom 4px
+            font-weight 600
+        ul.news-list li
+            padding 5px
 
 //       Footer
 // --------------------------------
@@ -310,17 +341,6 @@ table
     &::before
         content 'References'
         font-size 1.3em
-    .abt-url
-        padding-left 23px
-
-.csl-entry
-    .csl-left-margin
-        float left
-        padding 0 4px 0 0
-        font-weight 600
-    .csl-right-inline
-        padding-left 23px
-        display block
 
 // Shortcodes Ultimate
 .su-lightbox
