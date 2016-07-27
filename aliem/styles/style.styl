@@ -173,13 +173,6 @@ sup
 
 //      Sidebar
 // --------------------------
-.fusion-content-widget-area .widget
-.sidebar .widget
-    margin-bottom 0 !important
-
-.widget-text
-    padding 15px 0 !important
-    border-bottom 2px solid $color5 !important
 
 #sidebar
     p
@@ -193,6 +186,10 @@ sup
         margin-bottom 10px
     .widget
         margin 15px 0
+        &.widget_text:nth-child(n+3)
+            padding 10px
+            border solid 1px $color9
+            box-shadow 0 0 4px $color9
     .widget-title
         text-align center
     .fusion-tabs-widget
@@ -263,18 +260,19 @@ table
     width 100%
     margin-bottom 1em
     border none
-    box-shadow 0 0 8px $color3
+    box-shadow 0 0 8px $color9
     th
-    thead td
-        background-color $primary
-        text-align left
-        font-weight 700
-        color white
+    thead
+        td
+            background-color $primary
+            text-align left
+            font-weight 700
+            color white
     tr
-        border-left 1px solid $color3
-        border-right 1px solid $color3
+        border-left 1px solid $color9
+        border-right 1px solid $color9
         &:last-of-type
-            border-bottom 1px solid $color3
+            border-bottom 1px solid $color9
         &:nth-child(odd)
             background-color $color7
         &:hover
@@ -292,7 +290,7 @@ table
         td
             text-align justify !important
             padding 0 0.8em !important
-            border-bottom 1px solid $color3
+            border-bottom 1px solid $color9
 
 // Better image alignment on mobile
 @media (max-width 800px)
