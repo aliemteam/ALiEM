@@ -249,8 +249,8 @@ class BookclubWidget extends WP_Widget {
             <h4 class="widget-title" data-fontsize="13" data-lineheight="18">Book Club Countdown</h4>
         </div>
         <div>
-            <img class="alignright" alt="Book Logo" src="/wp-content/uploads/book-sm.png" width="52" height="56" />
-            <strong>Next book</strong>: <a href="https://aliem.com/aliem-book-club/"><?php echo $title ?></a><br>
+            <img class="alignright" alt="Book Logo" src="/wp-content/themes/aliem/assets/bookclub-book.svg" width="52" />
+            <strong>Next book</strong>: <a href="/aliem-book-club/"><?php echo $title ?></a><br>
 
             <strong>Discussion: </strong><?php echo $date ?><br>
             <strong>Twitter:</strong> <a href="http://www.twitter.com/aliembook" target="_blank">@ALiEMbook</a>

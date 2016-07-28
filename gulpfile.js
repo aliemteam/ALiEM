@@ -59,9 +59,9 @@ Template: Avada
 // ==================================================
 //                     Utility
 // ==================================================
-gulp.task('del', (done) => {
-    del(['dist/aliem/**', '!dist/aliem']).then(() => done());
-});
+gulp.task('del', (done) =>
+    del(['dist/aliem/**', '!dist/aliem']).then(() => done())
+);
 
 gulp.task('reload', (done) => { browserSync.reload(); done(); });
 

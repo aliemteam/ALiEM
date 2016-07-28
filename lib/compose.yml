@@ -14,7 +14,6 @@ services:
             - ../wp-content/plugins/submission-flow:/var/www/$site_name/htdocs/wp-content/plugins/submission-flow
             - ../wp-content/plugins/tablepress-table-row-order:/var/www/$site_name/htdocs/wp-content/plugins/tablepress-table-row-order
             - ../wp-content/plugins/ultimate-social-deux:/var/www/$site_name/htdocs/wp-content/plugins/ultimate-social-deux
-            - ../wp-content/plugins/wp-smush-pro:/var/www/$site_name/htdocs/wp-content/plugins/wp-smush-pro
             # Themes
             - ../dist/aliem:/var/www/$site_name/htdocs/wp-content/themes/aliem
             - ../wp-content/themes/Avada:/var/www/$site_name/htdocs/wp-content/themes/Avada
@@ -40,6 +39,7 @@ services:
                 tablepress,
                 wordpress-popular-posts,
                 wordpress-seo,
+                wp-smushit,
             WP_DEBUG_DISPLAY: 'false'
             WP_DEBUG_LOG: 'true'
             WP_DEBUG: 'true'
