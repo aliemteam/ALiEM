@@ -34,6 +34,8 @@ function adjust_avada_options() {
 
     $ops['logo']['url'] = '/wp-content/themes/aliem/assets/aliem-logo-horizontal-full.svg';
     $ops['logo_retina']['url'] = '/wp-content/themes/aliem/assets/aliem-logo-horizontal-full.svg';
+    $ops['mobile_logo']['url'] = '/wp-content/themes/aliem/assets/aliem-logo-horizontal-full.svg';
+    $ops['mobile_logo_retina']['url'] = '/wp-content/themes/aliem/assets/aliem-logo-horizontal-full.svg';
 
     update_option('avada_theme_options', $ops);
 }
