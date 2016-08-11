@@ -2,10 +2,22 @@
 @import url('../Avada/style.css')
 
 @require 'colors'
+@require 'collections/social-icons'
+
 
 // TODO Fix !important tags
 
-*
+p
+span
+div
+sub
+sup
+h1
+h2
+h3
+h4
+h5
+h6
     font-family 'Open Sans'
 
 sub
@@ -93,6 +105,7 @@ sup
 // Bold post titles
 #main h2.entry-title
     font-weight 700 !important
+    margin 0
 
 // Pagination buttons
 .pagination
@@ -142,22 +155,10 @@ sup
         line-height 1.6em !important
         margin-bottom 0px !important
 
-// Fix meta info location
-.single
-    .post
-        display flex
-        flex-direction column
-        .fusion-meta-info
-            order 0
-            border 0
-        .post-content
-            order 1
-        #respond.comment-respond
-            order 1
-        .related-posts
-            order 2
-        #disqus_thread
-            order 3
+
+.single .fusion-meta-info
+    border 0
+    margin 0
 
 // Image caption boxes
 .wp-caption-text

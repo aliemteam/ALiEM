@@ -13,7 +13,6 @@ services:
             - ../wp-content/plugins/fusion-core:/var/www/$site_name/htdocs/wp-content/plugins/fusion-core
             - ../wp-content/plugins/submission-flow:/var/www/$site_name/htdocs/wp-content/plugins/submission-flow
             - ../wp-content/plugins/tablepress-table-row-order:/var/www/$site_name/htdocs/wp-content/plugins/tablepress-table-row-order
-            - ../wp-content/plugins/ultimate-social-deux:/var/www/$site_name/htdocs/wp-content/plugins/ultimate-social-deux
             # Themes
             - ../dist/aliem:/var/www/$site_name/htdocs/wp-content/themes/aliem
             - ../wp-content/themes/Avada:/var/www/$site_name/htdocs/wp-content/themes/Avada
