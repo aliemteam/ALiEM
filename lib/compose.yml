@@ -36,7 +36,6 @@ services:
                 polldaddy,
                 shortcodes-ultimate,
                 tablepress,
-                wordpress-popular-posts,
                 wordpress-seo,
                 wp-smushit,
             WP_DEBUG_DISPLAY: 'false'
