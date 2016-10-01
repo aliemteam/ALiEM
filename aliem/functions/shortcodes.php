@@ -31,6 +31,9 @@ function aliem_svg_generator($atts) {
         'airseries' => 'air-logo.svg',
         'airseries-pro' => 'air-pro-logo.svg',
         'aliemu' => 'aliemu-logo-horizontal.svg',
+        'aliemu-u' => 'aliemu-logo-u.svg',
+        'capsules' => 'capsules-logo.svg',
+        'capsules-pill' => 'capsules-logo-pill.svg',
     ];
 
     $url = '/wp-content/themes/aliem/assets/' . $filenames[$series];
