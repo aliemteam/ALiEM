@@ -16,6 +16,7 @@ function aliem_svg_generator($atts) {
         'series' => 'aliem',
         'width' => 'auto',
         'height' => 'auto',
+        'padding' => '10px',
         'align' => 'none',
     ], $atts);
     extract($a);
@@ -49,7 +50,7 @@ function aliem_svg_generator($atts) {
         return "<div style='text-align: center; width: 100%;'><img src='$url' style='width: $width; height: $height;' /></div>";
     }
 
-    return "<img src='$url' style='width: $width; height: $height; float: $align; padding: 10px;' />";
+    return "<img src='$url' style='width: $width; height: $height; float: $align; padding: $padding; vertical-align: middle;' />";
 
 }
 add_shortcode('svg', 'aliem_svg_generator');
