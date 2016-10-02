@@ -21,22 +21,29 @@ function aliem_svg_generator($atts) {
     extract($a);
 
     $filenames = [
-        'aliem' => 'aliem-logo-horizontal.svg',
-        'healthyinem' => 'stay-healthy-logo.svg',
-        'bookclub' => 'bookclub-book.svg',
-        'newsubmissions' => 'submissions-pencil.svg',
-        'fincubator' => 'fincubator-logo.svg',
-        'facubator' => 'facubator-logo.svg',
-        'crincubator' => 'crincubator-logo.svg',
-        'airseries' => 'air-logo.svg',
         'airseries-pro' => 'air-pro-logo.svg',
-        'aliemu' => 'aliemu-logo-horizontal.svg',
+        'airseries' => 'air-logo.svg',
+        'aliem' => 'aliem-logo-horizontal.svg',
         'aliemu-u' => 'aliemu-logo-u.svg',
-        'capsules' => 'capsules-logo.svg',
+        'aliemu' => 'aliemu-logo-horizontal.svg',
+        'bookclub' => 'bookclub-book.svg',
         'capsules-pill' => 'capsules-logo-pill.svg',
+        'capsules' => 'capsules-logo.svg',
+        'crincubator' => 'crincubator-logo.svg',
+        'facubator' => 'facubator-logo.svg',
+        'fincubator' => 'fincubator-logo.svg',
+        'healthyinem' => 'stay-healthy-logo.svg',
+        'newsubmissions' => 'submissions-pencil.svg',
+        'wellness' => 'wellness-logo.svg',
     ];
 
-    $url = '/wp-content/themes/aliem/assets/' . $filenames[$series];
+    if (array_key_exists($series, $filenames)) {
+        $url = '/wp-content/themes/aliem/assets/' . $filenames[$series];
+    }
+    else {
+        $url = '/wp-content/themes/aliem/assets/' . $series . '.svg';
+    }
+
 
     if ($align === 'center') {
         return "<div style='text-align: center; width: 100%;'><img src='$url' style='width: $width; height: $height;' /></div>";
