@@ -2,23 +2,15 @@
 @import url('../Avada/style.css')
 
 @require 'colors'
+@require 'variables'
 @require 'collections/social-icons'
+@import 'collections/avada'
 
 
-// TODO Fix !important tags
-
-p
-span
-div
-sub
-sup
-h1
-h2
-h3
-h4
-h5
-h6
+body
     font-family 'Open Sans'
+    font-size 16px
+    color $font-primary
 
 sub
 sup
@@ -30,6 +22,16 @@ sub
     bottom -.25em
 sup
     top -0.5em
+
+
+#content
+    line-height: 1.64em
+    a:hover
+        color: $primary
+
+
+.post-content blockquote
+    font-style: italic
 
 
 // Header
@@ -45,25 +47,17 @@ sup
             line-height 65px
             vertical-align middle
 
+.fusion-main-menu ul.submenu
+    border-top 3px solid $primary
+
 .fusion-main-menu
     top -1px
-    .sub-menu
-        border-top 3px solid $primary !important
     ul li a
-        color $gray
+        color $font-gray
         &:hover
             border-color transparent !important
-            color $primary !important
     .fusion-widget-cart-counter a:hover:before
         color $primary !important
-    .current-menu-ancestor
-    .current-menu-item
-    .current-menu-parent
-    .current_page_item
-        a
-            color $color1 !important
-            border-color $color1 !important
-            font-weight 600
 
 .fusion-page-title-bar
     display none
@@ -76,7 +70,6 @@ sup
     width 0
     float right
 
-
 .fusion-icon.fusion-icon-bars
     height 60px
     line-height 60px
@@ -86,7 +79,7 @@ sup
 @media (max-width: 800px)
     .fusion-header
         padding 0 10px !important
-        background $color5 !important
+        background $secondary !important
 
 
 //      Home Page
@@ -104,7 +97,7 @@ sup
 
 // Bold post titles
 #main h2.entry-title
-    font-weight 700 !important
+    // font-weight 700 !important
     margin 0
 
 // Pagination buttons
@@ -125,7 +118,7 @@ sup
 .vcard .fn a
     pointer-events none
     cursor default
-    color $text
+    color $font-primary
 
 
 //    Blog Pages
@@ -142,7 +135,6 @@ sup
 
 .post-content
     h2
-        font-weight 700 !important
         font-size 20px
         line-height 30px
     h3
@@ -162,14 +154,13 @@ sup
 
 // Image caption boxes
 .wp-caption-text
-    background $color2
+    background $secondary
     margin 0 !important
     padding-top 5px
 .wp-caption
-    background $color2
+    background $secondary
     padding 10px
-    box-shadow 0 0 8px $color3
-    border 1px solid $color4
+    box-shadow $depth-1
 
 
 //      Sidebar
@@ -189,11 +180,13 @@ sup
         margin 15px 0
         &.widget_text:nth-child(n+3)
             padding 10px
-            border solid 1px $color9
-            box-shadow 0 0 4px $color9
+            box-shadow $depth-1
+            border solid 1px $secondary
+            border-radius 2px
     .widget-title
         text-align center
-    .fusion-tabs-widget
+    .tabs-widget
+        box-shadow $depth-1
         .popular-post-item-container
             display flex
             align-items center
@@ -224,11 +217,17 @@ sup
 
 //       Footer
 // --------------------------------
+
+.fusion-footer-copyright-area
+.fusion-footer-widget-area
+    > .fusion-row
+        padding: 0 30px
+
 .fusion-footer-widget-area
     border-top 0 !important
     line-height 20px
     .widget-title
-        letter-spacing 0.1em // FIXME
+        letter-spacing 1px
         margin 0
 
 .fusion-footer-widget-column
@@ -244,14 +243,19 @@ sup
 #content
     a
         &:hover
-            text-decoration underline !important
-        &:visited
-            color $color6
+            text-decoration underline
+
+h2.entry-title
+    font-size 40px
 
 #main .post h2
     a
-    a:hover
-        color $text !important
+        color $font-primary
+        transition .1s
+        &:hover
+            text-decoration: none
+            transition .1s
+            color $primary
 
 //     Tables
 // -----------------
@@ -261,7 +265,7 @@ table
     width 100%
     margin-bottom 1em
     border none
-    box-shadow 0 0 8px $color9
+    box-shadow $depth-1
     th
     thead
         td
@@ -270,28 +274,22 @@ table
             font-weight 700
             color white
     tr
-        border-left 1px solid $color9
-        border-right 1px solid $color9
-        &:last-of-type
-            border-bottom 1px solid $color9
         &:nth-child(odd)
-            background-color $color7
+            background-color $secondary
         &:hover
-            background-color $color8
+            background-color darken($secondary, 3)
         td
-            border-top 1px solid $color4
             padding 0.8em
             vertical-align top
     tfoot
-        background-color $color8
         font-size 0.8em
         tr
         tr:hover
-            background-color $color8 !important
+            background-color white !important
+            border-top solid darken($secondary, 10)
         td
-            text-align justify !important
-            padding 0 0.8em !important
-            border-bottom 1px solid $color9
+            text-align justify
+            padding 0 0.8em
 
 // Better image alignment on mobile
 @media (max-width 800px)
@@ -314,32 +312,17 @@ table
 // Academic Bloggers Toolkit
 .abt_PR_heading
     border-bottom 4px solid $primary
-    font-weight 800
-    font-size 20px !important
-    color $text !important
-    &:active
-        border-bottom 1px solid $primary
-        padding-top 18px
-
-.abt_PR_info
-    line-height 14px
-
-.abt_chat_bubble
-    border-color $color4
-    border-left 1px solid $color4
-    border-top 1px solid $color4
-    box-shadow 1px 1px 1px $color4
-    &:after
-        border-left 1px solid $color4
-        border-bottom 1px solid $color4
 
 #abt-smart-bib
-    background $color7
-    box-shadow 0 0 8px $color3
-    padding 10px
+    background $secondary
+    box-shadow $depth-1
+    border-radius 2px
+    font-size 0.8em
+    padding 0 10px 10px 10px
     &::before
         content 'References'
-        font-size 1.3em
+        font-size 1.3rem
+        line-height 2.5em
 
 // Shortcodes Ultimate
 .su-lightbox
@@ -354,10 +337,10 @@ table
 
 // Image Box Shortcode
 .img-box
-    background-color $color7
+    background-color $secondary
     padding 10px 10px 0 10px
     font-size 0.8em
-    box-shadow 0 0 8px $color3
+    box-shadow $depth-1
     text-align justify
     margin-bottom 1em
 

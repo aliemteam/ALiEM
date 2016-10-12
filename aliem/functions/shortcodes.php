@@ -36,6 +36,7 @@ function aliem_svg_generator($atts) {
         'healthyinem' => 'stay-healthy-logo.svg',
         'newsubmissions' => 'submissions-pencil.svg',
         'wellness' => 'wellness-logo.svg',
+        'wellness-think-tank' => 'wellness-think-tank-logo.svg',
     ];
 
     if (array_key_exists($series, $filenames)) {
@@ -45,12 +46,10 @@ function aliem_svg_generator($atts) {
         $url = '/wp-content/themes/aliem/assets/' . $series . '.svg';
     }
 
-
     if ($align === 'center') {
         return "<div style='text-align: center; width: 100%;'><img src='$url' style='width: $width; height: $height;' /></div>";
     }
 
     return "<img src='$url' style='width: $width; height: $height; float: $align; padding: $padding; vertical-align: middle;' />";
-
 }
 add_shortcode('svg', 'aliem_svg_generator');

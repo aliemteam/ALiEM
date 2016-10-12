@@ -146,8 +146,12 @@ const avada = {
     imageSizes: {
         regex: /add_action\( 'after_setup_theme', array\( \$this, 'add_image_size' \) \);/,
         replacement: '',
-    }
-}
+    },
+    inlineCss: {
+        regex: /(^.+add_action\( 'wp_enqueue_scripts'[\s\S]+999 \);)/gm,
+        replacement: '/*\n$1\n*/',
+    },
+};
 
 
 gulp.task('fix-theme', () => {
@@ -160,6 +164,11 @@ gulp.task('fix-theme', () => {
     const classAvadaInit = gulp
         .src('./wp-content/themes/Avada/includes/class-avada-init.php', { base: './' })
         .pipe(replace(avada.imageSizes.regex, avada.imageSizes.replacement))
+        .pipe(gulp.dest('./'));
+
+    const classAvadaDynamicCss = gulp
+        .src('./wp-content/themes/Avada/includes/class-avada-dynamic-css.php', { base: './' })
+        .pipe(replace(avada.inlineCss.regex, avada.inlineCss.replacement))
         .pipe(gulp.dest('./'));
 
     return merge(avadaFunctions, classAvadaInit);

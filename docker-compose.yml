@@ -9,7 +9,6 @@ services:
         ports:
             - "8080:80"
         environment:
-            LOCALHOST: 'true'
             SEARCH_REPLACE: https://www.aliem.com,http://localhost:8080
             WP_DEBUG_DISPLAY: 'true'
     db:

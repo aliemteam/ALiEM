@@ -80,7 +80,9 @@ class AliemPopularPostWidget extends WP_Widget {
                                             <div class="popular-post-item-container">
     											<?php if (has_post_thumbnail()) : ?>
     												<div class="popular-post-image" style="background-image: url(<?php the_post_thumbnail_url('thumbnail') ?>)"></div>
-    											<?php endif; ?>
+                                                <?php else: ?>
+                                                    <div class="popular-post-image" style="background-image: url('/wp-content/themes/aliem/assets/aliem-logo-cross.svg'); background-size: 50px;"></div>
+                                                <?php endif; ?>
     											<div class="popular-post-holder">
     												<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
     												<div class="fusion-meta"><?php the_time(Avada()->settings->get('date_format')); ?></div>
@@ -111,6 +113,8 @@ class AliemPopularPostWidget extends WP_Widget {
                                             <div class="popular-post-item-container">
     											<?php if (has_post_thumbnail()) : ?>
     												<div class="popular-post-image" style="background-image: url(<?php the_post_thumbnail_url('thumbnail') ?>)"></div>
+                                                <?php else: ?>
+                                                    <div class="popular-post-image" style="background-image: url('/wp-content/themes/aliem/assets/aliem-logo-cross.svg'); background-size: 50px;"></div>
     											<?php endif; ?>
     											<div class="popular-post-holder">
     												<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
