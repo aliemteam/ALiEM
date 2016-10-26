@@ -1,8 +1,9 @@
+// @stylint off
 .fusion-accordian .panel-title a:hover .fa-fusion-box
     background-color: $primary
     border-color: $primary
 
-#toTop:hover, #wrapper .search-table .search-button input[type='submit']:hover, .circle-yes ul li:before, .fusion-accordian .panel-title .active .fa-fusion-box, .fusion-date-and-formats .fusion-date-box, .pagination .current, .progress-bar-content, .table-2 table thead, .tagcloud a:hover, ul.arrow li:before, ul.circle-yes li:before
+#toTop:hover, #wrapper .search-table .search-button input[type='submit']:hover, .circle-yes ul li:before, .fusion-accordian .panel-title .active .fa-fusion-box, .pagination .current, .progress-bar-content, .table-2 table thead, .tagcloud a:hover, ul.arrow li:before, ul.circle-yes li:before
     background-color: $primary
 
 .fusion-footer-widget-area
@@ -137,12 +138,6 @@ body #toTop:before
 .select-arrow, .select2-arrow
     color: $secondary
 
-body.has-sidebar #content
-    width: calc(100% - 23.4042553% - 80px)
-
-body.has-sidebar #main .sidebar
-    width: 23.4042553%
-
 body.has-sidebar.double-sidebars #content
     width: calc(100% - 21% - 21% - 80px)
     margin-left: calc(21% + 40px)
@@ -157,15 +152,6 @@ body.has-sidebar.double-sidebars #main #sidebar-2
 
 .fusion-accordian .panel-title a .fa-fusion-box
     background-color: $font-primary
-
-body .fusion-content-widget-area .fusion-tabs-widget .tab-hold .tabs li a:hover
-    background: white
-    border-bottom: 0
-
-body .fusion-content-widget-area .fusion-tabs-widget .tab-hold .tabs li.active a, body .fusion-content-widget-area .fusion-tabs-widget .tab-holder .tabs li.active a
-    background: white
-    border-bottom: 0
-    border-top-color: $primary
 
 .ei-slider
     width: 100%
@@ -220,6 +206,11 @@ body .fusion-content-widget-area .fusion-tabs-widget .tab-hold .tabs li.active a
     border-width: 0px
     border-style: solid
 
+.fusion-header-wrapper .fusion-row
+    padding-left: 0px
+    padding-right: 0px
+    max-width: 1100px
+
 .fusion-secondary-header
     background-color: $primary
     font-size: 12px
@@ -230,74 +221,6 @@ body .fusion-content-widget-area .fusion-tabs-widget .tab-hold .tabs li.active a
 
 .fusion-mobile-menu-design-modern .fusion-secondary-header .fusion-alignleft
     border-bottom-color: $secondary
-
-.fusion-mobile-menu-sep, .fusion-secondary-main-menu
-    border-bottom-color: $secondary
-
-.fusion-main-menu>ul>li>a
-    border-top: 3px solid transparent
-    height: 60px
-    line-height: 60px
-
-.fusion-main-menu .current-menu-ancestor>a, .fusion-main-menu .current-menu-item>a, .fusion-main-menu .current-menu-parent>a, .fusion-main-menu .current_page_item>a
-    color: $font-primary
-    border-color: transparent
-    font-weight 600
-
-.fusion-main-menu .sub-menu
-    background-color: $secondary
-    width: 170px
-    border-top: 3px solid $primary
-    box-shadow: $depth-1
-
-.fusion-main-menu .sub-menu ul
-    left: 170px
-    top: -3px
-
-.fusion-main-menu .sub-menu li a
-    border-bottom: 1px solid darken($secondary, 10)
-    padding: 7px 10px
-    color: $font-primary
-    font-size: .75em
-    transition none !important
-
-.fusion-main-menu .sub-menu li a:hover
-    background-color: darken($secondary, 5)
-    transition none !important
-
-.fusion-mobile-nav-item a
-    color: $font-primary
-    font-size: 12px
-    background-color: #f9f9f9
-    border-color: #dadada
-    height: 35px
-    line-height: 35px
-
-.fusion-mobile-nav-item a:hover
-    background-color: #f6f6f6
-
-.fusion-mobile-nav-item a:before
-    color: $font-primary
-
-.fusion-mobile-current-nav-item>a
-    background-color: #f6f6f6
-
-.fusion-mobile-menu-icons
-    margin-top: 0px
-
-.fusion-mobile-menu-icons a
-    color: #dadada
-
-.fusion-mobile-menu-icons a:before
-    color: #dadada
-
-.fusion-open-submenu
-    font-size: 12px
-    height: 35px
-    line-height: 35px
-
-.fusion-open-submenu:hover
-    color: $primary
 
 #wrapper .post-content .content-box-heading
     font-size: 18px
@@ -400,7 +323,7 @@ body.side-header-left #slidingbar .avada-row, body.side-header-right #slidingbar
         height: auto
         width: auto
 
-    .fusion-blog-layout-large-alternate .fusion-date-and-formats
+    .fusion-blog-layout-large-alternate
         margin-bottom: 55px
 
     .fusion-body .fusion-blog-layout-large-alternate .fusion-post-content
@@ -1295,12 +1218,6 @@ body.side-header-left #slidingbar .avada-row, body.side-header-right #slidingbar
     .fusion-mobile-menu-design-modern.fusion-header-v1 .modern-mobile-menu-expanded .fusion-logo, .fusion-mobile-menu-design-modern.fusion-header-v2 .modern-mobile-menu-expanded .fusion-logo, .fusion-mobile-menu-design-modern.fusion-header-v3 .modern-mobile-menu-expanded .fusion-logo, .fusion-mobile-menu-design-modern.fusion-header-v4 .modern-mobile-menu-expanded .fusion-logo, .fusion-mobile-menu-design-modern.fusion-header-v5 .modern-mobile-menu-expanded .fusion-logo
         margin-bottom: 20px !important
 
-    .fusion-mobile-menu-design-modern.fusion-header-v1 .fusion-mobile-nav-holder, .fusion-mobile-menu-design-modern.fusion-header-v2 .fusion-mobile-nav-holder, .fusion-mobile-menu-design-modern.fusion-header-v3 .fusion-mobile-nav-holder, .fusion-mobile-menu-design-modern.fusion-header-v4 .fusion-mobile-nav-holder, .fusion-mobile-menu-design-modern.fusion-header-v5 .fusion-mobile-nav-holder
-        padding-top: 20px
-        margin-left: -30px
-        margin-right: -30px
-        margin-bottom: calc(-20px - 0px)
-
     .fusion-mobile-menu-design-modern.fusion-header-v1 .fusion-mobile-nav-holder>ul, .fusion-mobile-menu-design-modern.fusion-header-v2 .fusion-mobile-nav-holder>ul, .fusion-mobile-menu-design-modern.fusion-header-v3 .fusion-mobile-nav-holder>ul, .fusion-mobile-menu-design-modern.fusion-header-v4 .fusion-mobile-nav-holder>ul, .fusion-mobile-menu-design-modern.fusion-header-v5 .fusion-mobile-nav-holder>ul
         display: block
 
@@ -2050,3 +1967,4 @@ body.side-header-left #slidingbar .avada-row, body.side-header-right #slidingbar
     100%
         transform: scale(1.5)
         opacity: 0
+// @stylint on

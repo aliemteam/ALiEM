@@ -131,18 +131,6 @@ gulp.task('default', gulp.series(
 // ==================================================
 
 const avada = {
-    addEditors: {
-        regex: /\/\/ Render the HTML wrappers for the [\s\S]+\$metadata;$/m,
-        replacement: `
-        $editors = '';
-        if ( get_post_meta(get_the_id(), 'editors', true) ) {
-    		$editors = sprintf('<span class="fusion-inline-sep">|</span><span>Editors: %s</span>', get_post_meta(get_the_id(), 'editors', true));
-    	}
-        // FIXED Render the HTML wrappers for the different layouts
-        if ( $metadata ) {
-            $metadata = $author . $date . $metadata . $editors;
-        `,
-    },
     imageSizes: {
         regex: /add_action\( 'after_setup_theme', array\( \$this, 'add_image_size' \) \);/,
         replacement: '',
@@ -155,11 +143,6 @@ const avada = {
 
 
 gulp.task('fix-theme', () => {
-
-    const avadaFunctions = gulp
-        .src('./wp-content/themes/Avada/includes/avada-functions.php', { base: './' })
-        .pipe(replace(avada.addEditors.regex, avada.addEditors.replacement))
-        .pipe(gulp.dest('./'));
 
     const classAvadaInit = gulp
         .src('./wp-content/themes/Avada/includes/class-avada-init.php', { base: './' })

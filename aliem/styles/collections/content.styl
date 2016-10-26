@@ -1,0 +1,86 @@
+#main
+    padding-top: 135px
+    background: $secondary
+
+#content
+    margin-top: 20px
+    width: 75%
+
+.single
+    #content
+        margin-top: -15px
+    .post
+        background: white
+        padding: 20px
+        border-radius: 2px
+        box-shadow: $shadow-2dp
+
+// ----------- END NEW CARD STYLE CHANGES
+
+#content
+    line-height: 1.64em
+
+    h2
+        font-size: 20px
+        line-height: 30px
+    h3
+        font-weight: 700 !important
+        text-transform: uppercase
+        letter-spacing: .1em
+    h4
+        font-weight: 700
+    ul > li
+        line-height: 1.6em !important
+        margin-bottom: 0px !important
+
+    a:hover
+        color: $primary
+        text-decoration: underline
+
+    blockquote
+        font-style: italic
+
+
+// "Next" and "Previous" buttons at the top of posts
+.single-navigation
+    margin-bottom: 0 !important
+    border: none
+    a:first-of-type
+        float: left
+        padding-left: 10px
+
+// Both the "read more" div on the home page and the author meta on posts
+.fusion-meta-info
+    border: 0
+    margin: 0
+
+.fusion-meta-info-wrapper
+    line-height: 1.5em
+    > div
+        padding-bottom: 5px
+
+.fusion-single-line-meta
+    > div
+        padding-top: 5px
+
+// Image caption boxes
+.wp-caption-text
+    background: $secondary
+    margin: 0 !important
+    padding-top: 5px
+.wp-caption
+    background: $secondary
+    padding: 10px
+    box-shadow: $shadow-2dp
+
+// Gigantic image above pages
+.fusion-flexslider
+    display: none
+
+// Better image alignment on mobile TODO: This looks strange. Might wanna test this
+@media (max-width: 800px)
+    .post .post-content img
+        float: none
+        display: table-header-group
+    #main
+        padding-top: 0

@@ -1,358 +1,57 @@
-
 @import url('../Avada/style.css')
 
 @require 'colors'
 @require 'variables'
 @require 'collections/social-icons'
-@import 'collections/avada'
+@require 'collections/avada'
+@require 'collections/plugins'
 
+@require 'collections/header'
+@require 'collections/home'
+@require 'collections/content'
+@require 'collections/sidebar'
+@require 'collections/footer'
 
 body
-    font-family 'Open Sans'
-    font-size 16px
-    color $font-primary
-
+    font-family: 'Open Sans'
+    font-size: 16px
+    color: $font-primary
+sub, sup
+    font-size: 75%
+    line-height: 0
+    position: relative
+    vertical-align: baseline
 sub
+    bottom: -.25em
 sup
-    font-size 75%
-    line-height 0
-    position relative
-    vertical-align baseline
-sub
-    bottom -.25em
-sup
-    top -0.5em
+    top: -0.5em
 
-
-#content
-    line-height: 1.64em
-    a:hover
-        color: $primary
-
-
-.post-content blockquote
-    font-style: italic
-
-
-// Header
-
-.fusion-header .fusion-row
-    .fusion-logo
-        max-width 80%
-        img
-            max-height 40px
-            width auto
-        a
-        a img
-            line-height 65px
-            vertical-align middle
-
-.fusion-main-menu ul.submenu
-    border-top 3px solid $primary
-
-.fusion-main-menu
-    top -1px
-    ul li a
-        color $font-gray
-        &:hover
-            border-color transparent !important
-    .fusion-widget-cart-counter a:hover:before
-        color $primary !important
-
-.fusion-page-title-bar
-    display none
-
-#aliem-header-searchbar
-    border-radius 3px
-
-.fusion-mobile-menu-icons
-    height 60px
-    width 0
-    float right
-
-.fusion-icon.fusion-icon-bars
-    height 60px
-    line-height 60px
-    padding 0 10px
-    margin 0
-
-@media (max-width: 800px)
-    .fusion-header
-        padding 0 10px !important
-        background $secondary !important
-
-
-//      Home Page
-// ----------------------
-
-// Remove date stamps from beside posts
-.fusion-date-and-formats
-    display none
-.fusion-post-content.post-content
-    margin-left 0
-
-// Fix duplicate read more tags
-.fusion-post-content-container p:last-of-type
-    display none
-
-// Bold post titles
-#main h2.entry-title
-    // font-weight 700 !important
-    margin 0
-
-// Pagination buttons
-.pagination
-.page-links
-.woocommerce-pagination
-.bbp-pagination .bbp-pagination-links
-    margin 0 !important
-
-// Fix distorted content / images on mobile
-@media (max-width 800px)
-    .home .post img
-        display block
-        float none
-        margin auto auto 20px auto
-
-// Disable author links
-.vcard .fn a
-    pointer-events none
-    cursor default
-    color $font-primary
-
-
-//    Blog Pages
-// ------------------------
-
-.single-navigation
-    margin-bottom 20px !important
-    a:first-of-type
-        float left
-        padding-left 10px
-
-.us_wrapper .us_button
-    width 50px
-
-.post-content
-    h2
-        font-size 20px
-        line-height 30px
-    h3
-        font-weight 700 !important
-        text-transform uppercase
-        letter-spacing .1em
-    h4
-        font-weight 700
-    ul li
-        line-height 1.6em !important
-        margin-bottom 0px !important
-
-
-.single .fusion-meta-info
-    border 0
-    margin 0
-
-// Image caption boxes
-.wp-caption-text
-    background $secondary
-    margin 0 !important
-    padding-top 5px
-.wp-caption
-    background $secondary
-    padding 10px
-    box-shadow $depth-1
-
-
-//      Sidebar
-// --------------------------
-
-#sidebar
-    p
-    div
-    a
-        font-size 0.95em !important // FIXME
-    h4
-        font-weight 600 !important
-        text-transform uppercase
-        letter-spacing 0.1em // FIXME
-        margin-bottom 10px
-    .widget
-        margin 15px 0
-        &.widget_text:nth-child(n+3)
-            padding 10px
-            box-shadow $depth-1
-            border solid 1px $secondary
-            border-radius 2px
-    .widget-title
-        text-align center
-    .tabs-widget
-        box-shadow $depth-1
-        .popular-post-item-container
-            display flex
-            align-items center
-        .popular-post-heading
-            text-align center
-            font-weight 600
-            padding 5px
-            background $primary
-            color white
-            min-width 75px
-        .popular-post-holder
-            padding 5px
-            &.comments
-                padding 0
-        .popular-post-image
-            height 75px
-            min-width 75px
-            background-size cover
-            background-repeat no-repeat
-            background-position center
-        .comment-post-title
-            border-bottom solid $primary
-            padding 2px 0 5px
-            margin-bottom 4px
-            font-weight 600
-        ul.news-list li
-            padding 5px
-
-//       Footer
-// --------------------------------
-
-.fusion-footer-copyright-area
-.fusion-footer-widget-area
-    > .fusion-row
-        padding: 0 30px
-
-.fusion-footer-widget-area
-    border-top 0 !important
-    line-height 20px
-    .widget-title
-        letter-spacing 1px
-        margin 0
-
-.fusion-footer-widget-column
-    margin-bottom 0
-
-.fusion-footer .widget_text
-    border-bottom 0 !important
-
-
-//         Content
-// -----------------------
-
-#content
-    a
-        &:hover
-            text-decoration underline
-
-h2.entry-title
-    font-size 40px
-
-#main .post h2
-    a
-        color $font-primary
-        transition .1s
-        &:hover
-            text-decoration: none
-            transition .1s
-            color $primary
-
-//     Tables
-// -----------------
 table
-    border-collapse collapse
-    border-spacing 0
-    width 100%
-    margin-bottom 1em
-    border none
-    box-shadow $depth-1
-    th
-    thead
+    border-collapse: collapse
+    border-spacing: 0
+    width: 100%
+    margin-bottom: 1em
+    border: none
+    box-shadow: $shadow-2dp
+    th, thead
         td
-            background-color $primary
-            text-align left
-            font-weight 700
-            color white
+            background-color: $primary
+            text-align: left
+            font-weight: 700
+            color: white
     tr
         &:nth-child(odd)
-            background-color $secondary
+            background-color: $secondary
         &:hover
-            background-color darken($secondary, 3)
+            background-color: darken($secondary, 3)
         td
-            padding 0.8em
-            vertical-align top
+            padding: 0.8em
+            vertical-align: top
     tfoot
-        font-size 0.8em
-        tr
-        tr:hover
-            background-color white !important
-            border-top solid darken($secondary, 10)
+        font-size: 0.8em
+        tr, tr:hover
+            background-color: white !important
+            border-top: solid darken($secondary, 10)
         td
-            text-align justify
-            padding 0 0.8em
-
-// Better image alignment on mobile
-@media (max-width 800px)
-    .post .post-content img
-        float none
-        display table-header-group
-
-
-//        Pages
-// -----------------------------
-
-// Disable gigantic image
-.fusion-flexslider
-    display none
-
-
-//      Plugin-related
-// -------------------------
-
-// Academic Bloggers Toolkit
-.abt_PR_heading
-    border-bottom 4px solid $primary
-
-#abt-smart-bib
-    background $secondary
-    box-shadow $depth-1
-    border-radius 2px
-    font-size 0.8em
-    padding 0 10px 10px 10px
-    &::before
-        content 'References'
-        font-size 1.3rem
-        line-height 2.5em
-
-// Shortcodes Ultimate
-.su-lightbox
-    display block
-    position fixed !important
-    z-index 999
-    bottom -5px !important
-    left 2% !important
-    span
-        line-height 40px !important
-        font-size 1.3em !important
-
-// Image Box Shortcode
-.img-box
-    background-color $secondary
-    padding 10px 10px 0 10px
-    font-size 0.8em
-    box-shadow $depth-1
-    text-align justify
-    margin-bottom 1em
-
-// Fixed mobile footer padding
-.footer-area
-    padding 20px 30px 10px
-
-// Top search bar
-.header-v3 .alignright input
-    margin-top 6.5px
-    border-radius 3px
-
-@media (max-width 800px)
-    .header-v3 .alignright input
-        margin: 0
+            text-align: justify
+            padding: 0 0.8em

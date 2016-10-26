@@ -4,17 +4,6 @@
 remove_filter('pre_user_description', 'wp_filter_kses');
 
 /**
- * Show all authors on author line.
- */
-function parseAuthors($content) {
-    $authors = coauthors(null, null, null, null, false);
-    $content = $authors;
-    return $content;
-}
-add_action('the_author', 'parseAuthors');
-
-
-/**
  * Remove stockpile of image sizes created by Avada et al
  */
 function unset_image_sizes() {

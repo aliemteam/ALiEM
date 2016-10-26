@@ -1,0 +1,46 @@
+.home, .archive
+    .post
+        background: white
+        padding: 20px
+        border-radius: 2px
+        box-shadow: $shadow-2dp
+        margin-bottom: 20px
+        .fusion-meta-info
+            display: none
+
+// ----------- END NEW CARD STYLE CHANGES
+
+// TODO: comb through this entire file
+
+// Remove date stamps from beside posts
+.fusion-date-and-formats
+    display: none
+.fusion-post-content.post-content
+    margin-left: 0
+
+// Fix duplicate read more tags
+.fusion-post-content-container p:last-of-type
+    margin-bottom: 0
+
+// Bold post titles
+#main h2.entry-title
+    // font-weight 700 !important
+    margin: 0
+    a
+        color: $font-primary
+        transition: .1s
+        &:hover
+            text-decoration: none
+            transition: .1s
+            color: $primary
+
+// Pagination buttons
+.pagination, .page-links, .woocommerce-pagination, .bbp-pagination .bbp-pagination-links
+    margin: 0 !important
+
+// Fix distorted content / images on mobile
+@media (max-width: 800px)
+    .home .post img
+        display: block
+        float: none
+        margin: auto auto 20px auto
