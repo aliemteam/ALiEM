@@ -34,10 +34,6 @@
         line-height: 1.6em !important
         margin-bottom: 0px !important
 
-    a:hover
-        color: $primary
-        text-decoration: underline
-
     blockquote
         border-left: 4px solid $primary
         font: italic 13px/20px 'Open Sans',arial,helvetica,sans-serif
@@ -51,6 +47,15 @@
     a:first-of-type
         float: left
         padding-left: 10px
+    a[rel='prev'], a[rel='next'] // @stylint ignore
+        color: $font-gray
+        &:before,
+        &:after
+            color: $font-gray
+        &:hover,
+        &:hover:before,
+        &:hover:after
+            color: $font-primary
 
 // Both the "read more" div on the home page and the author meta on posts
 .fusion-meta-info
