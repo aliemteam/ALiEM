@@ -19,13 +19,14 @@
 
 #content
     line-height: 1.64em
-
     h1
         font-size: 1.8em
         line-height: 1.25em
-
+        font-weight: 400
+    h2
+        font-weight: 600
     h3
-        font-weight: 700 !important
+        font-weight: 600
         text-transform: uppercase
         letter-spacing: .1em
     h4
@@ -55,6 +56,22 @@
         &:hover,
         &:hover:before,
         &:hover:after
+            color: $font-primary
+
+.pagination
+    width: 100%
+    text-align: center
+
+.pagination-prev,
+.pagination-next
+    color: $font-gray
+    &:before,
+    &:after
+        color: $font-gray
+    &:hover
+        color: $font-primary
+        &:before,
+        &:after
             color: $font-primary
 
 // Both the "read more" div on the home page and the author meta on posts
