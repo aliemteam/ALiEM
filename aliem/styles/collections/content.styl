@@ -20,9 +20,10 @@
 #content
     line-height: 1.64em
 
-    h2
-        font-size: 20px
-        line-height: 30px
+    h1
+        font-size: 1.8em
+        line-height: 1.25em
+
     h3
         font-weight: 700 !important
         text-transform: uppercase
@@ -40,7 +41,8 @@
     blockquote
         border-left: 4px solid $primary
         font: italic 13px/20px 'Open Sans',arial,helvetica,sans-serif
-
+        img
+            display: inline-block
 
 // "Next" and "Previous" buttons at the top of posts
 .single-navigation
@@ -78,13 +80,19 @@
 .fusion-flexslider
     display: none
 
-// Better image alignment on mobile TODO: This looks strange. Might wanna test this
+
 @media (max-width: 800px)
     .single #content
         margin-top: 0
 
     #main
         padding-top: 0
+
+    // Better image alignment on mobile TODO: This looks strange. Might wanna test this
     .post .post-content img
         float: none
         display: table-header-group
+    #content
+        blockquote
+            margin-left: 0
+            margin-right: 0
