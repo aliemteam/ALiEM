@@ -26,6 +26,13 @@ sub
 sup
     top: -0.5em
 
+a, .fusion-content-widget-area .widget li a
+    color: $primary
+    &:hover
+        color: darken($primary, 10)
+strong
+    font-weight: 600
+
 table
     border-collapse: collapse
     border-spacing: 0
@@ -33,25 +40,31 @@ table
     margin-bottom: 1em
     border: none
     box-shadow: $shadow-2dp
-    th, thead
-        td
-            background-color: $primary
-            text-align: left
-            font-weight: 700
-            color: white
+    thead>tr>td
+        background-color: $primary
+        text-align: left
+        font-weight: bold
+        color: white
     tr
         &:nth-child(odd)
-            background-color: $secondary
-        &:hover
-            background-color: darken($secondary, 3)
+            background-color: $tertiary
         td
             padding: 0.8em
             vertical-align: top
     tfoot
         font-size: 0.8em
-        tr, tr:hover
+        tr
             background-color: white !important
-            border-top: solid darken($secondary, 10)
+            border-top: solid darken($secondary, 10) 1px
         td
             text-align: justify
-            padding: 0 0.8em
+            padding: 0 .8em
+            color: $font-gray
+
+
+@media (max-width: 800px)
+    table
+        position: relative
+        display: block
+        max-width: 100%
+        overflow-x: scroll

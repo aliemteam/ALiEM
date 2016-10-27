@@ -19,12 +19,14 @@
 
 #content
     line-height: 1.64em
-
+    h1
+        font-size: 1.8em
+        line-height: 1.25em
+        font-weight: 400
     h2
-        font-size: 20px
-        line-height: 30px
+        font-weight: 600
     h3
-        font-weight: 700 !important
+        font-weight: 600
         text-transform: uppercase
         letter-spacing: .1em
     h4
@@ -33,13 +35,11 @@
         line-height: 1.6em !important
         margin-bottom: 0px !important
 
-    a:hover
-        color: $primary
-        text-decoration: underline
-
     blockquote
-        font-style: italic
-
+        border-left: 4px solid $primary
+        font: italic 13px/20px 'Open Sans',arial,helvetica,sans-serif
+        img
+            display: inline-block
 
 // "Next" and "Previous" buttons at the top of posts
 .single-navigation
@@ -48,6 +48,31 @@
     a:first-of-type
         float: left
         padding-left: 10px
+    a[rel='prev'], a[rel='next'] // @stylint ignore
+        color: $font-gray
+        &:before,
+        &:after
+            color: $font-gray
+        &:hover,
+        &:hover:before,
+        &:hover:after
+            color: $font-primary
+
+.pagination
+    width: 100%
+    text-align: center
+
+.pagination-prev,
+.pagination-next
+    color: $font-gray
+    &:before,
+    &:after
+        color: $font-gray
+    &:hover
+        color: $font-primary
+        &:before,
+        &:after
+            color: $font-primary
 
 // Both the "read more" div on the home page and the author meta on posts
 .fusion-meta-info
@@ -77,10 +102,19 @@
 .fusion-flexslider
     display: none
 
-// Better image alignment on mobile TODO: This looks strange. Might wanna test this
+
 @media (max-width: 800px)
+    .single #content
+        margin-top: 0
+
+    #main
+        padding-top: 0
+
+    // Better image alignment on mobile TODO: This looks strange. Might wanna test this
     .post .post-content img
         float: none
         display: table-header-group
-    #main
-        padding-top: 0
+    #content
+        blockquote
+            margin-left: 0
+            margin-right: 0
