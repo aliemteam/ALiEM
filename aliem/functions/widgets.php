@@ -250,9 +250,9 @@ class BookclubWidget extends WP_Widget {
         echo $before_widget;
         ?>
         <div class="heading">
-            <h4 class="widget-title" data-fontsize="13" data-lineheight="18">Book Club Countdown</h4>
+            <h4 class="widget-title">Book Club Countdown</h4>
         </div>
-        <div>
+        <div class="bookclub-widget">
             <img class="alignright" alt="Book Logo" src="/wp-content/themes/aliem/assets/bookclub-book.svg" width="52" />
             <strong>Next book</strong>: <a href="/aliem-book-club/"><?php echo $title ?></a><br>
 

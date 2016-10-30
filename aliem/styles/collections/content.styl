@@ -22,9 +22,11 @@
     h1
         font-size: 1.8em
         line-height: 1.25em
-        font-weight: 400
-    h2
         font-weight: 600
+    h2
+        font-weight: 400
+        &.entry-title
+            font-weight: 600
     h3
         font-weight: 600
         text-transform: uppercase
@@ -34,12 +36,15 @@
     ul > li
         line-height: 1.6em !important
         margin-bottom: 0px !important
-
     blockquote
         border-left: 4px solid $primary
         font: italic 13px/20px 'Open Sans',arial,helvetica,sans-serif
         img
             display: inline-block
+    iframe
+        max-width: 100%
+    .twitter-tweet-rendered
+        margin: auto
 
 // "Next" and "Previous" buttons at the top of posts
 .single-navigation
@@ -74,6 +79,24 @@
         &:after
             color: $font-primary
 
+// "Wired" style hyperlinks
+// .fusion-post-content-container,
+// .post-content
+//     a:not(.more-link)
+//         border-bottom: 2px solid lighten($primary, 10)
+//         box-shadow: inset 0 -4px 0 lighten($primary, 10)
+//         color: inherit
+//         transition: background .15s cubic-bezier(.33,.66,.66,1)
+//         color: inherit
+//         text-decoration: none
+//         overflow-wrap: break-word
+//         word-wrap: break-word
+//         word-break: break-word
+//         &:hover,
+//         &:focus,
+//         &:active
+//             background: lighten($primary, 10)
+
 // Both the "read more" div on the home page and the author meta on posts
 .fusion-meta-info
     border: 0
@@ -89,14 +112,17 @@
         padding-top: 5px
 
 // Image caption boxes
-.wp-caption-text
-    background: $secondary
-    margin: 0 !important
-    padding-top: 5px
 .wp-caption
-    background: $secondary
+    background: $tertiary
     padding: 10px
     box-shadow: $shadow-2dp
+    border-radius: 2px
+    margin-bottom: 20px
+.wp-caption-text
+    text-align: justify
+    background: $tertiary
+    margin: 0 !important
+    padding-top: 5px
 
 // Gigantic image above pages
 .fusion-flexslider

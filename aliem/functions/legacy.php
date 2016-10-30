@@ -1,11 +1,5 @@
 <?php
 
-// Reference box shortcode
-function refbox($atts, $content = null) {
-	return do_shortcode($content);
-}
-add_shortcode('refbox', 'refbox');
-
 // Inline citation shortcode
 function inline_citation($atts) {
 	$att = shortcode_atts([
