@@ -1,3 +1,36 @@
+// "post" specific
+.single
+    #content
+        margin-top: -15px
+
+    // "Next" and "Previous" buttons at the top of posts
+    .single-navigation
+        margin-bottom: 0 !important
+        border: none
+        a:first-of-type
+            float: left
+            padding-left: 10px
+        a[rel='prev'], a[rel='next'] // @stylint ignore
+            color: $font-gray
+            &:before,
+            &:after
+                color: $font-gray
+            &:hover,
+            &:hover:before,
+            &:hover:after
+                color: $font-primary
+
+    .post
+        background: white
+        padding: 20px
+        border-radius: 2px
+        box-shadow: $shadow-2dp
+
+// "page" specific
+.page
+    .page
+        @extends .single .post
+
 #main
     padding-top: 135px
     background: $secondary
@@ -5,19 +38,6 @@
 #content
     margin-top: 20px
     width: 75%
-
-.single
-    #content
-        margin-top: -15px
-    .post
-        background: white
-        padding: 20px
-        border-radius: 2px
-        box-shadow: $shadow-2dp
-
-// ----------- END NEW CARD STYLE CHANGES
-
-#content
     line-height: 1.64em
     h1
         font-size: 1.8em
@@ -25,8 +45,6 @@
         font-weight: 600
     h2
         font-weight: 400
-        &.entry-title
-            font-weight: 600
     h3
         font-weight: 600
         text-transform: uppercase
@@ -46,23 +64,6 @@
     .twitter-tweet-rendered
         margin: auto
 
-// "Next" and "Previous" buttons at the top of posts
-.single-navigation
-    margin-bottom: 0 !important
-    border: none
-    a:first-of-type
-        float: left
-        padding-left: 10px
-    a[rel='prev'], a[rel='next'] // @stylint ignore
-        color: $font-gray
-        &:before,
-        &:after
-            color: $font-gray
-        &:hover,
-        &:hover:before,
-        &:hover:after
-            color: $font-primary
-
 .pagination
     width: 100%
     text-align: center
@@ -78,24 +79,6 @@
         &:before,
         &:after
             color: $font-primary
-
-// "Wired" style hyperlinks
-// .fusion-post-content-container,
-// .post-content
-//     a:not(.more-link)
-//         border-bottom: 2px solid lighten($primary, 10)
-//         box-shadow: inset 0 -4px 0 lighten($primary, 10)
-//         color: inherit
-//         transition: background .15s cubic-bezier(.33,.66,.66,1)
-//         color: inherit
-//         text-decoration: none
-//         overflow-wrap: break-word
-//         word-wrap: break-word
-//         word-break: break-word
-//         &:hover,
-//         &:focus,
-//         &:active
-//             background: lighten($primary, 10)
 
 // Both the "read more" div on the home page and the author meta on posts
 .fusion-meta-info
@@ -127,7 +110,6 @@
 // Gigantic image above pages
 .fusion-flexslider
     display: none
-
 
 @media (max-width: 800px)
     .single #content

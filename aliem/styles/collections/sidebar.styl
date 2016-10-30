@@ -1,18 +1,7 @@
+@require '../colors'
+
 #sidebar
     margin-top: 20px
-    .widget
-        background: white
-        &.widget_text:first-of-type
-            padding: 20px
-            box-shadow: $shadow-2dp
-            border-radius: 2px
-        &.widget_text:nth-of-type(3)
-            background: #ccccff
-
-
-// ----------- END NEW STYLE CHANGES
-
-#sidebar
     p, div, a
         font-size: 0.95em
     h4
@@ -21,7 +10,15 @@
         letter-spacing: 0.1em
         margin-bottom: 10px
     .widget
+        background: white
         margin: 0 0 15px 0
+        &.widget_text:first-of-type
+            padding: 20px
+            box-shadow: $shadow-2dp
+            border-radius: 2px
+        // feminem job board
+        &.widget_text:nth-of-type(3)
+            background: $feminem-secondary
         &.widget_text:nth-of-type(n+3),
         &.widget_wysija
             padding: 10px
