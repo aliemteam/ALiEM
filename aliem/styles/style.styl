@@ -44,7 +44,8 @@ table
     margin-bottom: 1em
     border: none
     box-shadow: $shadow-2dp
-    thead>tr>td
+    thead>tr>td,
+    tbody>tr>th
         background-color: $primary
         text-align: left
         font-weight: bold
@@ -52,7 +53,7 @@ table
     tr
         &:nth-child(odd)
             background-color: $tertiary
-        td
+        td, th
             padding: 0.8em
             vertical-align: top
     tfoot
