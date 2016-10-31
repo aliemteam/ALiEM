@@ -1,15 +1,5 @@
 <?php
 
-// Image Box Shortcode
-function imgbox($atts) {
-	$a = shortcode_atts([
-        'url' => '',
-    	'title' => '',
-    ], $atts);
-	return '<div class="img-box"><img style="width: 100%;" src="' . $a['url'] . '" />' . $a['title'] . '</div>';
-}
-add_shortcode('img_box', 'imgbox');
-
 // SVG shortcode (for ALiEM series')
 function aliem_svg_generator($atts) {
     $a = shortcode_atts([
@@ -53,3 +43,17 @@ function aliem_svg_generator($atts) {
     return "<img src='$url' style='width: $width; height: $height; float: $align; padding: $padding; vertical-align: middle;' />";
 }
 add_shortcode('svg', 'aliem_svg_generator');
+
+function aliem_cme_button($atts) {
+    $a = shortcode_atts([
+        'url' => '',
+    ], $atts);
+    extract($a);
+
+    if (!$url) {
+        return "<h3 style='color: red;'>You forgot to provide a CME URL!</h3>";
+    }
+
+    return "<a href='$url' target='_blank' rel='noopener noreferrer'><img src='/wp-content/themes/aliem/assets/cme-button.svg' class='aligncenter' style='width: 200px'/></a>";
+}
+add_shortcode('cme-button', 'aliem_cme_button');
