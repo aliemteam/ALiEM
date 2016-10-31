@@ -1,132 +1,22 @@
 @require '../variables'
 
+// Logo
+.fusion-logo
+    max-width: 80%
+    img
+        max-height: 40px
+        width: auto
+    a, a img
+        line-height: 65px
+        vertical-align: middle
+
+
 .fusion-header-wrapper
     position: fixed
     width: 100%
     box-shadow: $shadow-3dp
 
-.fusion-megamenu-wrapper
-    padding-top: 4px
-    .fusion-megamenu-holder
-        background: $secondary
-        border-top: 1px solid darken($secondary, 5)
-        box-shadow: $shadow-3dp
-        .fusion-megamenu
-            .fusion-megamenu-submenu
-                padding: 10px 0
-                background: white
-                &:first-of-type
-                    padding: 0
-                    background: $tertiary
-                    border-right: solid $secondary 1px
-                    .sub-menu
-                        margin-top: 0
-                        li > a
-                            font-size: 0.9em
-                            line-height: 2em
-
-.fusion-megamenu-title
-    font-weight: 600
-    padding-bottom: 5px
-
-.fusion-megamenu-bullet
-    display: none
-
-
-// ----------- END NEW CARD STYLE CHANGES
-
-// TODO: comb through this entire file
-
-
-// Menus / Submenus
-.fusion-mobile-menu-sep, .fusion-secondary-main-menu
-    border-bottom-color: $secondary
-
-.fusion-main-menu>ul>li>a
-    border-top: 3px solid transparent
-    height: 60px
-    line-height: 60px
-
-.fusion-main-menu .current-menu-ancestor>a, .fusion-main-menu .current-menu-item>a, .fusion-main-menu .current-menu-parent>a, .fusion-main-menu .current_page_item>a
-    color: $font-primary
-    border-color: transparent
-    font-weight: 600
-
-.fusion-main-menu .sub-menu
-    background-color: $secondary
-    margin-top: 3px
-    width: 170px
-    border-top: 3px solid $primary
-    box-shadow: $shadow-6dp
-
-.fusion-main-menu .sub-menu ul
-    left: 170px
-    top: -3px
-
-.fusion-main-menu .sub-menu li a
-    border-bottom: 1px solid darken($secondary, 10)
-    padding: 7px 10px
-    color: $font-primary
-    font-size: .75em
-    transition: none !important
-
-.fusion-main-menu .sub-menu li a:hover
-    background-color: darken($secondary, 5)
-    transition: none !important
-
-.fusion-mobile-nav-item a
-    color: $font-primary
-    font-size: 12px
-    background-color: #f9f9f9
-    border-color: #dadada
-    height: 35px
-    line-height: 35px
-
-.fusion-mobile-nav-item a:hover
-    background-color: #f6f6f6
-
-.fusion-mobile-nav-item a:before
-    color: $font-primary
-
-.fusion-mobile-current-nav-item>a
-    background-color: #f6f6f6
-
-.fusion-mobile-menu-icons
-    margin-top: 0px
-
-.fusion-mobile-menu-icons a
-    color: #dadada
-
-.fusion-mobile-menu-icons a:before
-    color: #dadada
-
-.fusion-open-submenu
-    font-size: 12px
-    height: 35px
-    line-height: 35px
-
-.fusion-open-submenu:hover
-    color: $primary
-
-
-
-
-
-// Top search bar
-.header-v3 .alignright input
-    margin-top: 6.5px
-    border-radius: 3px
-
-.fusion-header .fusion-row
-    .fusion-logo
-        max-width: 80%
-        img
-            max-height: 40px
-            width: auto
-        a, a img
-            line-height: 65px
-            vertical-align: middle
-
+// Desktop Menus
 .fusion-main-menu
     top: -1px
     ul
@@ -134,31 +24,96 @@
             border-top: 3px solid $primary
         > li a
             color: $font-gray
+            border-top: 3px solid transparent
+            height: 60px
+            line-height: 60px
             &:hover
                 border-color: transparent !important
-    .fusion-widget-cart-counter a:hover:before
-        color: $primary !important
+    .fusion-megamenu-wrapper
+        padding-top: 4px
+        .fusion-megamenu-holder
+            background: $secondary
+            border-top: 1px solid darken($secondary, 5)
+            box-shadow: $shadow-3dp
+            .fusion-megamenu
+                .fusion-megamenu-bullet
+                    display: none
+                .fusion-megamenu-title
+                    font-weight: 600
+                    padding-bottom: 5px
+                .fusion-megamenu-submenu
+                    padding: 10px 0
+                    background: white
+                    &:first-of-type
+                        padding: 0
+                        background: $tertiary
+                        border-right: solid $secondary 1px
+                        .sub-menu
+                            margin-top: 0
+                            li > a
+                                font-size: 0.9em
+                                line-height: 2em
+    .sub-menu
+        background-color: $secondary
+        margin-top: 3px
+        width: 170px
+        border-top: 3px solid $primary
+        box-shadow: $shadow-6dp
+        ul
+            left: 170px
+            top: -3px
+        li>a
+            border-bottom: 1px solid darken($secondary, 10)
+            padding: 7px 10px
+            color: $font-primary
+            font-size: .75em
+            transition: none !important
+            &:hover
+                background-color: darken($secondary, 5)
+                transition: none !important
 
-.fusion-page-title-bar
-    display: none
 
-#aliem-header-searchbar
-    border-radius: 3px
+// Mobile Menus
+.fusion-mobile-nav-holder
+    background: white
+
+.fusion-mobile-nav-item
+    a
+        color: $font-primary
+        font-size: 12px
+        border-color: darken($secondary, 10)
+        height: 35px
+        line-height: 35px
+        &:before
+            color: $font-primary
+            content: none !important
 
 .fusion-mobile-menu-icons
     height: 60px
     width: 0
     float: right
+    a:before
+        color: $font-gray
+    .fusion-icon.fusion-icon-bars
+        height: 60px
+        line-height: 60px
+        padding: 0 10px
+        margin: 0
 
-.fusion-icon.fusion-icon-bars
-    height: 60px
-    line-height: 60px
-    padding: 0 10px
-    margin: 0
+.fusion-open-submenu
+    height: 35px
+    line-height: 35px
+    &:hover
+        color: $font-primary
 
-.fusion-mobile-nav-holder li.fusion-mobile-nav-item li a:before,
-.fusion-mobile-nav-holder li.fusion-mobile-nav-item li li a:before
-    content: none
+
+// Misc
+.fusion-widget-cart-counter a:hover:before
+    color: $primary !important
+
+#aliem-header-searchbar
+    border-radius: 2px
+
 
 @media (max-width: 800px)
     .fusion-header

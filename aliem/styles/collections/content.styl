@@ -43,7 +43,7 @@
         font-size: 1.8em
         line-height: 1.25em
         font-weight: 600
-    h2
+    h2:not(.entry-title)
         font-weight: 400
     h3
         font-weight: 600
@@ -109,6 +109,10 @@
 
 // Gigantic image above pages
 .fusion-flexslider
+    display: none
+
+// Useless title bar
+.fusion-page-title-bar
     display: none
 
 @media (max-width: 800px)
