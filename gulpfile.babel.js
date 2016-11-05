@@ -4,13 +4,6 @@ import del from 'del';
 import { exec } from 'child_process';
 import poststylus from 'poststylus';
 import merge from 'merge-stream';
-// import replace from 'gulp-replace';
-// import svgmin from 'gulp-svgmin';
-// import stylus from 'gulp-stylus';
-// import sourcemaps from 'gulp-sourcemaps';
-// import insert from 'gulp-insert';
-// import csso from 'gulp-csso';
-// import uglify from 'gulp-uglify';
 
 const browserSync = require('browser-sync').create();
 const autoprefixer = require('autoprefixer')({ browsers: ['last 2 versions'] });
