@@ -4,7 +4,7 @@
 remove_filter('pre_user_description', 'wp_filter_kses');
 
 /**
- * Remove stockpile of image sizes created by Avada et al
+ * Remove stockpile of image sizes created by Avada
  */
 function unset_image_sizes() {
     foreach(get_intermediate_image_sizes() as $size) {
@@ -14,6 +14,15 @@ function unset_image_sizes() {
     }
 }
 add_action('init', 'unset_image_sizes');
+
+/**
+ * Remove the trove of unnecessary admin menus created by lovely Avada
+ */
+function aliem_remove_menu_tabs() {
+    remove_menu_page('edit.php?post_type=avada_faq');
+    remove_menu_page('edit.php?post_type=avada_portfolio');
+}
+add_action('admin_menu', 'aliem_remove_menu_tabs');
 
 /**
  * Adjust Avada options to allow for the use of SVG in logos.

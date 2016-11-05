@@ -11,8 +11,8 @@ services:
             - ./data:/data
             # Plugins
             - ./wp-content/plugins/fanciest-author-box:/app/wp-content/plugins/fanciest-author-box
-            - ./wp-content/plugins/fusion-core:/app/wp-content/plugins/fusion-core
             - ./wp-content/plugins/fusion-builder:/app/wp-content/plugins/fusion-builder
+            - ./wp-content/plugins/fusion-core:/app/wp-content/plugins/fusion-core
             - ./wp-content/plugins/submission-flow:/app/wp-content/plugins/submission-flow
             - ./wp-content/plugins/tablepress-table-row-order:/app/wp-content/plugins/tablepress-table-row-order
             # Themes
