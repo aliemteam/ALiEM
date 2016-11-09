@@ -32,6 +32,7 @@ function avada_render_post_metadata($layout, $settings = array()) {
             ob_start();
             comments_popup_link(esc_html__('0 Comments', 'Avada'), esc_html__('1 Comment', 'Avada'), esc_html__('% Comments', 'Avada'));
             $comments = ob_get_clean();
+            $comments = "<span class='fusion-inline-sep'>|</span><span>$comments</span>";
         }
 
         $metadata .= avada_render_rich_snippets_for_pages(false, false, true);
@@ -45,8 +46,7 @@ function avada_render_post_metadata($layout, $settings = array()) {
                 <span>$formatted_date</span>
                 <span class='fusion-inline-sep'>|</span>
                 <span>$categories</span>
-                <span class='fusion-inline-sep'>|</span>
-                <span>$comments</span>
+                $comments
             </div>";
 
         $coauthors = coauthors_posts_links(null, null, null, null, false);

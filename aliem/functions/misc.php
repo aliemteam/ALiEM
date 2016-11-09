@@ -16,6 +16,30 @@ function unset_image_sizes() {
 add_action('init', 'unset_image_sizes');
 
 /**
+ * Set default hidden metaboxes
+ */
+function aliem_default_hidden_metaboxes($hidden) {
+    array_push($hidden,
+        'featured-image-2_post',
+        'featured-image-2_page',
+        'featured-image-3_post',
+        'featured-image-3_page',
+        'featured-image-4_post',
+        'featured-image-4_page',
+        'featured-image-5_post',
+        'featured-image-5_page',
+        'pyre_post_options',
+        'pyre_page_options',
+        'formatdiv',
+        'slugdiv',
+        'commentstatusdiv'
+    );
+    return $hidden;
+}
+add_filter('hidden_meta_boxes', 'aliem_default_hidden_metaboxes', 10, 1);
+
+
+/**
  * Remove the trove of unnecessary admin menus created by lovely Avada
  */
 function aliem_remove_menu_tabs() {
