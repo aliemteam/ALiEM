@@ -25,6 +25,8 @@ function aliem_svg_generator($atts) {
         'fincubator' => 'fincubator-logo.svg',
         'healthyinem' => 'stay-healthy-logo.svg',
         'newsubmissions' => 'submissions-pencil.svg',
+        'usftw' => 'usftw-logo.svg',
+        'us4tw' => 'usftw-logo.svg',
         'wellness' => 'wellness-logo.svg',
         'wellness-think-tank' => 'wellness-think-tank-logo.svg',
     ];
