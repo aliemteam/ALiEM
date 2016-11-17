@@ -1,4 +1,3 @@
-
 import gulp from 'gulp';
 import del from 'del';
 import { exec } from 'child_process';

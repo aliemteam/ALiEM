@@ -26,6 +26,7 @@ services:
             DB_USER: root
             PLUGINS: >-
                 academic-bloggers-toolkit,
+                broken-link-checker,
                 co-authors-plus,
                 disqus-notify-content-author,
                 disqus-comment-system,
