@@ -13,7 +13,7 @@
 		<div id="post-<?php the_ID(); ?>" <?php post_class( 'post' ); ?>>
 			<?php $full_image = ''; ?>
 			<?php if ( 'above' == Avada()->settings->get( 'blog_post_title' ) ) : ?>
-				<?php echo avada_render_post_title( $post->ID, false, '', '2' ); ?>
+				<?php echo avada_render_post_title( $post->ID, false, '', '1' ); ?>
 			<?php elseif ( 'disabled' == Avada()->settings->get( 'blog_post_title' ) && Avada()->settings->get( 'disable_date_rich_snippet_pages' ) ) : ?>
 				<span class="entry-title" style="display: none;"><?php the_title(); ?></span>
 			<?php endif; ?>
@@ -73,7 +73,7 @@
 			<?php endif; ?>
 
 			<?php if ( 'below' == Avada()->settings->get( 'blog_post_title' ) ) : ?>
-				<?php echo avada_render_post_title( $post->ID, false, '', '2' ); ?>
+				<?php echo avada_render_post_title( $post->ID, false, '', '1' ); ?>
 			<?php endif; ?>
             <?php echo avada_render_post_metadata( 'single' ); ?>
             <?php echo aliem_social_icons(get_permalink($post->ID), get_the_title($post->ID)); ?>

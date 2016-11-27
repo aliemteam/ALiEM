@@ -12,10 +12,79 @@
 @require 'collections/sidebar'
 @require 'collections/footer'
 
-body
-    font-family: 'Open Sans'
-    font-size: 16px
+body,
+button,
+select,
+textarea
     color: $font-primary
+    font-family: 'Open Sans', 'Helvetica Neue', helvetica, arial, sans-serif
+    font-size: 16px
+    font-weight: 400
+    line-height: 1.7
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+    clear: both
+    line-height: 1.4
+    margin: 0 0 0.75em
+    padding: 1.5em 0 0
+    &:first-child
+        padding-top: 0
+
+h1
+    // font-size: 24px
+    font-size: 1.5rem
+    font-weight: 300
+    // &:not(.entry-title)
+    //     text-transform: uppercase
+    //     letter-spacing: 0.1em
+    &.entry-title
+        font-weight: 600
+        margin: 0
+        a
+            color: $font-primary
+            transition: .1s
+            &:hover
+                text-decoration: none
+                transition: .1s
+                color: $primary
+
+h2
+    color: $font-secondary
+    // font-size: 20px
+    font-size: 1.25rem
+    font-weight: 300
+
+h3
+    color: $font-primary
+    // font-size: 18px
+    font-size: 1.125rem
+    font-weight: 300
+
+h4
+    color: $font-primary
+    // font-size: 16px
+    font-size: 1rem
+    font-weight: 800
+
+h5
+    color: $font-secondary
+    // font-size: 13px
+    font-size: 0.8125rem
+    font-weight: 800
+    letter-spacing: 0.15em
+    text-transform: uppercase
+
+h6
+    color: $font-primary
+    // font-size: 15px
+    font-size: 0.9375rem
+    font-weight: 800
+
 sub, sup
     font-size: 75%
     line-height: 0
@@ -81,7 +150,6 @@ table
         p
             margin: 10px 0 !important
             line-height: 1.5em
-
 
 @media (max-width: 800px)
     table

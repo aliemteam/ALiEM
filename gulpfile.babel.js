@@ -39,9 +39,9 @@ Template: Avada
 // ==================================================
 //                     Utility
 // ==================================================
-gulp.task('del', done =>
+gulp.task('del', done => (
     del(['dist/aliem/**', '!dist/aliem']).then(() => done())
-);
+));
 
 gulp.task('reload', (done) => { browserSync.reload(); done(); });
 
@@ -62,7 +62,10 @@ gulp.task('chown', (done) => {
 // ==================================================
 gulp.task('static', () => {
     const php = gulp
-        .src('aliem/**/*.php', { base: './' })
+        .src([
+            'aliem/**/*.php',
+            'aliem/**/*.css',
+        ], { base: './' })
         .pipe(gulp.dest('dist'));
 
     const svg = gulp
@@ -77,7 +80,7 @@ gulp.task('static', () => {
 //                     Styles
 // ==================================================
 
-gulp.task('stylus:dev', () =>
+gulp.task('stylus:dev', () => (
     gulp
         .src('aliem/styles/style.styl', { base: './aliem/styles' })
         .pipe(plugins.sourcemaps.init())
@@ -86,15 +89,15 @@ gulp.task('stylus:dev', () =>
         .pipe(plugins.sourcemaps.write('.'))
         .pipe(gulp.dest('dist/aliem'))
         .pipe(browserSync.stream({ match: '**/*.css' }))
-);
+));
 
-gulp.task('stylus:prod', () =>
+gulp.task('stylus:prod', () => (
     gulp
         .src('aliem/styles/style.styl', { base: './aliem/styles' })
         .pipe(plugins.stylus(Object.assign({}, stylusConfig, { compress: true })))
         .pipe(plugins.insert.prepend(styleHeader))
         .pipe(gulp.dest('dist/aliem'))
-);
+));
 
 gulp.task('build', gulp.series('chown', 'del', gulp.parallel('static', 'stylus:prod')));
 

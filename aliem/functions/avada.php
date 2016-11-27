@@ -84,3 +84,42 @@ function avada_render_post_metadata($layout, $settings = array()) {
     }
     return apply_filters('avada_post_metadata_markup', $html);
 }
+
+/**
+ * Render the post title as linked h1 tag.
+ *
+ * @param  int|string $post_id      The post ID.
+ * @param  bool       $linked       If we want it linked.
+ * @param  string     $custom_title A Custom title.
+ * @param  string|int $custom_size  A custom size.
+ * @param  string|int $custom_link  A custom link.
+ * @return string                   The post title as linked h1 tag.
+ */
+function avada_render_post_title( $post_id = '', $linked = true, $custom_title = '', $custom_size = '1', $custom_link = '' ) {
+
+    $entry_title_class = '';
+
+    // Add the entry title class if rich snippets are enabled.
+    if ( Avada()->settings->get( 'disable_date_rich_snippet_pages' ) ) {
+        $entry_title_class = ' class="entry-title fusion-post-title"';
+    } else {
+        $entry_title_class = ' class="fusion-post-title"';
+    }
+
+    // If we have a custom title, use it otherwise get post title.
+    $title = ( $custom_title ) ? $custom_title : get_the_title( $post_id );
+    $permalink = ( $custom_link ) ? $custom_link : get_permalink( $post_id );
+
+    // If the post title should be linked at the markup.
+    if ( $linked ) {
+        $link_target = '';
+        if ( 'yes' == fusion_get_page_option( 'link_icon_target', $post_id ) || 'yes' == fusion_get_page_option( 'post_links_target', $post_id ) ) {
+            $link_target = ' target="_blank" rel="noopener noreferrer"';
+        }
+        $title = '<a href="' . $permalink . '"' . $link_target . '>' . $title . '</a>';
+    }
+
+    // Return the HTML markup of the post title.
+    return '<h' . $custom_size . $entry_title_class . '>' . $title . '</h' . $custom_size . '>';
+
+}

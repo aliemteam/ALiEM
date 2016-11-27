@@ -1,7 +1,7 @@
 version: '2'
 services:
     wordpress:
-        image: dsifford/wordpress:apache-next
+        image: visiblevc/wordpress
         links:
             - db
         ports:
