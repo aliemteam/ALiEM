@@ -1,0 +1,65 @@
+#!/bin/bash
+
+SCRIPTDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Check ownership of wp-content
+owners=$(ls -lR "$SCRIPTDIR"/wp-content | awk '{print $3}')
+for o in $owners; do
+    if [[ $o != "$USER" ]]; then
+        echo '=> Need sudo priveledges to take ownership of wp-content directory'
+        sudo chown -R "$USER":"$USER" "$SCRIPTDIR"/wp-content
+        break
+    fi
+done;
+
+# Prepare for SSH
+eval "$(ssh-agent -s)" &>/dev/null
+ssh-add ~/.ssh/aliem_rsa &>/dev/null
+
+if [ -z "$(ssh-keygen -F acade220@c7563.sgvps.net)" ]; then
+    ssh-keyscan -H acade220@c7563.sgvps.net >> ~/.ssh/known_hosts
+fi
+
+
+main() {
+    case $1 in
+        get)
+            case $2 in
+                uploads)
+                    get_uploads;;
+                database)
+                    get_database;;
+                *)
+                    exit 0
+            esac
+        ;;
+        *)
+            get_uploads
+            get_database
+        ;;
+    esac
+}
+
+
+get_uploads() {
+    echo "=> Downloading uploads from server..."
+    rsync --ignore-existing --info=progress2 -az -e "ssh -i ~/.ssh/aliem_rsa -p 18765" acade220@c7563.sgvps.net:public_html/wp-content/uploads/ "$SCRIPTDIR/wp-content/uploads"
+    echo "=> Uploads Synced Successfully!"
+}
+
+get_database() {
+    # SSH into siteground and backup the database and copy to the data directory
+    eval "$(docker-machine env -u)"
+    ssh -i ~/.ssh/aliem_rsa acade220@c7563.sgvps.net -p 18765 "
+    cd public_html
+    wp db export database.sql
+    "
+    echo '=> Downloading database to local machine...'
+    scp -i ~/.ssh/aliem_rsa -P 18765 acade220@c7563.sgvps.net:public_html/database.sql "$SCRIPTDIR"/data
+    echo '=> Deleting database copy from server...'
+    ssh -i ~/.ssh/aliem_rsa acade220@c7563.sgvps.net -p 18765 "cd public_html && rm database.sql"
+    echo '=> Process Completed. Note: Database must still be imported and search-replaced.'
+}
+
+
+main "$@"
