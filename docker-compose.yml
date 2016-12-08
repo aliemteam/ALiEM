@@ -2,8 +2,6 @@ version: '2'
 services:
     wordpress:
         image: visiblevc/wordpress
-        links:
-            - db
         ports:
             - "8080:80"
         volumes:
@@ -53,8 +51,6 @@ services:
             SEARCH_REPLACE: https://www.aliem.com,http://localhost:8080
     db:
         image: mariadb:10
-        expose:
-            - "3306"
         environment:
             MYSQL_ROOT_PASSWORD: root
         volumes:
