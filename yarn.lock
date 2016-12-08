@@ -918,13 +918,9 @@ character-parser@1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/character-parser/-/character-parser-1.2.0.tgz#94134d6e5d870a39be359f7d22460935184ddef6"
 
-character-parser@1.2.1:
+character-parser@1.2.1, character-parser@^1.2.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/character-parser/-/character-parser-1.2.1.tgz#c0dde4ab182713b919b970959a123ecc1a30fcd6"
-
-character-parser@^1.2.0:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/character-parser/-/character-parser-1.2.2.tgz#92d3dd48bfdc9ad5e913ec953d90f6d571a467d3"
 
 chokidar@1.6.0, chokidar@^1.0.0, chokidar@^1.4.3:
   version "1.6.0"
@@ -1030,15 +1026,15 @@ commander@2.8.x:
   dependencies:
     graceful-readlink ">= 1.0.0"
 
-commander@^2.2.0, commander@^2.4.0, commander@^2.9.0:
+commander@^2.2.0, commander@^2.4.0, commander@~2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.6.0.tgz#9df7e52fb2a0cb0fb89058ee80c3104225f37e1d"
+
+commander@^2.9.0:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.9.0.tgz#9c99094176e12240cb22d6c5146098400fe0f7d4"
   dependencies:
     graceful-readlink ">= 1.0.0"
-
-commander@~2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.6.0.tgz#9df7e52fb2a0cb0fb89058ee80c3104225f37e1d"
 
 component-bind@1.0.0:
   version "1.0.0"
@@ -1557,9 +1553,9 @@ eslint-plugin-import@^2.2.0:
     minimatch "^3.0.3"
     pkg-up "^1.0.0"
 
-eslint@^3.11.0:
-  version "3.11.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-3.11.0.tgz#41d34f8b3e69949beee5c097ff4e75ad13ba2d00"
+eslint@^3.11.1:
+  version "3.11.1"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-3.11.1.tgz#408be581041385cba947cd8d1cd2227782b55dbf"
   dependencies:
     babel-code-frame "^6.16.0"
     chalk "^1.1.3"
@@ -2277,7 +2273,7 @@ gulp@^3.9.0:
     v8flags "^2.0.2"
     vinyl-fs "^0.3.0"
 
-"gulp@github:gulpjs/gulp#4.0":
+gulp@gulpjs/gulp#4.0:
   version "4.0.0-alpha.2"
   resolved "https://codeload.github.com/gulpjs/gulp/tar.gz/e9e5ab7e70080e1bfb5650a4fdc4c8849e70b3e0"
   dependencies:
@@ -2751,14 +2747,7 @@ js-tokens@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-2.0.0.tgz#79903f5563ee778cc1162e6dcf1a0027c97f9cb5"
 
-js-yaml@^3.5.1:
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.7.0.tgz#5c967ddd837a9bfdca5f2de84253abe8a1c03b80"
-  dependencies:
-    argparse "^1.0.7"
-    esprima "^2.6.0"
-
-js-yaml@~3.6.1:
+js-yaml@^3.5.1, js-yaml@~3.6.1:
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.6.1.tgz#6e5fe67d8b205ce4d22fad05b7781e8dadcc4b30"
   dependencies:
@@ -3800,17 +3789,17 @@ qs@0.4.x:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-0.4.2.tgz#3cac4c861e371a8c9c4770ac23cda8de639b8e5f"
 
-qs@6.2.1:
+qs@6.2.1, "qs@>= 0.4.0":
   version "6.2.1"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.2.1.tgz#ce03c5ff0935bc1d9d69a9f14cbd18e568d67625"
-
-"qs@>= 0.4.0", qs@~6.3.0:
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/qs/-/qs-6.3.0.tgz#f403b264f23bc01228c74131b407f18d5ea5d442"
 
 qs@~5.2.0:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/qs/-/qs-5.2.1.tgz#801fee030e0b9450d6385adc48a4cc55b44aedfc"
+
+qs@~6.3.0:
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.3.0.tgz#f403b264f23bc01228c74131b407f18d5ea5d442"
 
 querystring-es3@~0.2.0:
   version "0.2.1"

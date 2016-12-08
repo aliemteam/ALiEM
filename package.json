@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "./node_modules/.bin/stylint ./aliem/styles/"
+    "lint": "./node_modules/.bin/stylint ./aliem/styles/",
+    "start": "gulp _dev",
+    "build": "gulp _build",
+    "sync": "./lib/scripts/sync $@"
   },
   "repository": {
     "type": "git",
@@ -23,10 +26,10 @@
     "babel-register": "^6.18.0",
     "browser-sync": "^2.18.2",
     "del": "^2.2.2",
-    "eslint": "^3.11.0",
+    "eslint": "^3.11.1",
     "eslint-config-airbnb-base": "^10.0.1",
     "eslint-plugin-import": "^2.2.0",
-    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp": "gulpjs/gulp#4.0",
     "gulp-csso": "^2.0.0",
     "gulp-insert": "^0.5.0",
     "gulp-jade2php": "^1.0.4",

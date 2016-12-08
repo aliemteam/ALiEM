@@ -1,13 +1,15 @@
 #!/bin/bash
 
 SCRIPTDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOTDIR="$(cd "$SCRIPTDIR" && cd ../../ && pwd)"
+
 
 # Check ownership of wp-content
-owners=$(ls -lR "$SCRIPTDIR"/wp-content | awk '{print $3}')
+owners=$(ls -lR "$ROOTDIR"/wp-content | awk '{print $3}')
 for o in $owners; do
     if [[ $o != "$USER" ]]; then
         echo '=> Need sudo priveledges to take ownership of wp-content directory'
-        sudo chown -R "$USER":"$USER" "$SCRIPTDIR"/wp-content
+        sudo chown -R "$USER":"$USER" "$ROOTDIR"/wp-content
         break
     fi
 done;
@@ -43,7 +45,7 @@ main() {
 
 get_uploads() {
     echo "=> Downloading uploads from server..."
-    rsync --ignore-existing --info=progress2 -az -e "ssh -i ~/.ssh/aliem_rsa -p 18765" acade220@c7563.sgvps.net:public_html/wp-content/uploads/ "$SCRIPTDIR/wp-content/uploads"
+    rsync --ignore-existing --info=progress2 -az -e "ssh -i ~/.ssh/aliem_rsa -p 18765" acade220@c7563.sgvps.net:public_html/wp-content/uploads/ "$ROOTDIR/wp-content/uploads"
     echo "=> Uploads Synced Successfully!"
 }
 
@@ -55,7 +57,7 @@ get_database() {
     wp db export database.sql
     "
     echo '=> Downloading database to local machine...'
-    scp -i ~/.ssh/aliem_rsa -P 18765 acade220@c7563.sgvps.net:public_html/database.sql "$SCRIPTDIR"/data
+    scp -i ~/.ssh/aliem_rsa -P 18765 acade220@c7563.sgvps.net:public_html/database.sql "$ROOTDIR"/data
     echo '=> Deleting database copy from server...'
     ssh -i ~/.ssh/aliem_rsa acade220@c7563.sgvps.net -p 18765 "cd public_html && rm database.sql"
     echo '=> Process Completed. Note: Database must still be imported and search-replaced.'

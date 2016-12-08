@@ -99,9 +99,9 @@ gulp.task('stylus:prod', () => (
         .pipe(gulp.dest('dist/aliem'))
 ));
 
-gulp.task('build', gulp.series('chown', 'del', gulp.parallel('static', 'stylus:prod')));
+gulp.task('_build', gulp.series('chown', 'del', gulp.parallel('static', 'stylus:prod')));
 
-gulp.task('default', gulp.series(
+gulp.task('_dev', gulp.series(
     'chown', 'del',
     gulp.parallel('static', 'stylus:dev'), () => {
         browserSync.init({
@@ -114,8 +114,7 @@ gulp.task('default', gulp.series(
             'aliem/**/*',
             '!aliem/**/*.styl',
         ], gulp.series('static', 'reload'));
-    }
-));
+    }));
 
 
 // ==================================================
@@ -131,6 +130,10 @@ const avada = {
         regex: /(\s)((?:add_action|wp_enqueue_style).+(?:dynamic[-_]css|inline_css).+)/g,
         replacement: '$1//$2',
     },
+    dynamicCssNoop: {
+        regex: /^(function avada_dynamic_css_cached\(\) {\n)(?! {4}return)/gm,
+        replacement: '$1    return null;\n',
+    },
 };
 
 
@@ -145,7 +148,12 @@ gulp.task('fix-theme', () => {
         .pipe(plugins.replace(avada.inlineCss.regex, avada.inlineCss.replacement))
         .pipe(gulp.dest('./'));
 
-    return merge(classAvadaDynamicCss, classAvadaInit);
+    const dynamicCssNoop = gulp
+        .src('./wp-content/themes/Avada/includes/dynamic_css_helpers.php', { base: './' })
+        .pipe(plugins.replace(avada.dynamicCssNoop.regex, avada.dynamicCssNoop.replacement))
+        .pipe(gulp.dest('./'));
+
+    return merge(classAvadaDynamicCss, classAvadaInit, dynamicCssNoop);
 });
 
 gulp.task('shrink-plugin', () => {
