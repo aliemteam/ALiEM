@@ -1,0 +1,13 @@
+
+.aliem-flex > div
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+
+.aliem-flex__item
+    flex: auto
+    min-width: 220px
+
+for n in 12 25 33 50
+    .aliem-flex__item_{n}
+        max-width: percentage(n / 100)

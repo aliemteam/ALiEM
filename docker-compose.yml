@@ -3,7 +3,7 @@ services:
     wordpress:
         image: visiblevc/wordpress
         ports:
-            - "8080:80"
+            - 8080:80
         volumes:
             # Database
             - ./data:/data
@@ -56,4 +56,4 @@ services:
         volumes:
             - data:/var/lib/mysql
 volumes:
-    data: {}
+    data:
