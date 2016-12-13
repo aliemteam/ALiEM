@@ -58,16 +58,14 @@
 #content
     margin-top: 20px
     width: 75%
-    ul > li
-        line-height: 1.7em !important
-        margin-bottom: 0px !important
-    blockquote
-        border-left: 4px solid $primary
-        font: italic 13px/20px 'Open Sans', 'Helvetica Neue', helvetica, arial, sans-serif
-        img
-            display: inline-block
     iframe
-        max-width: 100%
+        max-width: 90%
+        height: 400px
+        margin: 0 5%
+    for v, k in 600 480
+        @media (max-width: v+0px)
+            iframe
+                height: 300 - (k*100)px
     .twitter-tweet-rendered
         margin: auto
 
@@ -100,19 +98,6 @@
 .fusion-single-line-meta
     > div
         padding-top: 5px
-
-// Image caption boxes
-.wp-caption
-    background: $tertiary
-    padding: 10px
-    box-shadow: $shadow-2dp
-    border-radius: 2px
-    margin-bottom: 20px
-.wp-caption-text
-    text-align: justify
-    background: $tertiary
-    margin: 0 !important
-    padding-top: 5px
 
 // Gigantic image above pages
 .fusion-flexslider

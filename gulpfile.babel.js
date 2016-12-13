@@ -80,24 +80,40 @@ gulp.task('static', () => {
 //                     Styles
 // ==================================================
 
-gulp.task('stylus:dev', () => (
-    gulp
+gulp.task('stylus:dev', () => {
+    const main = gulp
         .src('aliem/styles/style.styl', { base: './aliem/styles' })
         .pipe(plugins.sourcemaps.init())
         .pipe(plugins.stylus(stylusConfig))
         .pipe(plugins.insert.prepend(styleHeader))
         .pipe(plugins.sourcemaps.write('.'))
         .pipe(gulp.dest('dist/aliem'))
-        .pipe(browserSync.stream({ match: '**/*.css' }))
-));
+        .pipe(browserSync.stream({ match: '**/*.css' }));
+    const editor = gulp
+        .src('aliem/styles/editor-style.styl', { base: './aliem/styles' })
+        .pipe(plugins.sourcemaps.init())
+        .pipe(plugins.stylus(stylusConfig))
+        .pipe(plugins.sourcemaps.write('.'))
+        .pipe(gulp.dest('dist/aliem'))
+        .pipe(browserSync.stream({ match: '**/*.css' }));
 
-gulp.task('stylus:prod', () => (
-    gulp
+    return merge(main, editor);
+});
+
+gulp.task('stylus:prod', () => {
+    const main = gulp
         .src('aliem/styles/style.styl', { base: './aliem/styles' })
         .pipe(plugins.stylus(Object.assign({}, stylusConfig, { compress: true })))
         .pipe(plugins.insert.prepend(styleHeader))
-        .pipe(gulp.dest('dist/aliem'))
-));
+        .pipe(gulp.dest('dist/aliem'));
+
+    const editor = gulp
+        .src('aliem/styles/editor-style.styl', { base: './aliem/styles' })
+        .pipe(plugins.stylus(Object.assign({}, stylusConfig, { compress: true })))
+        .pipe(gulp.dest('dist/aliem'));
+
+    return merge(main, editor);
+});
 
 gulp.task('_build', gulp.series('chown', 'del', gulp.parallel('static', 'stylus:prod')));
 
