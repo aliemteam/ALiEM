@@ -55,5 +55,11 @@ services:
             MYSQL_ROOT_PASSWORD: root
         volumes:
             - data:/var/lib/mysql
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+        ports:
+            - 22222:80
 volumes:
     data:
