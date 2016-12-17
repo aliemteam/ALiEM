@@ -39,7 +39,7 @@ function aliem_default_hidden_metaboxes($hidden) {
 add_filter('hidden_meta_boxes', 'aliem_default_hidden_metaboxes', 10, 1);
 
 function aliem_add_editor_style() {
-    add_editor_style( array( get_stylesheet_directory_uri() . '/editor-style.css' ) );
+    add_editor_style( array( get_stylesheet_directory_uri() . '/editor.css' ) );
 }
 add_action('after_setup_theme', 'aliem_add_editor_style');
 

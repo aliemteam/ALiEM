@@ -90,14 +90,21 @@ gulp.task('stylus:dev', () => {
         .pipe(gulp.dest('dist/aliem'))
         .pipe(browserSync.stream({ match: '**/*.css' }));
     const editor = gulp
-        .src('aliem/styles/editor-style.styl', { base: './aliem/styles' })
+        .src('aliem/styles/editor.styl', { base: './aliem/styles' })
+        .pipe(plugins.sourcemaps.init())
+        .pipe(plugins.stylus(stylusConfig))
+        .pipe(plugins.sourcemaps.write('.'))
+        .pipe(gulp.dest('dist/aliem'))
+        .pipe(browserSync.stream({ match: '**/*.css' }));
+    const admin = gulp
+        .src('aliem/styles/admin.styl', { base: './aliem/styles' })
         .pipe(plugins.sourcemaps.init())
         .pipe(plugins.stylus(stylusConfig))
         .pipe(plugins.sourcemaps.write('.'))
         .pipe(gulp.dest('dist/aliem'))
         .pipe(browserSync.stream({ match: '**/*.css' }));
 
-    return merge(main, editor);
+    return merge(main, editor, admin);
 });
 
 gulp.task('stylus:prod', () => {
@@ -106,13 +113,16 @@ gulp.task('stylus:prod', () => {
         .pipe(plugins.stylus(Object.assign({}, stylusConfig, { compress: true })))
         .pipe(plugins.insert.prepend(styleHeader))
         .pipe(gulp.dest('dist/aliem'));
-
     const editor = gulp
-        .src('aliem/styles/editor-style.styl', { base: './aliem/styles' })
+        .src('aliem/styles/editor.styl', { base: './aliem/styles' })
+        .pipe(plugins.stylus(Object.assign({}, stylusConfig, { compress: true })))
+        .pipe(gulp.dest('dist/aliem'));
+    const admin = gulp
+        .src('aliem/styles/admin.styl', { base: './aliem/styles' })
         .pipe(plugins.stylus(Object.assign({}, stylusConfig, { compress: true })))
         .pipe(gulp.dest('dist/aliem'));
 
-    return merge(main, editor);
+    return merge(main, editor, admin);
 });
 
 gulp.task('_build', gulp.series('chown', 'del', gulp.parallel('static', 'stylus:prod')));

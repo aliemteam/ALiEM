@@ -36,6 +36,7 @@ services:
                 tablepress,
                 wordpress-seo,
                 wp-smushit,
+                query-monitor,
                 [abt-deprecated-peer-review]https://github.com/dsifford/abt-deprecated-peer-review/archive/master.zip,
                 [local]fanciest-author-box,
                 [local]fusion-builder,
