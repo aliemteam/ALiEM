@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="200" height="64" viewBox="0, 0, 200, 64">
-  <g id="Background">
-    <rect x="0" y="0" width="200" height="64" fill="#FFFFFF"/>
-  </g>
   <g id="Main">
     <g id="Cross">
       <path d="M11.37,37.237 C12.069,36.29 12.821,35.334 13.617,34.378 C13.315,33.802 13.141,33.148 13.139,32.453 C8.264,31.391 3.733,31.578 -0,32.218 L-0,40.377 L9.196,40.377 C9.879,39.33 10.6,38.282 11.37,37.237" fill="#00B092" id="path3448"/>
