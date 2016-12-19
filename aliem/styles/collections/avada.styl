@@ -1,7 +1,77 @@
+@require 'colors'
+@require 'variables'
+
+// "Related Posts" widget
+.fusion-rollover
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4))
+    .fusion-rollover-link,
+    .fusion-rollover-gallery,
+    .fusion-rollover-sep
+        display: none;
+    h4
+        margin: 0
+        padding: 0
+    .fusion-rollover-content .fusion-rollover-title a
+        color: white
+        font-weight: 600
+.fusion-image-wrapper,
+.fusion-image-wrapper img
+    min-height: 136px
+    max-height: 136px
+
+
+// Carousel next/prev buttons
+.fusion-carousel
+    .fusion-carousel-nav
+        .fusion-nav-next,
+        .fusion-nav-prev
+            background-color: $primary
+            opacity: 1
+            transition: .2s
+            &::before
+                color: white
+        .fusion-nav-prev
+            border-radius: 0 2px 2px 0
+        .fusion-nav-next
+            border-radius: 2px 0 0 2px
+
+// Pagination buttons
+.bbp-pagination .bbp-pagination-links a.inactive,
+.bbp-pagination-links span.dots,
+.bbp-topic-pagination .page-numbers,
+.page-links a,
+.pagination a.inactive,
+.woocommerce-pagination .page-numbers
+    background: white
+    border-color: transparent
+    border-radius: 2px
+    box-shadow: $shadow-2dp
+    transition: $shadow-transition
+    &:hover
+        border-color: transparent
+        box-shadow: $shadow-4dp
+        transition: $shadow-transition
+
+.bbp-pagination .bbp-pagination-links .current,
+.page-links>.page-number,
+.pagination .current,
+.woocommerce-pagination .current
+    border-color: transparent
+    box-shadow: $shadow-2dp
+    border-radius: 2px
+    cursor: default
+    noselect()
+
+// -----------------------------------------------------------------------------
+
+/**
+ * Below is a direct copy/paste from Avada with just the colors adjusted
+ */
+
 // @stylint off
 
-.bbp-pagination .bbp-pagination-links a.inactive:hover, .page-links a:hover, .pagination a.inactive:hover, .woocommerce-pagination .page-numbers:hover
-    border: 1px solid $primary
+// .bbp-pagination .bbp-pagination-links a.inactive:hover, .page-links a:hover, .pagination a.inactive:hover, .woocommerce-pagination .page-numbers:hover
+//     border: 1px solid $primary
 
 .fusion-accordian .panel-title a:hover .fa-fusion-box
     background-color: $primary
@@ -23,9 +93,6 @@
 
 .full-boxed-pricing.fusion-pricing-table .standout .panel-heading h3, .fusion-pricing-table .panel-body .price .decimal-part, .fusion-pricing-table .panel-body .price .integer-part
     color: $primary
-
-.fusion-image-wrapper .fusion-rollover
-    background-image: linear-gradient('from top', rgba(0, 176, 146, 0.5) 0%, $primary 100%)
 
 .no-cssgradients .fusion-image-wrapper .fusion-rollover
     background: $primary
@@ -52,14 +119,6 @@
 
 .link-type-button-bar .fusion-read-more:hover, .link-type-button-bar .fusion-read-more:hover:after, .link-type-button-bar .fusion-read-more:hover:before, .link-type-button-bar.link-area-box:hover .fusion-read-more, .link-type-button-bar.link-area-box:hover .fusion-read-more:after, .link-type-button-bar.link-area-box:hover .fusion-read-more:before
     color: white !important
-
-.fusion-image-wrapper .fusion-rollover .fusion-rollover-gallery, .fusion-image-wrapper .fusion-rollover .fusion-rollover-link
-    background-color: $font-primary
-    width: calc(12px * 2.41)
-    height: calc(12px * 2.41)
-
-.fusion-image-wrapper .fusion-rollover .fusion-rollover-content .fusion-product-buttons a:before, .fusion-image-wrapper .fusion-rollover .fusion-rollover-content .fusion-rollover-categories, .fusion-image-wrapper .fusion-rollover .fusion-rollover-content .fusion-rollover-categories a, .fusion-image-wrapper .fusion-rollover .fusion-rollover-content .fusion-rollover-title a, .fusion-image-wrapper .fusion-rollover .fusion-rollover-content .price *, .fusion-image-wrapper .fusion-rollover .fusion-rollover-content a, .fusion-rollover .fusion-rollover-content .fusion-rollover-title
-    color: $font-primary
 
 #slidingbar-area .widget-title, #slidingbar-area h3, .fusion-footer-widget-area .widget-title, .fusion-footer-widget-area h3
     font-size: 13px
@@ -113,7 +172,7 @@
     line-height: 1.5
 
 .page-links, .pagination, .pagination .pagination-next, .pagination .pagination-prev
-    font-size: 12px
+    font-size: 0.9em
 
 .sep-boxed-pricing .panel-heading h3
     color: $font-primary
