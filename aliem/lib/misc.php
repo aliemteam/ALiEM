@@ -38,6 +38,9 @@ function aliem_default_hidden_metaboxes($hidden) {
 }
 add_filter('hidden_meta_boxes', 'aliem_default_hidden_metaboxes', 10, 1);
 
+/**
+ * Load the custom editor style
+ */
 function aliem_add_editor_style() {
     add_editor_style( array( get_stylesheet_directory_uri() . '/editor.css' ) );
 }
@@ -66,6 +69,38 @@ function adjust_avada_options() {
     update_option('avada_theme_options', $ops);
 }
 add_action('init', 'adjust_avada_options');
+
+/**
+ * Remove tablepress button from tinymce
+ */
+function aliem_remove_extra_tinymce_buttons($buttons) {
+    $buttons = array_filter($buttons, function($button) {
+        return $button !== 'tablepress_insert_table';
+    });
+    return $buttons;
+}
+add_filter('mce_buttons', 'aliem_remove_extra_tinymce_buttons', 999);
+
+/**
+ * Remove mailpoet button from edit pages
+ */
+function mailpoet_remove_tinymce_subscription_form_icon(){
+    if(defined('WYSIJA')){
+        $helper_back = WYSIJA::get('back' , 'helper');
+        remove_action('admin_head-post-new.php',array($helper_back,'addCodeToPagePost'));
+        remove_action('admin_head-post.php',array($helper_back,'addCodeToPagePost'));
+    }
+}
+add_action('admin_init', 'mailpoet_remove_tinymce_subscription_form_icon');
+
+/**
+ * Hide "Add Poll" button for polldaddy
+ */
+function stub_polldaddy_button() {
+    echo "<style type='text/css'>a#add_poll {display: none;}</style>";
+}
+add_action('edit_form_before_permalink', 'stub_polldaddy_button');
+
 
 /**
  * Renders the social icons

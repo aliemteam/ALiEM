@@ -13,20 +13,20 @@
     .widget
         background: white
         margin: 0 0 15px 0
-        &.widget_text:first-of-type
-            padding: 20px
-            box-shadow: $shadow-2dp
-            border-radius: 2px
+        &.widget_text:nth-of-type(2)
+            padding: 0
         // feminem job board
         &.widget_text:nth-of-type(3)
             background: $feminem-secondary
-        &.widget_text:nth-of-type(n+3),
+        &.widget_text,
         &.widget_wysija
             padding: 10px
             box-shadow: $shadow-2dp
             border-radius: 2px
             p
-                margin-bottom: 5px
+                margin-bottom: 5px !important
+                &:last-of-type
+                    margin-bottom: inherit !important
     .widget-title
         text-align: center
     .tabs-widget

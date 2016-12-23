@@ -9,10 +9,14 @@
     border-radius: 2px
     font-size: 0.8em
     padding: 0 10px 10px 10px
-    &::before
-        content: 'References'
-        font-size: 1.3rem
-        line-height: 2.5em
+#abt-bibliography::before
+    content: 'References'
+    font-size: 1.3rem
+    line-height: 2.5em
+.abt-static-bib
+    @extends #abt-bibliography
+    padding-top: 10px
+    background: transparent
 
 .abt_PR_info // @stylint ignore
     line-height: 1.5em
