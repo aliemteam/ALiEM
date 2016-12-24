@@ -22,6 +22,7 @@ function aliem_plotly_shortcode($atts) {
     <script type='text/javascript'>
         (function() {
             var script = document.getElementById('plotly-js');
+            var isMobile = <?php echo wp_is_mobile() ? 'true' : 'false' ?>;
             var id = '<?php echo $id ?>';
             if (!script) {
                 var head = document.querySelector('head');
@@ -40,13 +41,29 @@ function aliem_plotly_shortcode($atts) {
             }
             function mountPlot() {
                 var json = <?php echo $plot ?>;
+                console.log(json);
+                createTitle(json.layout.title, id);
+                json.layout.title = '';
+                json.layout.margin = { t: 0 };
+                if (isMobile) {
+                    json.layout.xaxis.showticklabels = false;
+                    json.layout.hovermode = 'x'
+                }
                 Plotly.newPlot(id, json.data, json.layout, {
                     displayModeBar: false,
                 });
             }
+            function createTitle(title, id) {
+                var el = document.createElement('div');
+                el.className = 'plotly-title'
+                el.style.fontWeight = '500';
+                el.style.textAlign = 'center';
+                el.innerText = title;
+                document.getElementById(id).parentNode.insertBefore(el, document.getElementById(id));
+            }
         })();
     </script>
     <?php
-    return "<div id='$id'></div>";
+    return "<div id='$id' style='width: calc(100% + 40px); height: auto; position: relative; margin: auto -20px;'></div>";
 }
 add_shortcode('plot', 'aliem_plotly_shortcode');

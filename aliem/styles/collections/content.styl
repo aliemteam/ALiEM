@@ -61,11 +61,12 @@
     .post-content
         iframe
             max-width: 90%
-            height: 400px
             margin: 0 5%
+        iframe[src^='https://www.youtube.com/']
+            height: 400px
         for v, k in 600 480
             @media (max-width: v+0px)
-                iframe
+                iframe[src^='https://www.youtube.com/']
                     height: 300 - (k*100)px
         .twitter-tweet-rendered
             margin: auto

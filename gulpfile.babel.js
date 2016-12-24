@@ -69,8 +69,8 @@ gulp.task('static', () => {
         .pipe(gulp.dest('dist'));
 
     const svg = gulp
-        .src('aliem/assets/*.svg', { base: './' })
-        .pipe(plugins.svgmin())
+        .src('aliem/assets/**/*', { base: './' })
+        .pipe(plugins.imagemin())
         .pipe(gulp.dest('dist'));
 
     return merge(php, svg);
