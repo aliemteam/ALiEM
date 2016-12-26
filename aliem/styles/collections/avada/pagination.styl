@@ -1,0 +1,26 @@
+
+.bbp-pagination .bbp-pagination-links a.inactive,
+.bbp-pagination-links span.dots,
+.bbp-topic-pagination .page-numbers,
+.page-links a,
+.pagination a.inactive,
+.woocommerce-pagination .page-numbers
+    background: white
+    border-color: transparent
+    border-radius: 2px
+    box-shadow: $shadow-2dp
+    transition: $shadow-transition
+    &:hover
+        border-color: transparent
+        box-shadow: $shadow-4dp
+        transition: $shadow-transition
+
+.bbp-pagination .bbp-pagination-links .current,
+.page-links>.page-number,
+.pagination .current,
+.woocommerce-pagination .current
+    border-color: transparent
+    box-shadow: $shadow-2dp
+    border-radius: 2px
+    cursor: default
+    noselect()
