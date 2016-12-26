@@ -15,5 +15,6 @@ function call_aliem_shortcode_stub() {
     add_shortcode('su_audio', 'aliem_shortcode_stub');
     add_shortcode('su_video', 'aliem_shortcode_stub');
     add_shortcode('su_gmap', 'aliem_shortcode_stub');
+    add_shortcode('su_divider', 'aliem_shortcode_stub');
 }
 add_action('wp_loaded', 'call_aliem_shortcode_stub');
