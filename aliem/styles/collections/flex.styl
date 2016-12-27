@@ -6,10 +6,9 @@
 
 .aliem-flex__item
     flex: auto
-    width: 100%
-    min-width: 220px
     padding: 10px
 
 for n in 12 25 33 50
     .aliem-flex__item_{n}
         max-width: percentage(n / 100)
+        flex-basis: percentage(n / 100)
