@@ -1,0 +1,12 @@
+# shellcheck shell=bash disable=2034
+
+server_ip='104.131.114.35'
+server_user='aliem'
+rsa_filename='DO_aliem_rsa'
+base_theme_name='Avada'
+theme_name='aliem'
+local_plugins=(
+    fanciest-author-box
+    fusion-builder
+    fusion-core
+)

@@ -1,6 +1,4 @@
-#!/bin/bash
-
-#!/bin/bash
+#!/usr/bin/env bash
 
 TERM=${TERM:-xterm}
 RED='\033[0;31m'
@@ -24,7 +22,7 @@ STATUS() {
     local opt
 
     getopts "q" opt
-    shift $(($OPTIND - 1))
+    shift $((OPTIND - 1))
 
     [[ $opt == q ]] && quiet=true
 
@@ -48,7 +46,7 @@ ERROR() {
 depcheck() {
     local dep
     for dep in "$@"; do
-        type $dep &>/dev/null
+        type "$dep" &>/dev/null
         [[ $? == 1 ]] && ERROR "$dep must be installed"
     done
 }

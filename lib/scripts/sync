@@ -1,67 +1,118 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
+# Globals
 SCRIPTDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ROOTDIR="$(cd "$SCRIPTDIR" && cd ../../ && pwd)"
+ROOTDIR=$(cd "$SCRIPTDIR" && cd ../../ && pwd || exit)
 
+declare server_ip
+declare server_user
+declare rsa_filename
+declare base_theme_name
+declare theme_name
+declare local_plugins
 
-# Check ownership of wp-content
-owners=$(ls -lR "$ROOTDIR"/wp-content | awk '{print $3}')
-for o in $owners; do
-    if [[ $o != "$USER" ]]; then
-        echo '=> Need sudo priveledges to take ownership of wp-content directory'
-        sudo chown -R "$USER":"$USER" "$ROOTDIR"/wp-content
-        break
-    fi
-done;
-
-# Prepare for SSH
-eval "$(ssh-agent -s)" &>/dev/null
-ssh-add ~/.ssh/aliem_rsa &>/dev/null
-
-if [ -z "$(ssh-keygen -F acade220@c7563.sgvps.net)" ]; then
-    ssh-keyscan -H acade220@c7563.sgvps.net >> ~/.ssh/known_hosts
-fi
-
+# shellcheck disable=SC1090
+{
+    . "$SCRIPTDIR"/helpers || exit 1
+    . "$SCRIPTDIR"/variables || exit 1
+}
 
 main() {
-    case $1 in
+
+    prechecks
+
+    if [[ $# == 0 ]]; then
+        get_uploads
+        get_database
+        exit 0
+    fi
+
+    case "$1" in
+        init)
+            get_database
+            get_plugins
+            get_theme
+            get_theme_base
+            get_uploads
+            ;;
         get)
-            case $2 in
+            case "$2" in
                 uploads)
                     get_uploads;;
+                plugins)
+                    get_plugins;;
+                theme)
+                    get_theme;;
+                base-theme)
+                    get_theme_base;;
                 database)
                     get_database;;
                 *)
-                    exit 0
-            esac
-        ;;
+                    h2 "'get' subcommmand must be either 'uploads', 'plugins', 'theme', or 'database'" && exit 0
+            esac;;
         *)
-            get_uploads
-            get_database
-        ;;
+            h2 "The only available commands are 'init' and 'get'" && exit 0
     esac
 }
 
+prechecks() {
+    depcheck \
+        rsync \
+        ssh \
+        ssh-add \
+        ssh-keyscan
+
+    # Check ownership of directories within wp-content
+    if [[ $(find "$ROOTDIR"/wp-content -type d -not -user "$USER") ]]; then
+        h2 'Need sudo priveledges to take ownership of wp-content directory'
+        sudo chown -R "$USER" "$ROOTDIR"/wp-content
+    fi
+
+    # Check to make sure the SSH key exists
+    [[ ! -f "$HOME/.ssh/$rsa_filename" ]] && ERROR "SSH keys have not been added to your SSH directory for this machine"
+
+    # Prepare for SSH transfers
+    eval "$(ssh-agent -s)" &>/dev/null
+    ssh-add "$HOME/.ssh/$rsa_filename" &>/dev/null
+
+    if [ -z "$(ssh-keygen -F "$server_ip")" ]; then
+      ssh-keyscan -H "$server_ip" >> ~/.ssh/known_hosts
+    fi
+}
 
 get_uploads() {
-    echo "=> Downloading uploads from server..."
-    rsync --ignore-existing --info=progress2 -az -e "ssh -i ~/.ssh/aliem_rsa -p 18765" acade220@c7563.sgvps.net:public_html/wp-content/uploads/ "$ROOTDIR/wp-content/uploads"
-    echo "=> Uploads Synced Successfully!"
+    h2 "Downloading uploads from server..."
+    rsync --info=progress2 -auze "ssh" "$server_user@$server_ip:/home/$server_user/app/wp-content/uploads/" "$ROOTDIR/wp-content/uploads"
+    h2 "Uploads Synced Successfully!"
+}
+
+get_plugins() {
+    local plugin
+    h2 "Retrieving plugins"
+    for plugin in "${local_plugins[@]}"; do
+        h3 "Retrieving plugin: $plugin"
+        rsync --info=progress2 -aze "ssh" "$server_user@$server_ip:/home/$server_user/app/wp-content/plugins/$plugin" "$ROOTDIR/wp-content/plugins"
+    done
+}
+
+get_theme() {
+    h2 "Retrieving Theme"
+    rsync --info=progress2 -aze "ssh" "$server_user@$server_ip:/home/$server_user/app/wp-content/themes/$theme_name" "$ROOTDIR/wp-content/themes"
+}
+
+get_theme_base() {
+    h2 "Retrieving Base Theme"
+    rsync --info=progress2 -aze "ssh" "$server_user@$server_ip:/home/$server_user/app/wp-content/themes/$base_theme_name" "$ROOTDIR/wp-content/themes"
 }
 
 get_database() {
-    # SSH into siteground and backup the database and copy to the data directory
-    eval "$(docker-machine env -u)"
-    ssh -i ~/.ssh/aliem_rsa acade220@c7563.sgvps.net -p 18765 "
-    cd public_html
-    wp db export database.sql
-    "
-    echo '=> Downloading database to local machine...'
-    scp -i ~/.ssh/aliem_rsa -P 18765 acade220@c7563.sgvps.net:public_html/database.sql "$ROOTDIR"/data
-    echo '=> Deleting database copy from server...'
-    ssh -i ~/.ssh/aliem_rsa acade220@c7563.sgvps.net -p 18765 "cd public_html && rm database.sql"
-    echo '=> Process Completed. Note: Database must still be imported and search-replaced.'
-}
+    h2 "Exporting database..."
+    ssh "$server_user@$server_ip" "cd ~/app && docker-compose exec wordpress wp db export /data/database.sql --allow-root"
 
+    h2 "Downloading database to local machine..."
+    rsync --info=progress2 -aze "ssh" "$server_user@$server_ip:/home/$server_user/app/data/database.sql" "$ROOTDIR/data/database.sql"
+
+    h2 "Export complete!"
+}
 
 main "$@"

@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+SCRIPTDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOTDIR=$(cd "$SCRIPTDIR" && cd ../../ && pwd || exit)
+sync_all=false
+initial_deploy=false
+
+declare server_ip
+declare server_user
+declare rsa_filename
+declare base_theme_name
+declare theme_name
+declare local_plugins
+
+# shellcheck disable=SC1090
+{
+    . "$SCRIPTDIR"/helpers || exit 1
+    . "$SCRIPTDIR"/variables || exit 1
+}
+
+while getopts "ai" o; do
+    case "${o}" in
+        a)
+            sync_all=true
+            ;;
+        i)
+            initial_deploy=true
+            sync_all=true
+            ;;
+    esac
+done
+
+# Exit if the DSA file doesn't exist
+if [[ ! -f "$HOME/.ssh/$rsa_filename" ]]; then
+    ERROR "You must have the file '$rsa_filename' located within your ~/.ssh directory"
+fi
+
+eval "$(ssh-agent -s)" &>/dev/null
+ssh-add "$HOME/.ssh/$rsa_filename" &>/dev/null
+
+if [ -z "$(ssh-keygen -F "$server_ip")" ]; then
+    ssh-keyscan -H "$server_ip" >> ~/.ssh/known_hosts
+fi
+
+if [ "$initial_deploy" = true ]; then
+    # Make sure files exist
+    [ ! -f "$ROOTDIR/.env" ] && ERROR '.env file cannot be located.'
+    [ ! -f "$ROOTDIR/lib/production.yml" ] && ERROR 'production.yml file cannot be located.'
+    [ ! -f "$ROOTDIR/data/database.sql" ] && ERROR 'database.sql file cannot be located.'
+
+    # docker-compose file
+    rsync --info=progress2 -aze "ssh" "$ROOTDIR/lib/production.yml" "$server_user@$server_ip:/home/$server_user/app/docker-compose.yml"
+    # database export
+    rsync --info=progress2 -aze "ssh" "$ROOTDIR/data/database.sql" "$server_user@$server_ip:/home/$server_user/app/data/database.sql"
+    # env file
+    rsync --info=progress2 -aze "ssh" "$ROOTDIR/.env" "$server_user@$server_ip:/home/$server_user/app/.env"
+fi
+
+if [ "$sync_all" = true ]; then
+    rsync --info=progress2 -aze "ssh" "$ROOTDIR/wp-content/themes/$base_theme_name" "$server_user@$server_ip:/home/$server_user/app/wp-content/themes"
+    for plugin in "${local_plugins[@]}"; do
+        rsync --info=progress2 -aze "ssh" "$ROOTDIR/wp-content/plugins/$plugin" "$server_user@$server_ip:/home/$server_user/app/wp-content/plugins"
+    done
+fi
+
+rsync --info=progress2 -aze "ssh" "$ROOTDIR/dist/$theme_name" "$server_user@$server_ip:/home/$server_user/app/wp-content/themes"

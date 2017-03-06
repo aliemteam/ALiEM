@@ -134,12 +134,12 @@ gulp.task('_dev', gulp.series(
             proxy: 'localhost:8080',
         });
 
-        gulp.watch('aliem/**/*.styl', gulp.series('stylus:dev'));
+        // gulp.watch('aliem/**/*.styl', gulp.series('stylus:dev'));
 
-        gulp.watch([
-            'aliem/**/*',
-            '!aliem/**/*.styl',
-        ], gulp.series('static', 'reload'));
+        // gulp.watch([
+        //     'aliem/**/*',
+        //     '!aliem/**/*.styl',
+        // ], gulp.series('static', 'reload'));
     }));
 
 
