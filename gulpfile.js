@@ -87,22 +87,16 @@ gulp.task('stylus:dev', () => (
     .pipe(browserSync.stream())
 ));
 
-gulp.task('stylus:prod', () => {
-    const main = gulp
-        .src('aliem/styles/style.styl', { base: './aliem/styles' })
+gulp.task('stylus:prod', () => (
+    gulp
+        .src([
+            'aliem/styles/style.styl',
+            'aliem/styles/editor.styl',
+            'aliem/styles/admin.styl',
+        ], { base: './aliem/styles' })
         .pipe(stylus(Object.assign({}, stylusConfig, { compress: true })))
-        .pipe(gulp.dest('dist/aliem'));
-    const editor = gulp
-        .src('aliem/styles/editor.styl', { base: './aliem/styles' })
-        .pipe(stylus(Object.assign({}, stylusConfig, { compress: true })))
-        .pipe(gulp.dest('dist/aliem'));
-    const admin = gulp
-        .src('aliem/styles/admin.styl', { base: './aliem/styles' })
-        .pipe(stylus(Object.assign({}, stylusConfig, { compress: true })))
-        .pipe(gulp.dest('dist/aliem'));
-
-    return merge(main, editor, admin);
-});
+        .pipe(gulp.dest('dist/aliem'))
+));
 
 gulp.task('_build', gulp.series('chown', 'del', gulp.parallel('static', 'stylus:prod')));
 
