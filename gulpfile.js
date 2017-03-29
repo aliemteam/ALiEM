@@ -1,5 +1,5 @@
 const autoprefixer = require('autoprefixer-stylus');
-const sourcemaps = require('gulp-sourcemaps');
+// const sourcemaps = require('gulp-sourcemaps');
 const gulp = require('gulp');
 const stylus = require('gulp-stylus');
 const imagemin = require('gulp-imagemin');
@@ -80,9 +80,7 @@ gulp.task('stylus:dev', () => (
         'aliem/styles/editor.styl',
         'aliem/styles/admin.styl',
     ], { base: './aliem/styles' })
-    .pipe(sourcemaps.init())
     .pipe(stylus(stylusConfig))
-    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('dist/aliem'))
     .pipe(browserSync.stream())
 ));
@@ -100,19 +98,19 @@ gulp.task('stylus:prod', () => (
 
 gulp.task('_build', gulp.series('chown', 'del', gulp.parallel('static', 'stylus:prod')));
 
-gulp.task('_dev', gulp.series(
-    'chown', 'del',
-    gulp.parallel('static', 'stylus:dev'), () => {
-        browserSync.init({
-            proxy: 'localhost:8080',
-        });
+gulp.task('_dev', gulp.series('chown', 'del', gulp.parallel('static', 'stylus:dev'), dev));
 
-        gulp.watch('aliem/styles/**/*.styl', gulp.series('stylus:dev'));
+function dev() {
+    browserSync.init({
+        proxy: 'localhost:8080',
+    });
 
-        gulp.watch([
-            'aliem/**/*.php',
-        ], gulp.series('static', 'reload'));
-    }));
+    gulp.watch('aliem/styles/**/*.styl', { queue: false }, gulp.series('stylus:dev'));
+
+    gulp.watch([
+        'aliem/**/*.php',
+    ], gulp.series('static', 'reload'));
+}
 
 
 // ==================================================

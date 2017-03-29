@@ -93,14 +93,6 @@ function mailpoet_remove_tinymce_subscription_form_icon(){
 }
 add_action('admin_init', 'mailpoet_remove_tinymce_subscription_form_icon');
 
-/**
- * Hide "Add Poll" button for polldaddy
- */
-function stub_polldaddy_button() {
-    echo "<style type='text/css'>a#add_poll {display: none;}</style>";
-}
-add_action('edit_form_before_permalink', 'stub_polldaddy_button');
-
 
 /**
  * Renders the social icons

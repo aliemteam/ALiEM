@@ -1,0 +1,48 @@
+@require '../colors';
+
+$width = 320px
+$height = 350px
+$flip-speed = 0.6s
+
+.flip-box
+    perspective: 1000px
+    transform-style: preserve-3d
+    width: $width
+    min-height: $height
+    margin-bottom: 1.5em
+    &:hover
+        .flip-box__inner--front
+            transform: rotateY(180deg)
+        .flip-box__inner--back
+            transform: rotateY(0deg)
+
+.flip-box__container
+    transition: $flip-speed
+    transform-style: preserve-3d
+    position: relative
+
+.flip-box__inner
+    width: $width
+    min-height: $height
+    backface-visibility: hidden
+    transition: $flip-speed
+    transform-style: preserve-3d
+    position: absolute
+    top: 0
+    left: 0
+    padding: 20px
+    border-radius: 2px
+    img
+        max-width: 150px
+
+.flip-box__inner--front
+    z-index: 2
+    transform: rotateY(0deg)
+    animation-name: flop
+    background: $tertiary
+
+.flip-box__inner--back
+    animation-name: flip
+    transform: rotateY(-180deg)
+    background: $dark-blue
+    color: white
