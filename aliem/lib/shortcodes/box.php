@@ -1,7 +1,7 @@
 <?php
 
 function aliem_box($atts = [], $content = null) {
-    $secondary = in_array('secondary', $atts) ? 'box--secondary' : '';
+    $secondary = is_array($atts) && in_array('secondary', $atts) ? 'box--secondary' : '';
 
     return "
     <div class='box $secondary'>
