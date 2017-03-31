@@ -142,7 +142,7 @@ gulp.task('fix-theme', () => {
     const dynamicCss = gulp
         .src([
             './wp-content/themes/Avada/includes/class-avada.php',
-            './wp-content/themes/Avada/includes/avadaredux/class-avada-avadaredux.php',
+            './wp-content/themes/Avada/includes/class-avada-avadaredux.php',
         ], { base: './' })
         .pipe(replace(avada.dynamicCss.regex, avada.dynamicCss.replacement))
         .pipe(replace(avada.stubDynamicCssCall.regex, avada.stubDynamicCssCall.replacement))

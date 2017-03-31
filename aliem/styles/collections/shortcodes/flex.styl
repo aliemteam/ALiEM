@@ -1,14 +1,16 @@
 
 .flex-grid
     display: flex
+    flex-wrap: wrap
 
 .flex-grid__item
-    flex: auto
+    flex: 2 0 10%
     width: auto
     padding: 10px
 
 for n in 12 25 33 50
     .flex-grid__item--{n}
+        flex: auto
         max-width: ((n + 2) / 100) * 1100px
         min-width: ((n - 2) / 100) * 1100px
 
