@@ -3,7 +3,7 @@ const autoprefixer = require('autoprefixer-stylus');
 const gulp = require('gulp');
 const stylus = require('gulp-stylus');
 const imagemin = require('gulp-imagemin');
-const replace = require('gulp-replace');
+// const replace = require('gulp-replace');
 const del = require('del');
 const { exec } = require('child_process');
 const merge = require('merge-stream');
@@ -17,15 +17,6 @@ const stylusConfig = {
     use: [
         autoprefixer({ browsers: 'last 2 versions' }),
     ],
-};
-
-const uglifyConfig = {
-    compress: {
-        dead_code: true,
-        unused: true,
-        drop_debugger: true,
-        drop_console: true,
-    },
 };
 
 // ==================================================
@@ -65,7 +56,11 @@ gulp.task('static', () => {
         .pipe(imagemin())
         .pipe(gulp.dest('dist'));
 
-    return merge(php, svg);
+    const vendor = gulp
+        .src('aliem/vendor/**/*', { base: 'aliem' })
+        .pipe(gulp.dest('dist/aliem'));
+
+    return merge(php, svg, vendor);
 });
 
 // ==================================================
@@ -109,42 +104,3 @@ function dev() {
         'aliem/**/*.php',
     ], gulp.series('static', 'reload'));
 }
-
-
-// ==================================================
-//               Plugin/Theme Fixes
-// ==================================================
-
-const avada = {
-    imageSizes: {
-        regex: /(\s)(add_action\(.+'add_image_size'.+)/g,
-        replacement: '$1//$2',
-    },
-    dynamicCss: {
-        regex: /(^\s+)(\$this->dynamic_css\s+= new Avada_Dynamic_CSS\(\);)/gm,
-        replacement: '$1//$2',
-    },
-    stubDynamicCssCall: {
-        regex: /(public function reset_cache\(\) {)\n/gm,
-        replacement: '$1 return;\n',
-    },
-};
-
-
-gulp.task('fix-theme', () => {
-    const classAvadaInit = gulp
-        .src('./wp-content/themes/Avada/includes/class-avada-init.php', { base: './' })
-        .pipe(replace(avada.imageSizes.regex, avada.imageSizes.replacement))
-        .pipe(gulp.dest('./'));
-
-    const dynamicCss = gulp
-        .src([
-            './wp-content/themes/Avada/includes/class-avada.php',
-            './wp-content/themes/Avada/includes/class-avada-avadaredux.php',
-        ], { base: './' })
-        .pipe(replace(avada.dynamicCss.regex, avada.dynamicCss.replacement))
-        .pipe(replace(avada.stubDynamicCssCall.regex, avada.stubDynamicCssCall.replacement))
-        .pipe(gulp.dest('./'));
-
-    return merge(classAvadaInit, dynamicCss);
-});
