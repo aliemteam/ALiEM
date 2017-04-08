@@ -4,8 +4,6 @@ const gulp = require('gulp');
 const stylus = require('gulp-stylus');
 const imagemin = require('gulp-imagemin');
 const replace = require('gulp-replace');
-const uglify = require('gulp-uglify');
-const csso = require('gulp-csso');
 const del = require('del');
 const { exec } = require('child_process');
 const merge = require('merge-stream');
@@ -149,24 +147,4 @@ gulp.task('fix-theme', () => {
         .pipe(gulp.dest('./'));
 
     return merge(classAvadaInit, dynamicCss);
-});
-
-gulp.task('shrink-plugin', () => {
-    if (!process.argv[3]) {
-        console.log("You must specify a plugin directory name (eg. '--academic-bloggers-toolkit')"); // eslint-disable-line
-        process.exit();
-    }
-    const plugin = process.argv[3].substring(2);
-
-    const js = gulp
-        .src(`wp-content/plugins/${plugin}/**/*.js`, { base: './' })
-        .pipe(uglify(uglifyConfig))
-        .pipe(gulp.dest('.'));
-
-    const css = gulp
-        .src(`wp-content/plugins/${plugin}/**/*.css`, { base: './' })
-        .pipe(csso())
-        .pipe(gulp.dest('.'));
-
-    return merge(css, js);
 });

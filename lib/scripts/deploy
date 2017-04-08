@@ -54,6 +54,8 @@ if [ "$initial_deploy" = true ]; then
     rsync --info=progress2 -aze "ssh" "$ROOTDIR/data/database.sql" "$server_user@$server_ip:/home/$server_user/app/data/database.sql"
     # env file
     rsync --info=progress2 -aze "ssh" "$ROOTDIR/.env" "$server_user@$server_ip:/home/$server_user/app/.env"
+    # uploads
+    rsync --info=progress2 -aze "ssh" "$ROOTDIR/wp-content/uploads" "$server_user@$server_ip:/home/$server_user/app/wp-content"
 fi
 
 if [ "$sync_all" = true ]; then

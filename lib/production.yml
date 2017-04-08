@@ -16,7 +16,7 @@ services:
         restart: always
         environment:
             DB_NAME: aliem
-            SITE_NAME: aliem.com
+            SERVER_NAME: aliem.com
             DB_PASS: ${DB_PASS}
             DB_USER: root
             PLUGINS: >-
