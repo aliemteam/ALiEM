@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "./node_modules/.bin/stylint ./aliem/styles/",
     "start": "node --max_old_space_size=8192 node_modules/.bin/gulp _dev",
-    "deploy": "./lib/scripts/deploy $@",
+    "deploy": "./lib/scripts/deploy",
+    "deploy-all": "./lib/scripts/deploy -a",
     "build": "gulp _build",
     "sync": "./lib/scripts/sync $@"
   },
