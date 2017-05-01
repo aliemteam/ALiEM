@@ -1,0 +1,47 @@
+@require '../colors'
+@require '../variables'
+
+.person
+    padding: 5px
+    margin: 0 5px 10px 5px
+    box-shadow: $shadow-2dp
+    border-radius: 2px
+    // width: 250px
+    // max-width: 325px
+    height: 400px
+    flex: auto
+
+.person__img
+    position: relative
+    width: 100%
+    height: 40%
+    img
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%;
+        height: 100%;
+
+.person__details
+    display: flex
+    padding: 5px
+
+.person__twitter
+    a
+        font-family: icomoon
+        font-size: 1.5em
+    a:before
+        content: '\e605'
+
+.person__name
+    font-weight: 600
+
+.person__title
+    font-style: italic
+
+.person__meta
+    flex: auto
+
+.person__background
+    padding: 5px
+    font-size: 0.8em
