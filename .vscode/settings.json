@@ -4,6 +4,7 @@
         "deploy": "shellscript",
         "helpers": "shellscript",
         "sync": "shellscript",
-        "variables": "shellscript"
+        "variables": "shellscript",
+        "bundle": "shellscript"
     }
 }

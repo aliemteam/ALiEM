@@ -26,12 +26,17 @@
   "devDependencies": {
     "autoprefixer": "^7.1.1",
     "autoprefixer-stylus": "^0.14.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "babel-preset-latest": "^6.24.1",
     "browser-sync": "^2.18.12",
     "del": "^3.0.0",
     "gulp": "gulpjs/gulp#4.0",
     "gulp-imagemin": "^3.3.0",
     "gulp-stylus": "^2.6.0",
     "merge-stream": "^1.0.1",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-node-resolve": "^3.0.0",
     "stylint": "^1.5.9",
     "webpack-stream": "^3.2.0"
   },
@@ -40,5 +45,7 @@
       "es2015"
     ]
   },
-  "dependencies": {}
+  "dependencies": {
+    "rollup": "^0.43.0"
+  }
 }
