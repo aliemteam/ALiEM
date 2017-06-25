@@ -31,3 +31,24 @@ table
         p
             margin: 10px 0 !important
             line-height: 1.5em
+
+// @stylint off
+.ReactVirtualized__Table
+    @extends table
+    border-radius: 2px 2px 0 0
+    &:focus
+        outline: 0
+
+    & *:focus
+        outline: 0
+
+.ReactVirtualized__Grid.ReactVirtualized__Table__Grid
+    box-shadow: $shadow-2dp
+
+.ReactVirtualized__Table__headerRow
+    @extends table thead>tr>td
+    text-transform: none !important
+    line-height: normal
+
+.ReactVirtualized__Table__headerColumn
+    white-space: nowrap

@@ -11,7 +11,7 @@
         border: none
         a:first-of-type
             float: left
-            padding-left: 10px
+            margin-left: 10px
         a[rel='prev'], a[rel='next'] // @stylint ignore
             color: $font-gray
             &:before,
@@ -32,6 +32,9 @@
 .page
     .page
         @extends .single .post
+    &.page-template-100-width
+        .fusion-row
+            max-width: 1300px !important
 
 .search
     .fusion-timeline-date
@@ -54,6 +57,11 @@
 #main
     padding-top: 135px
     background: $secondary
+
+    .post h2 a
+        color: $primary
+        &:hover
+            color: darken($primary, 15)
 
 #main .fusion-row,
 #slidingbar-area .fusion-row,
@@ -78,6 +86,9 @@
                     height: 300 - (k*100)px
         .twitter-tweet-rendered
             margin: auto
+        .adsbygoogle iframe
+            max-width: 100%
+            margin: 0
 
 .pagination
     width: 100%
@@ -122,13 +133,14 @@
         margin-top: 0
 
     #main
-        padding-top: 0
+        padding: 0 !important
 
     .post .post-content img
         float: none
         display: block
         margin: auto auto 1.5em
     #content
+        margin-top: 0
         blockquote
             margin-left: 0
             margin-right: 0

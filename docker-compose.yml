@@ -32,10 +32,10 @@ services:
                 w3-total-cache,
                 wp-smushit,
                 wordpress-seo,
+                query-monitor,
 
                 header-footer-code-manager,
                 riveted,
-                tablepress,
                 wp-hide-post,
             WP_DEBUG_DISPLAY: 'true'
             WP_DEBUG_LOG: 'true'

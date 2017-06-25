@@ -6,11 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "./node_modules/.bin/stylint ./aliem/styles/",
-    "start": "node --max_old_space_size=8192 node_modules/.bin/gulp _dev",
+    "start": "node --max_old_space_size=8192 ./node_modules/.bin/gulp",
     "deploy": "./lib/scripts/deploy",
     "deploy-all": "./lib/scripts/deploy -a",
     "deploy-initial": "./lib/scripts/deploy -ai",
-    "build": "gulp _build",
+    "build": "NODE_ENV=production ./node_modules/.bin/gulp",
     "sync": "./lib/scripts/sync $@"
   },
   "repository": {
@@ -24,28 +24,35 @@
   },
   "homepage": "https://github.com/AcademicLifeInEM/ALiEM#readme",
   "devDependencies": {
+    "@types/node": "^8.0.2",
+    "@types/react": "^15.0.31",
+    "@types/react-dom": "^15.5.1",
     "autoprefixer": "^7.1.1",
     "autoprefixer-stylus": "^0.14.0",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-preset-es2015-rollup": "^3.0.0",
-    "babel-preset-latest": "^6.24.1",
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.0",
+    "babel-preset-env": "^1.5.2",
+    "babel-preset-react": "^6.24.1",
     "browser-sync": "^2.18.12",
     "del": "^3.0.0",
     "gulp": "gulpjs/gulp#4.0",
     "gulp-imagemin": "^3.3.0",
+    "gulp-rename": "^1.2.2",
     "gulp-stylus": "^2.6.0",
     "merge-stream": "^1.0.1",
-    "rollup-plugin-babel": "^2.7.1",
-    "rollup-plugin-node-resolve": "^3.0.0",
     "stylint": "^1.5.9",
+    "ts-loader": "^2.2.0",
+    "ts-node": "^3.1.0",
     "webpack-stream": "^3.2.0"
   },
-  "babel": {
-    "presets": [
-      "es2015"
-    ]
-  },
   "dependencies": {
-    "rollup": "^0.43.0"
+    "css-loader": "^0.28.4",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-virtualized": "^9.8.0",
+    "recharts": "^1.0.0-alpha.1",
+    "style-loader": "^0.18.2",
+    "typescript": "^2.3.4",
+    "webpack": "^3.0.0"
   }
 }

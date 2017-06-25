@@ -34,7 +34,6 @@ services:
 
                 header-footer-code-manager,
                 riveted,
-                tablepress,
                 wp-hide-post,
     db:
         image: mariadb:10
