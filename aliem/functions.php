@@ -1,7 +1,7 @@
 <?php
 
 $ROOT_URI = get_stylesheet_directory_uri();
-define('ALIEM_VERSON', '1.3.0');
+define('ALIEM_VERSON', '0.4.0');
 
 class ALiEM {
     public function __construct() {
