@@ -2,6 +2,10 @@ require('ts-node/register');
 import { resolve } from 'path';
 import * as webpack from 'webpack';
 
+const plugins = [
+    new webpack.optimize.ModuleConcatenationPlugin(),
+];
+
 export default {
     context: __dirname,
     entry: {
@@ -30,7 +34,5 @@ export default {
             }
         ],
     },
-    plugins: [
-        new webpack.optimize.ModuleConcatenationPlugin(),
-    ]
+    plugins,
 };

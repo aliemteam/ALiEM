@@ -3,6 +3,23 @@
 // Disable WordPress sanitization to allow more than just $allowedtags
 remove_filter('pre_user_description', 'wp_filter_kses');
 
+function aliem_add_ads_after_content($content) {
+    if (!is_single()) return $content;
+    $content .= "<br>
+    <script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
+    <!-- ALiEM Bottom Leaderboard -->
+    <ins class='adsbygoogle'
+        style='display:inline-block;width:728px;height:90px'
+        data-ad-client='ca-pub-5143351525726802'
+        data-ad-slot='3918886572'></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    ";
+    return $content;
+}
+add_filter('the_content', 'aliem_add_ads_after_content');
+
 /**
  * Remove stockpile of image sizes created by Avada
  */
