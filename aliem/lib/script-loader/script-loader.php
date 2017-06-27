@@ -79,7 +79,7 @@ class Loader {
                 'fusion-animations',
                 'fusion-blog',
                 'fusion-button',
-                'fusion-carousel',
+                // 'fusion-carousel',
                 'fusion-column',
                 'fusion-column-bg-image',
                 'fusion-container',
