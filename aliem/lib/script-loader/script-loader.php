@@ -7,8 +7,6 @@ namespace AliemScripts;
 */
 class Loader {
 
-    private $scripts;
-    private $styles;
     private $localized;
 
     /**
@@ -20,26 +18,18 @@ class Loader {
     * @param string $query   Server query string
     */
     public function __construct() {
-        global $ROOT_URI;
-
-        $this->scripts = [
-            'print-friendly' => ['printfriendly', 'https://pf-cdn.printfriendly.com/ssl/main.js'],
-            'social-media-index' => ['social-media-index', $ROOT_URI . '/lib/js/social-media-index.js', [], false, true],
-        ];
-
-        $this->styles = [
-            'aliem' => ['aliem', get_stylesheet_uri()],
-        ];
-
         $this->localized = [
             'social-media-index' => ['__smi', 'social_media_index'],
         ];
-
-        \add_action('wp_enqueue_scripts', [$this, 'init'], 999);
+        add_action('wp_enqueue_scripts', [$this, 'init'], 999);
     }
 
     public function init() {
-        global $current_user, $post;
+        global $ROOT_URI, $current_user, $post;
+        wp_register_style('aliem', get_stylesheet_uri());
+        wp_register_script('printfriendly', 'https://pf-cdn.printfriendly.com/ssl/main.js');
+        wp_register_script('social-media-index', $ROOT_URI . '/lib/js/social-media-index.js', [], false, true);
+        wp_register_script('mathjax', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=AM_HTMLorMML', [], false, true);
         $this->delegate($post, $current_user);
     }
 
@@ -152,10 +142,10 @@ class Loader {
     */
     private function load($scripts, $styles) {
         foreach(array_reverse(array_unique($styles)) as $style) {
-            \wp_enqueue_style(...$this->styles[$style]);
+            wp_enqueue_style($style);
         }
         foreach(array_reverse(array_unique($scripts)) as $script) {
-            \wp_enqueue_script(...$this->scripts[$script]);
+            wp_enqueue_script($script);
         }
     }
 
@@ -167,10 +157,10 @@ class Loader {
     */
     private function unload($scripts, $styles) {
         foreach(array_unique($scripts) as $script) {
-            \wp_dequeue_script($script);
+            wp_dequeue_script($script);
         }
         foreach(array_unique($styles) as $style) {
-            \wp_dequeue_style($style);
+            wp_dequeue_style($style);
         }
     }
 
@@ -179,7 +169,7 @@ class Loader {
             if (array_key_exists($script, $this->localized)) {
                 $fname = $this->localized[$script][1];
                 $func = "\AliemScripts\Localize\\$fname";
-                \wp_localize_script($script, $this->localized[$script][0], $func());
+                wp_localize_script($script, $this->localized[$script][0], $func());
             }
         }
     }
