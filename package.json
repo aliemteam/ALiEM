@@ -24,8 +24,8 @@
   },
   "homepage": "https://github.com/AcademicLifeInEM/ALiEM#readme",
   "devDependencies": {
-    "@types/node": "^8.0.2",
-    "@types/react": "^15.0.31",
+    "@types/node": "^8.0.4",
+    "@types/react": "^15.0.33",
     "@types/react-dom": "^15.5.1",
     "autoprefixer": "^7.1.1",
     "autoprefixer-stylus": "^0.14.0",
@@ -52,7 +52,7 @@
     "react-virtualized": "^9.8.0",
     "recharts": "^1.0.0-alpha.1",
     "style-loader": "^0.18.2",
-    "typescript": "^2.3.4",
+    "typescript": "^2.4.1",
     "webpack": "^3.0.0"
   }
 }

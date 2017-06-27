@@ -323,7 +323,9 @@ class AliemAdsenseWidget extends WP_Widget {
             <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
-        <?php endif;
+        <?php endif; ?>
+        <p style="margin-top: -5px !important; font-size: 7px;">* Advertisement may not reflect the views of ALiEM</p>
+        <?php
         echo $after_widget;
 	}
 
