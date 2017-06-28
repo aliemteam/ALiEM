@@ -1,7 +1,6 @@
 <?php
 
 class SVGSupport {
-
     function __construct() {
         add_action('admin_init', [$this, 'enable_svg']);
         add_action('after_setup_theme', [$this, 'theme_logo_support'], 99);
@@ -70,4 +69,4 @@ class SVGSupport {
         return $content;
     }
 }
-new SVGSupport();
+new SVGSupport;

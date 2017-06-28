@@ -9,11 +9,11 @@ const plugins = [
 export default {
     context: __dirname,
     entry: {
-        'social-media-index': './aliem/lib/js/social-media-index/',
+        'social-media-index': './aliem/js/social-media-index/',
     },
     output: {
         filename: '[name].js',
-        path: resolve(__dirname, 'dist/aliem/lib/js'),
+        path: resolve(__dirname, 'dist/aliem/js'),
     },
     resolve: {
         extensions: ['*', '.ts', '.tsx', '.js', '.jsx', '.css'],

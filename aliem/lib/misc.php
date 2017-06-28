@@ -1,9 +1,68 @@
 <?php
 
+if (!defined('ABSPATH')) exit(1);
+
+/**
+ * Actions
+ */
+
+// Load the custom editor style
+add_action('after_setup_theme', function () {
+    add_editor_style([ROOT_URI . '/editor.css']);
+});
+
+
+// Remove stockpile of image sizes created by Avada
+add_action('init', function () {
+    foreach(get_intermediate_image_sizes() as $size) {
+        if (!in_array($size, ['thumbnail', 'medium', 'medium-large', 'large'])) {
+            remove_image_size($size);
+        }
+    }
+});
+
+
+// Adjust Avada options to allow for the use of SVG in logos.
+add_action('init', function () {
+    $ops = get_option('avada_theme_options');
+
+    $ops['logo']['url'] = '/wp-content/themes/aliem/assets/aliem-logo-horizontal-full.svg';
+    $ops['logo_retina']['url'] = '/wp-content/themes/aliem/assets/aliem-logo-horizontal-full.svg';
+    $ops['mobile_logo']['url'] = '/wp-content/themes/aliem/assets/aliem-logo-horizontal-full.svg';
+    $ops['mobile_logo_retina']['url'] = '/wp-content/themes/aliem/assets/aliem-logo-horizontal-full.svg';
+
+    update_option('avada_theme_options', $ops);
+});
+
+
+// Remove mailpoet button from edit pages
+add_action('admin_init', function () {
+    if(defined('WYSIJA')){
+        $helper_back = WYSIJA::get('back' , 'helper');
+        remove_action('admin_head-post-new.php',array($helper_back,'addCodeToPagePost'));
+        remove_action('admin_head-post.php',array($helper_back,'addCodeToPagePost'));
+    }
+});
+
+
+// Remove the trove of unnecessary admin menus created by lovely Avada
+add_action('admin_menu', function () {
+    remove_menu_page('edit.php?post_type=avada_faq');
+    remove_menu_page('edit.php?post_type=avada_portfolio');
+});
+
+
+
+/**
+ * Filters
+ */
+
 // Disable WordPress sanitization to allow more than just $allowedtags
 remove_filter('pre_user_description', 'wp_filter_kses');
 
-function aliem_add_ads_after_content($content) {
+
+// Append "Bottom Leaderboard" Adense ad to post content
+add_filter('the_content', function ($content) {
     if (!is_single()) return $content;
     $content .= "<br>
     <script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
@@ -17,25 +76,11 @@ function aliem_add_ads_after_content($content) {
     </script>
     ";
     return $content;
-}
-add_filter('the_content', 'aliem_add_ads_after_content');
+});
 
-/**
- * Remove stockpile of image sizes created by Avada
- */
-function unset_image_sizes() {
-    foreach(get_intermediate_image_sizes() as $size) {
-        if (!in_array($size, ['thumbnail', 'medium', 'medium-large', 'large'])) {
-            remove_image_size($size);
-        }
-    }
-}
-add_action('init', 'unset_image_sizes');
 
-/**
- * Set default hidden metaboxes
- */
-function aliem_default_hidden_metaboxes($hidden) {
+// Set default hidden metaboxes
+add_filter('hidden_meta_boxes', function ($hidden) {
     array_push($hidden,
         'featured-image-2_post',
         'featured-image-2_page',
@@ -49,67 +94,20 @@ function aliem_default_hidden_metaboxes($hidden) {
         'pyre_page_options',
         'formatdiv',
         'slugdiv',
-        'commentstatusdiv'
+        'revisionsdiv',
+        'postcustom',
+        'commentstatusdiv',
+        'commentsdiv',
+        'hidepostdivpost',
+        'hidepostdivpage'
     );
     return $hidden;
-}
-add_filter('hidden_meta_boxes', 'aliem_default_hidden_metaboxes', 10, 1);
+}, 10, 1);
+
 
 /**
- * Load the custom editor style
+ * HTML-Generating Helper Functions
  */
-function aliem_add_editor_style() {
-    add_editor_style( array( get_stylesheet_directory_uri() . '/editor.css' ) );
-}
-add_action('after_setup_theme', 'aliem_add_editor_style');
-
-/**
- * Remove the trove of unnecessary admin menus created by lovely Avada
- */
-function aliem_remove_menu_tabs() {
-    remove_menu_page('edit.php?post_type=avada_faq');
-    remove_menu_page('edit.php?post_type=avada_portfolio');
-}
-add_action('admin_menu', 'aliem_remove_menu_tabs');
-
-/**
- * Adjust Avada options to allow for the use of SVG in logos.
- */
-function adjust_avada_options() {
-    $ops = get_option('avada_theme_options');
-
-    $ops['logo']['url'] = '/wp-content/themes/aliem/assets/aliem-logo-horizontal-full.svg';
-    $ops['logo_retina']['url'] = '/wp-content/themes/aliem/assets/aliem-logo-horizontal-full.svg';
-    $ops['mobile_logo']['url'] = '/wp-content/themes/aliem/assets/aliem-logo-horizontal-full.svg';
-    $ops['mobile_logo_retina']['url'] = '/wp-content/themes/aliem/assets/aliem-logo-horizontal-full.svg';
-
-    update_option('avada_theme_options', $ops);
-}
-add_action('init', 'adjust_avada_options');
-
-/**
- * Remove tablepress button from tinymce
- */
-function aliem_remove_extra_tinymce_buttons($buttons) {
-    $buttons = array_filter($buttons, function($button) {
-        return $button !== 'tablepress_insert_table';
-    });
-    return $buttons;
-}
-add_filter('mce_buttons', 'aliem_remove_extra_tinymce_buttons', 999);
-
-/**
- * Remove mailpoet button from edit pages
- */
-function mailpoet_remove_tinymce_subscription_form_icon(){
-    if(defined('WYSIJA')){
-        $helper_back = WYSIJA::get('back' , 'helper');
-        remove_action('admin_head-post-new.php',array($helper_back,'addCodeToPagePost'));
-        remove_action('admin_head-post.php',array($helper_back,'addCodeToPagePost'));
-    }
-}
-add_action('admin_init', 'mailpoet_remove_tinymce_subscription_form_icon');
-
 
 /**
  * Renders the social icons

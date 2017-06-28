@@ -1,7 +1,10 @@
 <?php
 
-class AliemPopularPostWidget extends WP_Widget {
+namespace ALIEM\Widgets;
 
+if (!defined('ABSPATH')) exit(1);
+
+class PopularPosts extends \WP_Widget {
 	public function __construct() {
 		$widgetOps = [
             'classname' => 'fusion-tabs-widget pyre_tabs',
@@ -70,7 +73,7 @@ class AliemPopularPostWidget extends WP_Widget {
                                 'order' => 'DESC',
                                 'ignore_sticky_posts' => true,
                             ];
-							$popular_posts = new WP_Query($queryArgs);
+							$popular_posts = new \WP_Query($queryArgs);
 							?>
                             <div class="popular-post-heading">Most Popular (Last 30 Days)</div>
 							<ul class="news-list">
@@ -85,7 +88,7 @@ class AliemPopularPostWidget extends WP_Widget {
                                                 <?php endif; ?>
     											<div class="popular-post-holder">
     												<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-    												<div class="fusion-meta"><?php the_time(Avada()->settings->get('date_format')); ?></div>
+    												<div class="fusion-meta"><?php the_time(\Avada()->settings->get('date_format')); ?></div>
     												<div class="fusion-meta"><span style="font-weight: 600;">Views:</span> <?php echo get_post_meta(get_the_id(), 'avada_post_views_count', true); ?></div>
     											</div>
                                             </div>
@@ -104,7 +107,7 @@ class AliemPopularPostWidget extends WP_Widget {
 					<?php if ('true' == $show_recent_posts) : ?>
 
 						<div id="tab-recent" class="tab tab_content" style="display: none;">
-							<?php $recent_posts = new WP_Query('showposts=' . $tagsCount . '&ignore_sticky_posts=1'); ?>
+							<?php $recent_posts = new \WP_Query('showposts=' . $tagsCount . '&ignore_sticky_posts=1'); ?>
 
 							<ul class="news-list">
 								<?php if ($recent_posts->have_posts()) : ?>
@@ -118,7 +121,7 @@ class AliemPopularPostWidget extends WP_Widget {
     											<?php endif; ?>
     											<div class="popular-post-holder">
     												<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-    												<div class="fusion-meta"><?php the_time(Avada()->settings->get('date_format')); ?></div>
+    												<div class="fusion-meta"><?php the_time(\Avada()->settings->get('date_format')); ?></div>
     											</div>
                                             </div>
 										</li>
@@ -168,15 +171,11 @@ class AliemPopularPostWidget extends WP_Widget {
 			</div>
 		</div>
 		<?php
-
 		echo $after_widget;
-
 	}
 
 	public function update($new_instance, $old_instance) {
-
 		$instance = $old_instance;
-
 		$instance['posts'] = $new_instance['posts'];
 		$instance['comments'] = $new_instance['comments'];
 		$instance['tags'] = $new_instance['tags'];
@@ -184,13 +183,10 @@ class AliemPopularPostWidget extends WP_Widget {
 		$instance['show_recent_posts'] = $new_instance['show_recent_posts'];
 		$instance['show_comments'] = $new_instance['show_comments'];
 		$instance['orderby'] = $new_instance['orderby'];
-
 		return $instance;
-
 	}
 
 	public function form($instance) {
-
 		$defaults = array(
 			'posts' => 3,
 			'comments' => '3',
@@ -199,7 +195,6 @@ class AliemPopularPostWidget extends WP_Widget {
 			'show_recent_posts' => 'on',
 			'show_comments' => 'on',
 		);
-
 		$instance = wp_parse_args((array) $instance, $defaults); ?>
 		<p>
 			<label for="<?php echo $this->get_field_id('posts'); ?>"><?php esc_attr_e('Number of popular posts:', 'Avada'); ?></label>
@@ -226,133 +221,5 @@ class AliemPopularPostWidget extends WP_Widget {
 			<label for="<?php echo $this->get_field_id('show_comments'); ?>"><?php esc_attr_e('Show comments', 'Avada'); ?></label>
 		</p>
 		<?php
-
 	}
 }
-
-
-class BookclubWidget extends WP_Widget {
-
-	public function __construct() {
-		$widgetOps = [
-			'classname' => 'widget widget_text',
-			'description' => 'Bookclub countdown widget',
-		];
-		parent::__construct('bookclub_widget', 'ALiEM: Bookclub Countdown', $widgetOps);
-	}
-
-	public function widget($args, $instance) {
-        extract($args);
-
-        $title = isset($instance['title']) ? $instance['title'] : '';
-		$date = isset($instance['date']) ? $instance['date'] : '';
-
-        echo $before_widget;
-        ?>
-        <div class="heading">
-            <h4 class="widget-title">Book Club Countdown</h4>
-        </div>
-        <div class="bookclub-widget">
-            <img class="alignright" alt="Book Logo" src="/wp-content/themes/aliem/assets/bookclub-book.svg" width="52" />
-            <strong>Next book</strong>: <a href="/aliem-book-club/"><?php echo $title ?></a><br>
-
-            <strong>Discussion: </strong><?php echo $date ?><br>
-            <strong>Twitter:</strong> <a href="http://www.twitter.com/aliembook" target="_blank">@ALiEMbook</a>
-        </div>
-        <?php
-        echo $after_widget;
-	}
-
-	public function form($instance) {
-        $defaults = array(
-			'title' => '',
-			'date' => '',
-		);
-		$instance = wp_parse_args((array) $instance, $defaults); ?>
-		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>">Next book title:</label>
-			<input class="large-text" type="text" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo $instance['title']; ?>" />
-		</p>
-		<p>
-			<label for="<?php echo $this->get_field_id('date'); ?>">Date:</label>
-			<input class="large-text" type="text" id="<?php echo $this->get_field_id('date'); ?>" name="<?php echo $this->get_field_name('date'); ?>" value="<?php echo $instance['date']; ?>" />
-		</p>
-		<?php
-	}
-
-	public function update($new, $old) {
-        $instance = $old;
-
-		$instance['title'] = $new['title'];
-		$instance['date'] = $new['date'];
-
-		return $instance;
-	}
-}
-
-class AliemAdsenseWidget extends WP_Widget {
-	public function __construct() {
-		$widgetOps = [
-			'classname' => 'widget_adsense adsbygoogle',
-			'description' => 'Google Adsense widget',
-		];
-		parent::__construct('adsense_widget_responsive', 'ALiEM: Google Adsense Widget', $widgetOps);
-	}
-
-	public function widget($args, $instance) {
-        extract($args);
-        echo $before_widget;
-        $kind = isset($instance['kind']) ? $instance['kind'] : 'responsive';
-        if ($kind == 'responsive'):
-        ?>
-            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!-- Sidebar -->
-            <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-client="ca-pub-5143351525726802"
-                data-ad-slot="3417528974"
-                data-ad-format="auto"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        <?php else: ?>
-            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!-- Sidebar (Fixed, 250x250) - Socks Fallback -->
-            <ins class="adsbygoogle"
-                style="display:inline-block;width:250px;height:250px"
-                data-ad-client="ca-pub-5143351525726802"
-                data-ad-slot="7714800970"></ins>
-            <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        <?php endif; ?>
-        <p style="margin-top: -5px !important; font-size: 7px;">* Advertisement may not reflect the views of ALiEM</p>
-        <?php
-        echo $after_widget;
-	}
-
-    public function form($instance) {
-        $defaults = array(
-			'kind' => 'responsive',
-		);
-		$instance = wp_parse_args((array) $instance, $defaults); ?>
-        <label for="<?php echo $this->get_field_id('kind'); ?>">Ad Type:
-            <select id="<?php echo $this->get_field_id('kind'); ?>" name="<?php echo $this->get_field_name('kind'); ?>">
-                <option value="responsive" <?php selected( $instance['kind'], 'responsive' ); ?>>Responsive</option>
-                <option value="fixed" <?php selected( $instance['kind'], 'fixed' ); ?>>Fixed (250x250)</option>
-            </select>
-        </label>
-		<?php
-	}
-
-    public function update($new, $old) {
-        $instance = $old;
-		$instance['kind'] = $new['kind'];
-		return $instance;
-	}
-
-}
-
-add_action('widgets_init', function () {
-    register_widget('AliemPopularPostWidget');
-    register_widget('BookclubWidget');
-    register_widget('AliemAdsenseWidget');
-});

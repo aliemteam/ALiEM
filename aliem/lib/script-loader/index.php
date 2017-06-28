@@ -1,36 +1,43 @@
 <?php
 
-namespace AliemScripts;
+namespace ALIEM\Scripts;
+
+if (!defined('ABSPATH')) exit(1);
 
 /**
 * Master class to load and unload all scripts / styles
 */
 class Loader {
-
     private $localized;
 
-    /**
-    * ScriptLoader constructor
-    *
-    * Constructs the loadable scripts/styles into arrays and calles the script
-    *   delegator.
-    * @param string $request Server request string
-    * @param string $query   Server query string
-    */
     public function __construct() {
-        $this->localized = [
-            'social-media-index' => ['__smi', 'social_media_index'],
-        ];
+        $this->prepare_localizers();
+        add_action('admin_enqueue_scripts', [$this, 'init_admin']);
         add_action('wp_enqueue_scripts', [$this, 'init'], 999);
     }
 
+    public function init_admin($hook) {
+        if (in_array($hook, ['post-new.php', 'post.php', 'page-new.php', 'page.php'])) {
+            wp_enqueue_style( 'aliem_admin_style', ROOT_URI . '/admin.css' );
+        }
+    }
+
     public function init() {
-        global $ROOT_URI, $current_user, $post;
+        global $current_user, $post;
         wp_register_style('aliem', get_stylesheet_uri());
         wp_register_script('printfriendly', 'https://pf-cdn.printfriendly.com/ssl/main.js');
-        wp_register_script('social-media-index', $ROOT_URI . '/lib/js/social-media-index.js', [], false, true);
+        wp_register_script('social-media-index', ROOT_URI . '/js/social-media-index.js', [], false, true);
         wp_register_script('mathjax', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=AM_HTMLorMML', [], false, true);
         $this->delegate($post, $current_user);
+    }
+
+    private function prepare_localizers() {
+        $this->localized = [
+            'social-media-index' => ['__smi', 'social_media_index'],
+        ];
+        foreach (glob(__DIR__ . '/localizers/*') as $localizer) {
+            require_once($localizer);
+        }
     }
 
     /**
@@ -164,16 +171,21 @@ class Loader {
         }
     }
 
+    /**
+     * Helper function that localizes any scripts that require localization
+     * by calling its associated "localizer" function.
+     * @param array $scripts  Array of script handles.
+     * @return void
+     */
     private function localize($scripts) {
         foreach(array_unique($scripts) as $script) {
             if (array_key_exists($script, $this->localized)) {
                 $fname = $this->localized[$script][1];
-                $func = "\AliemScripts\Localize\\$fname";
+                $func = "\ALIEM\Scripts\Localizers\\$fname";
                 wp_localize_script($script, $this->localized[$script][0], $func());
             }
         }
     }
-
 }
 
-require_once(dirname(__FILE__) . '/localizers/index.php');
+new Loader;

@@ -18,65 +18,11 @@
 				<span class="entry-title" style="display: none;"><?php the_title(); ?></span>
 			<?php endif; ?>
 
-			<?php if ( ! post_password_required( $post->ID ) ) : ?>
-				<?php if ( Avada()->settings->get( 'featured_images_single' ) ) : ?>
-					<?php if ( 0 < avada_number_of_featured_images() || get_post_meta( $post->ID, 'pyre_video', true ) ) : ?>
-						<?php Avada()->images->set_grid_image_meta( array( 'layout' => strtolower( 'large' ), 'columns' => '1' ) ); ?>
-						<div class="fusion-flexslider flexslider fusion-flexslider-loading post-slideshow fusion-post-slideshow">
-							<ul class="slides">
-								<?php if ( get_post_meta( $post->ID, 'pyre_video', true ) ) : ?>
-									<li>
-										<div class="full-video">
-											<?php echo get_post_meta( $post->ID, 'pyre_video', true ); ?>
-										</div>
-									</li>
-								<?php endif; ?>
-								<?php if ( has_post_thumbnail() && 'yes' != get_post_meta( $post->ID, 'pyre_show_first_featured_image', true ) ) : ?>
-									<?php $attachment_image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' ); ?>
-									<?php $full_image       = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' ); ?>
-									<?php $attachment_data  = wp_get_attachment_metadata( get_post_thumbnail_id() ); ?>
-									<li>
-										<?php if ( Avada()->settings->get( 'status_lightbox' ) && Avada()->settings->get( 'status_lightbox_single' ) ) : ?>
-											<a href="<?php echo $full_image[0]; ?>" data-rel="iLightbox[gallery<?php the_ID(); ?>]" title="<?php echo get_post_field( 'post_excerpt', get_post_thumbnail_id() ); ?>" data-title="<?php echo get_post_field( 'post_title', get_post_thumbnail_id() ); ?>" data-caption="<?php echo get_post_field( 'post_excerpt', get_post_thumbnail_id() ); ?>">
-												<span class="screen-reader-text"><?php esc_attr_e( 'View Larger Image', 'Avada' ); ?></span>
-												<?php echo get_the_post_thumbnail( $post->ID, 'full' ); ?>
-											</a>
-										<?php else: ?>
-											<?php echo get_the_post_thumbnail( $post->ID, 'full' ); ?>
-										<?php endif; ?>
-									</li>
-								<?php endif; ?>
-								<?php $i = 2; ?>
-								<?php while ( $i <= Avada()->settings->get( 'posts_slideshow_number' ) ) : ?>
-									<?php $attachment_new_id = kd_mfi_get_featured_image_id( 'featured-image-' . $i, 'post'); ?>
-									<?php if ( $attachment_new_id ) : ?>
-										<?php $attachment_image = wp_get_attachment_image_src( $attachment_new_id, 'full' ); ?>
-										<?php $full_image       = wp_get_attachment_image_src( $attachment_new_id, 'full' ); ?>
-										<?php $attachment_data  = wp_get_attachment_metadata( $attachment_new_id ); ?>
-										<li>
-											<?php if ( Avada()->settings->get( 'status_lightbox' ) && Avada()->settings->get( 'status_lightbox_single' ) ) : ?>
-												<a href="<?php echo $full_image[0]; ?>" data-rel="iLightbox[gallery<?php the_ID(); ?>]" title="<?php echo get_post_field( 'post_excerpt', $attachment_new_id ); ?>" data-title="<?php echo get_post_field( 'post_title', $attachment_new_id ); ?>" data-caption="<?php echo get_post_field( 'post_excerpt', $attachment_new_id ); ?>">
-													<?php echo wp_get_attachment_image( $attachment_new_id, 'full' ); ?>
-												</a>
-											<?php else: ?>
-												<?php echo wp_get_attachment_image( $attachment_new_id, 'full' ); ?>
-											<?php endif; ?>
-										</li>
-									<?php endif; ?>
-									<?php $i++; ?>
-								<?php endwhile; ?>
-							</ul>
-						</div>
-						<?php Avada()->images->set_grid_image_meta( array() ); ?>
-					<?php endif; ?>
-				<?php endif; ?>
-			<?php endif; ?>
-
+            <?php echo aliem_social_icons(get_permalink($post->ID), get_the_title($post->ID)); ?>
 			<?php if ( 'below' == Avada()->settings->get( 'blog_post_title' ) ) : ?>
 				<?php echo avada_render_post_title( $post->ID, false, '', '1' ); ?>
 			<?php endif; ?>
             <?php echo avada_render_post_metadata( 'single' ); ?>
-            <?php echo aliem_social_icons(get_permalink($post->ID), get_the_title($post->ID)); ?>
 			<div class="post-content">
 				<?php the_content(); ?>
 				<?php avada_link_pages(); ?>

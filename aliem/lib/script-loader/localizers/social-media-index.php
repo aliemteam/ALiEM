@@ -1,6 +1,8 @@
 <?php
 
-namespace AliemScripts\Localize;
+namespace ALIEM\Scripts\Localizers;
+
+if (!defined('ABSPATH')) exit(1);
 
 function social_media_index() {
     $file1 = file_get_contents('https://raw.githubusercontent.com/aliemteam/datasets/master/social-media-index/social-media-index.csv');
