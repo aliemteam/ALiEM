@@ -10,8 +10,9 @@
     "deploy": "./lib/scripts/deploy",
     "deploy-all": "./lib/scripts/deploy -a",
     "deploy-initial": "./lib/scripts/deploy -ai",
-    "build": "NODE_ENV=production ./node_modules/.bin/gulp",
-    "sync": "./lib/scripts/sync $@"
+    "build": "NODE_ENV=production gulp",
+    "sync": "./lib/scripts/sync $@",
+    "version": "gulp bump"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "@types/node": "^8.0.4",
     "@types/react": "^15.0.33",
     "@types/react-dom": "^15.5.1",
+    "@types/webpack": "^3.0.1",
     "autoprefixer": "^7.1.1",
     "autoprefixer-stylus": "^0.14.0",
     "babel-core": "^6.25.0",

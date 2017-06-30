@@ -6,7 +6,7 @@ const plugins = [
     new webpack.optimize.ModuleConcatenationPlugin(),
 ];
 
-export default {
+export default <webpack.Configuration>{
     context: __dirname,
     entry: {
         'social-media-index': './aliem/js/social-media-index/',

@@ -31,7 +31,8 @@ export default class SmiPlot extends React.PureComponent<Props, State> {
         };
     }
 
-    hover = (e: React.MouseEvent<SVGCircleElement>) => {
+    hover = (e: React.MouseEvent<SVGCircleElement> | React.TouchEvent<SVGCircleElement>) => {
+        e.stopPropagation();
         const site = e.currentTarget.id;
         this.setState(prevState => ({ ...prevState, activeLine: site }));
     };
@@ -51,6 +52,7 @@ export default class SmiPlot extends React.PureComponent<Props, State> {
                     height={1500}
                     width={1000}
                     data={this.props.data}
+                    onTouchStart={this.resetActive}
                     margin={{ top: 30, right: 0, left: 0, bottom: 20 }}
                 >
                     <CartesianGrid strokeDasharray="3 3" />

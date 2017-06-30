@@ -4,12 +4,17 @@ import * as stylus from 'gulp-stylus';
 import * as imagemin from 'gulp-imagemin';
 import * as del from 'del';
 import { exec as cp_exec } from 'child_process';
+import * as fs from 'fs';
 import * as path from 'path';
 import * as merge from 'merge-stream';
 import { promisify } from 'util';
 
 const browserSync = require('browser-sync').create();
+const VERSION = require('./package.json').version;
+
 const exec = promisify(cp_exec);
+const readFile = promisify(fs.readFile);
+const writeFile = promisify(fs.writeFile);
 
 gulp.task('del', () => del(['dist/aliem/**', '!dist/aliem']));
 
@@ -17,6 +22,16 @@ gulp.task('reload', done => {
     browserSync.reload();
     done();
 });
+
+gulp.task('bump', () =>
+    readFile(`${__dirname}/aliem/functions.php`, 'utf-8')
+    .then(file => file.replace(/(define\('ALIEM_VERSION', ')(.+?)('\);)/, `$1${VERSION}$3'`))
+    .then(file => writeFile(`${__dirname}/aliem/functions.php`, file))
+    .catch(e => {
+        console.log(e);
+        throw e;
+    })
+);
 
 gulp.task('static', () => {
     const php = gulp

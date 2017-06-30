@@ -55,4 +55,15 @@ if [ "$sync_all" = true ]; then
     done
 fi
 
+# Clear out all of the old files
+docker-machine ssh "$theme_name" "
+    rm -r /home/$machine_user/app/wp-content/themes/aliem/*
+"
+
+# Add all the new files
 docker-machine scp -r -d "$ROOTDIR/dist/$theme_name" "$machine_name:/home/$machine_user/app/wp-content/themes"
+
+# Adjust ownership
+docker-machine ssh "$theme_name" "
+    chown -R www-data:$machine_user /home/$machine_user/app/wp-content
+"

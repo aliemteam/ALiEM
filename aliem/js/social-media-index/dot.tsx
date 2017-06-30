@@ -15,6 +15,7 @@ export default class Dot extends React.PureComponent<any> {
         if (!value) return null;
         return (
             <circle
+                onClick={onMouseOver}
                 onMouseOver={onMouseOver}
                 onMouseOut={onMouseOut}
                 r={10}
