@@ -1,6 +1,8 @@
 <?php
 
-function aliem_person($atts = [], $content = null) {
+namespace ALIEM\Shortcodes;
+
+function person($atts = [], $content = null) {
     $atts = shortcode_atts([
         'name' => '',
         'title' => '',
@@ -36,4 +38,4 @@ function aliem_person($atts = [], $content = null) {
     </div>
     ";
 }
-add_shortcode('person', 'aliem_person');
+add_shortcode('person', 'ALIEM\Shortcodes\person');

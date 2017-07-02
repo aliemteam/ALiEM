@@ -2,7 +2,7 @@
 
 namespace ALIEM\Shortcodes;
 
-function aliem_box($atts = [], $content = null) {
+function box($atts = [], $content = null) {
     $secondary = is_array($atts) && in_array('secondary', $atts) ? 'box--secondary' : '';
 
     return "
@@ -11,4 +11,4 @@ function aliem_box($atts = [], $content = null) {
     </div>
     ";
 }
-add_shortcode('box', 'ALIEM\Shortcodes\aliem_box');
+add_shortcode('box', 'ALIEM\Shortcodes\box');

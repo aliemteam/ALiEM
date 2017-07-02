@@ -1,6 +1,8 @@
 <?php
 
-function aliem_mathjax($atts = [], $content = null) {
+namespace ALIEM\Shortcodes;
+
+function math($atts = [], $content = null) {
     wp_enqueue_script('mathjax');
     $content = trim(preg_replace('/<\/?(?:p|br)>/', '', $content));
     return "
@@ -9,4 +11,4 @@ function aliem_mathjax($atts = [], $content = null) {
     </p>
     ";
 }
-add_shortcode('math', 'aliem_mathjax');
+add_shortcode('math', 'ALIEM\Shortcodes\math');

@@ -1,6 +1,8 @@
 <?php
 
-function aliem_button($atts = [], $content = null) {
+namespace ALIEM\Shortcodes;
+
+function button($atts = [], $content = null) {
     $atts = shortcode_atts([
         'href' => '',
     ], $atts);
@@ -16,4 +18,4 @@ function aliem_button($atts = [], $content = null) {
     </a>
     ";
 }
-add_shortcode('button', 'aliem_button');
+add_shortcode('button', 'ALIEM\Shortcodes\button');

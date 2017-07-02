@@ -25,8 +25,8 @@
   },
   "homepage": "https://github.com/AcademicLifeInEM/ALiEM#readme",
   "devDependencies": {
-    "@types/node": "^8.0.4",
-    "@types/react": "^15.0.33",
+    "@types/node": "^8.0.7",
+    "@types/react": "^15.0.34",
     "@types/react-dom": "^15.5.1",
     "@types/webpack": "^3.0.1",
     "autoprefixer": "^7.1.1",
@@ -36,15 +36,15 @@
     "babel-preset-env": "^1.5.2",
     "babel-preset-react": "^6.24.1",
     "browser-sync": "^2.18.12",
-    "del": "^3.0.0",
     "gulp": "gulpjs/gulp#4.0",
     "gulp-imagemin": "^3.3.0",
-    "gulp-rename": "^1.2.2",
     "gulp-stylus": "^2.6.0",
     "merge-stream": "^1.0.1",
+    "style-loader": "^0.18.2",
     "stylint": "^1.5.9",
-    "ts-loader": "^2.2.0",
+    "ts-loader": "^2.2.2",
     "ts-node": "^3.1.0",
+    "webpack": "^3.0.0",
     "webpack-stream": "^3.2.0"
   },
   "dependencies": {
@@ -53,8 +53,6 @@
     "react-dom": "^15.6.1",
     "react-virtualized": "^9.8.0",
     "recharts": "^1.0.0-alpha.1",
-    "style-loader": "^0.18.2",
-    "typescript": "^2.4.1",
-    "webpack": "^3.0.0"
+    "typescript": "^2.4.1"
   }
 }

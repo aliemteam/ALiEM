@@ -1,6 +1,8 @@
 <?php
 
-function aliem_plotly_shortcode($atts) {
+namespace ALIEM\Shortcodes;
+
+function plot($atts) {
     global $post;
 
     $atts = shortcode_atts([
@@ -66,4 +68,4 @@ function aliem_plotly_shortcode($atts) {
     <?php
     return "<div id='$id' style='width: calc(100% + 40px); height: auto; position: relative; margin: auto -20px;'></div>";
 }
-add_shortcode('plot', 'aliem_plotly_shortcode');
+add_shortcode('plot', 'ALIEM\Shortcodes\plot');

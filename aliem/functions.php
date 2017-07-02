@@ -4,7 +4,7 @@ namespace ALIEM;
 
 if (!defined('ABSPATH')) exit(1);
 
-define('ALIEM_VERSION', '0.5.0');'
+define('ALIEM_VERSION', '0.5.0');
 define('ROOT_URI', get_stylesheet_directory_uri());
 
 require_once(__DIR__ . '/lib/script-loader/index.php');

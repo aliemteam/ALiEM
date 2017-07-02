@@ -1,6 +1,8 @@
 <?php
 
-function aliem_flip_box($atts = [], $content = null) {
+namespace ALIEM\Shortcodes;
+
+function flip_box($atts = [], $content = null) {
     $atts = shortcode_atts([
         'height' => '350'
     ], $atts);
@@ -18,4 +20,4 @@ function aliem_flip_box($atts = [], $content = null) {
     ";
 
 }
-add_shortcode('flip-box', 'aliem_flip_box');
+add_shortcode('flip-box', 'ALIEM\Shortcodes\flip_box');

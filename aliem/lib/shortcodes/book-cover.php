@@ -1,9 +1,11 @@
 <?php
 
+namespace ALIEM\Shortcodes;
+
 /**
  * Book Cover Shortcode
  */
-function aliem_bookclub_cover_image($atts) {
+function book_cover($atts) {
     $a = shortcode_atts([
         'isbn' => '',
         'size' => 'small',
@@ -63,4 +65,4 @@ function aliem_bookclub_cover_image($atts) {
 
     return "<img class='$align' src='https://books.google.com/books/content?id=$googleid&printsec=frontcover&img=1&zoom=$size&source=gbs_api' />";
 }
-add_shortcode('book-cover', 'aliem_bookclub_cover_image');
+add_shortcode('book-cover', 'ALIEM\Shortcodes\book_cover');
