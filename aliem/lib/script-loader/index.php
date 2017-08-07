@@ -88,7 +88,7 @@ class Loader {
                 'fusion-ie1011',
                 'fusion-lightbox',
                 'fusion-parallax',
-                'fusion-popover',
+                // 'fusion-popover',
                 'fusion-scroll-to-anchor',
                 'fusion-sharing-box',
                 'fusion-testimonials',

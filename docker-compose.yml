@@ -40,7 +40,7 @@ services:
             WP_DEBUG_DISPLAY: 'true'
             WP_DEBUG_LOG: 'true'
             WP_DEBUG: 'true'
-            SEARCH_REPLACE: https://www.aliem.com,http://localhost:8080
+            URL_REPLACE: https://www.aliem.com,http://localhost:8080
     db:
         image: mariadb:10
         environment:

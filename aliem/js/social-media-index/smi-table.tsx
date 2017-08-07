@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AutoSizer, Column, Table } from 'react-virtualized';
+import { AutoSizer, Column, Table, TableCellDataGetter, TableCellRenderer } from 'react-virtualized';
 
 interface Props {
     rows: string[][];
@@ -21,7 +21,7 @@ interface SortFuncParams {
 export default class SMITable extends React.PureComponent<Props, State> {
     latestDateRaw: string;
 
-    constructor(props) {
+    constructor(props: Props) {
         super(props);
         this.latestDateRaw = this.props.headings[
             this.props.headings.length - 1
@@ -41,7 +41,7 @@ export default class SMITable extends React.PureComponent<Props, State> {
                 return 0;
             });
         this.state = {
-            rows: rows,
+            rows,
             sortBy: this.latestDateRaw,
             sortDirection: 'ASC',
         };
@@ -51,7 +51,8 @@ export default class SMITable extends React.PureComponent<Props, State> {
         const LT = sortDirection === 'ASC' ? -1 : 1;
         const GT = LT * -1;
         const rows = [...this.state.rows].sort((a, b) => {
-            let left, right;
+            let left;
+            let right;
             switch (sortBy) {
                 case 'website':
                     left = a[sortBy].toLowerCase();
@@ -77,12 +78,13 @@ export default class SMITable extends React.PureComponent<Props, State> {
         }));
     };
 
-    getCellData = ({ dataKey, rowData }) => {
+    getCellData: TableCellDataGetter = ({ dataKey, rowData }) => {
         return this.props.rawData[rowData.website][dataKey];
     };
 
-    renderURL = ({ cellData, rowData }) => {
+    renderURL: TableCellRenderer = ({ cellData, rowData }) => {
         return (
+            // tslint:disable-next-line
             <a
                 href={rowData.url}
                 target="_blank"
@@ -115,11 +117,13 @@ export default class SMITable extends React.PureComponent<Props, State> {
                             sort={this.sortRows}
                             sortBy={this.state.sortBy}
                             sortDirection={this.state.sortDirection}
+                            // tslint:disable-next-line
                             rowStyle={({ index }) =>
                                 index % 2 === 0
                                     ? { backgroundColor: '#f5f5f5' }
                                     : {}}
                             rowCount={rows.length}
+                            // tslint:disable-next-line
                             rowGetter={({ index }) => rows[index]}
                         >
                             <Column
@@ -150,7 +154,7 @@ export default class SMITable extends React.PureComponent<Props, State> {
                                     label="Alexa"
                                     dataKey="alexa"
                                     cellDataGetter={this.getCellData}
-                                />}
+                                /> as any}
                             {width > 500 &&
                                 <Column
                                     flexGrow={1}

@@ -5,6 +5,7 @@
         "helpers": "shellscript",
         "sync": "shellscript",
         "variables": "shellscript",
-        "bundle": "shellscript"
+        "bundle": "shellscript",
+        ".stylintrc": "json"
     }
 }

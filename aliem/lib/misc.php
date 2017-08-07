@@ -51,7 +51,10 @@ add_action('admin_menu', function () {
     remove_menu_page('edit.php?post_type=avada_portfolio');
 });
 
-
+// Disable Avada dynamic css
+add_filter('fusion_dynamic_css_cached', function ($css) {
+    return '';
+});
 
 /**
  * Filters

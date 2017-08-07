@@ -1,39 +1,39 @@
+// tslint:disable:no-console
 import * as autoprefixer from 'autoprefixer-stylus';
-import * as gulp from 'gulp';
-import * as stylus from 'gulp-stylus';
-import * as imagemin from 'gulp-imagemin';
-import { exec as cp_exec } from 'child_process';
+import { exec as cp_exec, spawn } from 'child_process';
 import * as fs from 'fs';
-import * as path from 'path';
+import * as gulp from 'gulp';
+import * as imagemin from 'gulp-imagemin';
+import * as sourcemaps from 'gulp-sourcemaps';
+import * as stylus from 'gulp-stylus';
 import * as merge from 'merge-stream';
 import { promisify } from 'util';
 
-const browserSync = require('browser-sync').create();
 const VERSION = require('./package.json').version;
+const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
+const browserSync = require('browser-sync').create();
 const exec = promisify(cp_exec);
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
 
-gulp.task('del', () => exec(`rm -rf ${__dirname}/dist/aliem/*`));
-gulp.task('reload', cb => { browserSync.reload(); cb() });
+process.env.FORCE_COLOR = '1';
 
-gulp.task('bump', () =>
+// prettier-ignore
+const reload = (cb: () => void) => { browserSync.reload(); cb(); }
+const clean = () => exec(`rm -rf ${__dirname}/dist/aliem/*`);
+export { clean, reload };
+
+export const bump = () =>
     readFile(`${__dirname}/aliem/functions.php`, 'utf-8')
-        .then(file =>
-            file.replace(
-                /(define\('ALIEM_VERSION', ')(.+?)('\);)/,
-                `$1${VERSION}$3`
-            )
-        )
+        .then(file => file.replace(/(define\('ALIEM_VERSION', ')(.+?)('\);)/, `$1${VERSION}$3`))
         .then(file => writeFile(`${__dirname}/aliem/functions.php`, file))
         .catch(e => {
             console.log(e);
             throw e;
-        })
-);
+        });
 
-gulp.task('static', () => {
+export function staticFiles() {
     const php = gulp
         .src(['aliem/**/*.php', 'aliem/**/*.css', '!aliem/pages/*.php'], {
             base: './',
@@ -47,73 +47,87 @@ gulp.task('static', () => {
         .pipe(imagemin())
         .pipe(gulp.dest('dist'));
 
-    const vendor = gulp
-        .src('aliem/vendor/**/*', { base: 'aliem' })
-        .pipe(gulp.dest('dist/aliem'));
+    const vendor = gulp.src('aliem/vendor/**/*', { base: 'aliem' }).pipe(gulp.dest('dist/aliem'));
 
     return merge(php, pages, svg, vendor);
-});
+}
 
-gulp.task('stylus', cb => {
-    const stylusConfig = {
-        use: [autoprefixer({ browsers: 'last 2 versions' })],
-        compress: process.env.NODE_ENV === 'production',
-    };
+export function styles(cb: () => void) {
+    let stream = gulp.src(
+        ['aliem/styles/style.styl', 'aliem/styles/editor.styl', 'aliem/styles/admin.styl'],
+        {
+            base: './aliem/styles',
+        }
+    );
 
-    let styles = gulp
-        .src(
-            [
-                'aliem/styles/style.styl',
-                'aliem/styles/editor.styl',
-                'aliem/styles/admin.styl',
-            ],
-            { base: './aliem/styles' }
-        )
-        .pipe(
-            stylus(stylusConfig).on('error', e => {
-                console.log(e.message);
-                if (process.env.NODE_ENV === 'production') {
-                    throw e;
-                }
-                cb();
-            })
-        )
-        .pipe(gulp.dest('dist/aliem'));
-
-    if (process.env.NODE_ENV !== 'production') {
-        styles = styles.pipe(browserSync.stream());
+    if (!IS_PRODUCTION) {
+        stream = stream.pipe(sourcemaps.init());
     }
-    return styles;
-});
 
-gulp.task('webpack', () => {
-    const flags = process.env.NODE_ENV === 'production' ? '-p' : '';
-    return exec(
-        path.resolve(__dirname, `node_modules/.bin/webpack ${flags}`)
-    ).catch(err => {
-        console.log(err.stdout);
-        throw err;
+    stream = stream.pipe(
+        stylus({
+            use: [autoprefixer({ browsers: 'last 2 versions' })],
+            compress: IS_PRODUCTION,
+        }).on('error', (e: Error) => {
+            console.error(e.message);
+            if (IS_PRODUCTION) throw e;
+            cb();
+        })
+    );
+
+    if (!IS_PRODUCTION) {
+        stream = stream.pipe(sourcemaps.write('.'));
+    }
+
+    stream = stream.pipe(gulp.dest('dist/aliem'));
+
+    if (!IS_PRODUCTION) {
+        stream = stream.pipe(browserSync.stream({ match: '**/*.css' }));
+    }
+
+    return stream;
+}
+
+export function bundle(cb: () => void) {
+    const child = spawn(`${__dirname}/node_modules/.bin/webpack`, undefined, {
+        env: process.env,
+    });
+    child.on('error', err => {
+        console.error(err);
+        process.exit(1);
+    });
+    child.on('exit', (code, signal) => {
+        if (code !== 0) {
+            console.error(`Exited with non-zero exit code (${code}): ${signal}`);
+            process.exit(1);
+        }
+        cb();
+    });
+    child.on('disconnect', () => child.kill());
+    child.stdout.on('data', data => {
+        const msg = data.toString();
+        console.log(msg.trim());
+        if (msg.indexOf('[at-loader] Ok') > -1) {
+            browserSync.reload();
+        }
+    });
+    child.stderr.on('data', data => {
+        const msg = data.toString();
+        console.error(msg.trim());
+    });
+    if (!IS_PRODUCTION) return cb();
+}
+
+const main = gulp.series(clean, gulp.parallel(styles, staticFiles), bundle, (cb: () => void) => {
+    if (IS_PRODUCTION) return cb();
+    gulp.watch('aliem/styles/**/*.styl', { queue: false }, gulp.series(styles));
+    gulp.watch(['aliem/**/*.php'], gulp.series(staticFiles, reload));
+
+    browserSync.init({
+        proxy: 'localhost:8080',
+        open: false,
+        reloadDebounce: 2000,
     });
 });
 
-gulp.task(
-    'default',
-    gulp.series('del', gulp.parallel('static', 'stylus', 'webpack'), done => {
-        if (process.env.NODE_ENV === 'production') {
-            return done();
-        }
-
-        browserSync.init({
-            proxy: 'localhost:8080',
-            open: false,
-        });
-
-        gulp.watch(
-            'aliem/styles/**/*.styl',
-            { queue: false },
-            gulp.series('stylus')
-        );
-
-        gulp.watch(['aliem/**/*.php'], gulp.series('static', 'reload'));
-    })
-);
+export default main;

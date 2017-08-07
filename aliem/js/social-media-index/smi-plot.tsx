@@ -1,17 +1,18 @@
 import * as React from 'react';
 import {
-    LineChart,
+    CartesianGrid,
     Line,
+    LineChart,
+    ResponsiveContainer,
+    Tooltip,
     XAxis,
     YAxis,
-    CartesianGrid,
-    Tooltip,
-    ResponsiveContainer,
 } from 'recharts';
+
+import { Rank } from './';
 import Dot from './dot';
 import Tip from './tooltip';
 import XAxisLabel from './x-axis-label';
-import { Rank } from './';
 
 interface State {
     activeLine: string;
@@ -24,7 +25,7 @@ interface Props {
 export default class SmiPlot extends React.PureComponent<Props, State> {
     static ticks = Array.from(Array(26).keys()).filter(Boolean);
 
-    constructor(props) {
+    constructor(props: Props) {
         super(props);
         this.state = {
             activeLine: '',
@@ -38,7 +39,7 @@ export default class SmiPlot extends React.PureComponent<Props, State> {
     };
 
     resetActive = () => {
-        if (this.state.activeLine == '') return;
+        if (this.state.activeLine === '') return;
         this.setState(prevState => ({ ...prevState, activeLine: '' }));
     };
 
@@ -80,7 +81,7 @@ export default class SmiPlot extends React.PureComponent<Props, State> {
                             <Line
                                 key={site}
                                 type="linear"
-                                strokeWidth={3}
+                                strokeWidth='3'
                                 activeDot={false}
                                 dot={
                                     <Dot
@@ -92,8 +93,8 @@ export default class SmiPlot extends React.PureComponent<Props, State> {
                                 }
                                 opacity={
                                     activeLine === site || activeLine === ''
-                                        ? 1
-                                        : 0.3
+                                        ? '1'
+                                        : '0.3'
                                 }
                                 dataKey={site}
                                 stroke={c}
@@ -125,4 +126,3 @@ function* getColors() {
         i = i === 49 ? 0 : i + 1;
     }
 };
-
