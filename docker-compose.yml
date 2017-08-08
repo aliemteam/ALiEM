@@ -9,8 +9,6 @@ services:
             - ./data:/data
             # Plugins
             - ./wp-content/plugins/fanciest-author-box:/app/wp-content/plugins/fanciest-author-box
-            - ./wp-content/plugins/fusion-builder:/app/wp-content/plugins/fusion-builder
-            - ./wp-content/plugins/fusion-core:/app/wp-content/plugins/fusion-core
             # Themes
             - ./dist/aliem:/app/wp-content/themes/aliem
             - ./wp-content/themes/Avada:/app/wp-content/themes/Avada
@@ -36,7 +34,7 @@ services:
 
                 header-footer-code-manager,
                 riveted,
-                wp-hide-post,
+            # wp-hide-post,
             WP_DEBUG_DISPLAY: 'true'
             WP_DEBUG_LOG: 'true'
             WP_DEBUG: 'true'

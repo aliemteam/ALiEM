@@ -5,18 +5,6 @@ ROOTDIR=$(cd "$SCRIPTDIR" && cd ../../ && pwd || exit)
 sync_all=false
 initial_deploy=false
 
-declare base_theme_name
-declare machine_name
-declare machine_user
-declare theme_name
-declare local_plugins
-
-# shellcheck disable=SC1090
-{
-    . "$SCRIPTDIR"/helpers || exit 1
-    . "$SCRIPTDIR"/variables || exit 1
-}
-
 while getopts "ai" o; do
     case "${o}" in
         a)
@@ -28,6 +16,29 @@ while getopts "ai" o; do
             ;;
     esac
 done
+
+declare base_theme_name
+declare machine_name
+declare machine_user
+declare theme_name
+declare -a local_plugins
+
+# shellcheck disable=1090
+{
+    . "$SCRIPTDIR"/helpers || exit 1
+    . "$SCRIPTDIR"/variables || exit 1
+}
+
+if [[ $(docker-machine ls -q --filter "name=$machine_name" | wc -l) == 0 ]]; then
+    ERROR "A Docker machine named $machine_name could not be found"
+fi
+
+docker-machine ssh "$machine_name" "
+    rm -rf /home/$machine_user/app/wp-content/themes/$theme_name/*
+"
+
+h2 "Deploying $theme_name"
+docker-machine scp -r -d "$ROOTDIR/dist/$theme_name" "$machine_name:/home/$machine_user/app/wp-content/themes"
 
 if [ "$initial_deploy" = true ]; then
     # Make sure files exist
@@ -49,21 +60,26 @@ if [ "$initial_deploy" = true ]; then
 fi
 
 if [ "$sync_all" = true ]; then
+    h2 "Removing old version of $base_theme_name"
+    docker-machine ssh "$machine_name" "
+        rm -rf /home/$machine_user/app/wp-content/themes/$base_theme_name/*
+    "
+
+    h2 "Deploying $base_theme_name"
     docker-machine scp -r -d "$ROOTDIR/wp-content/themes/$base_theme_name" "$machine_name:/home/$machine_user/app/wp-content/themes"
+
+    h2 "Deploying plugins"
     for plugin in "${local_plugins[@]}"; do
+        h3 "Removing old version of $plugin"
+        docker-machine ssh "$machine_name" "
+            rm -rf /home/$machine_user/app/wp-content/plugins/$plugin/*
+        "
+        h3 "Deploying $plugin"
         docker-machine scp -r -d "$ROOTDIR/wp-content/plugins/$plugin" "$machine_name:/home/$machine_user/app/wp-content/plugins"
     done
 fi
 
-# Clear out all of the old files
-docker-machine ssh "$theme_name" "
-    rm -r /home/$machine_user/app/wp-content/themes/aliem/*
-"
-
-# Add all the new files
-docker-machine scp -r -d "$ROOTDIR/dist/$theme_name" "$machine_name:/home/$machine_user/app/wp-content/themes"
-
-# Adjust ownership
-docker-machine ssh "$theme_name" "
-    chown -R www-data:$machine_user /home/$machine_user/app/wp-content
+h2 "Adjusting filesystem permissions on remote host"
+docker-machine ssh "$machine_name" "
+    sudo chown -R www-data:$machine_user /home/$machine_user/app
 "
