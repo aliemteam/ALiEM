@@ -6,6 +6,4 @@ machine_user='aliem'
 theme_name='aliem'
 local_plugins=(
     fanciest-author-box
-    fusion-builder
-    fusion-core
 )
