@@ -10,17 +10,17 @@ function plot($atts) {
     ], $atts);
     extract($atts);
 
-    if ($id == '')
+    if ($id === '') {
         return "<strong style='color: red;'>Plot must have an associated id!</strong>";
+    }
 
     $id = "plot$id";
     $custom = get_post_custom($post->ID);
     $plot = $custom[$id][0];
 
-    if (!$plot)
+    if (!$plot) {
         return "<strong style='color: red;'>Plot data not found for '$id'</strong>";
-
-    ?>
+    } ?>
     <script type='text/javascript'>
         (function() {
             var script = document.getElementById('plotly-js');

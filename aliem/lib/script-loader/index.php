@@ -2,11 +2,13 @@
 
 namespace ALIEM\Scripts;
 
-if (!defined('ABSPATH')) exit(1);
+if (!defined('ABSPATH')) {
+    exit(1);
+}
 
 /**
-* Master class to load and unload all scripts / styles
-*/
+ * Master class to load and unload all scripts / styles.
+ */
 class Loader {
     private $localized;
 
@@ -18,7 +20,7 @@ class Loader {
 
     public function init_admin($hook) {
         if (in_array($hook, ['post-new.php', 'post.php', 'page-new.php', 'page.php'])) {
-            wp_enqueue_style( 'aliem_admin_style', ROOT_URI . '/admin.css' );
+            wp_enqueue_style('aliem_admin_style', ROOT_URI . '/admin.css');
         }
     }
 
@@ -36,19 +38,20 @@ class Loader {
             'social-media-index' => ['__smi', 'social_media_index'],
         ];
         foreach (glob(__DIR__ . '/localizers/*') as $localizer) {
-            require_once($localizer);
+            require_once $localizer;
         }
     }
 
     /**
-    * Master delegator for the script loader.
-    *
-    * Loads/Unloads scripts and styles based on the current page.
-    * @param  string $req   Server request string
-    * @param  string $query Server query string
-    * @param  object $user  Current WordPress user
-    * @return void
-    */
+     * Master delegator for the script loader.
+     *
+     * Loads/Unloads scripts and styles based on the current page.
+     *
+     * @param string $req   Server request string
+     * @param string $query Server query string
+     * @param object $user  Current WordPress user
+     * @param mixed  $post
+     */
     private function delegate($post, $user) {
         // Always load these
         $load = [
@@ -142,31 +145,31 @@ class Loader {
     }
 
     /**
-    * Helper function that loads scripts/styles from an array of handles.
-    * @param  array $scripts Array of script handles.
-    * @param  array $styles  Array of style handles.
-    * @return void
-    */
+     * Helper function that loads scripts/styles from an array of handles.
+     *
+     * @param array $scripts array of script handles
+     * @param array $styles  array of style handles
+     */
     private function load($scripts, $styles) {
-        foreach(array_reverse(array_unique($styles)) as $style) {
+        foreach (array_reverse(array_unique($styles)) as $style) {
             wp_enqueue_style($style);
         }
-        foreach(array_reverse(array_unique($scripts)) as $script) {
+        foreach (array_reverse(array_unique($scripts)) as $script) {
             wp_enqueue_script($script);
         }
     }
 
     /**
-    * Helper function that unloads scripts/styles from an array of handles.
-    * @param  array $scripts Array of script handles.
-    * @param  array $styles  Array of style handles.
-    * @return void
-    */
+     * Helper function that unloads scripts/styles from an array of handles.
+     *
+     * @param array $scripts array of script handles
+     * @param array $styles  array of style handles
+     */
     private function unload($scripts, $styles) {
-        foreach(array_unique($scripts) as $script) {
+        foreach (array_unique($scripts) as $script) {
             wp_dequeue_script($script);
         }
-        foreach(array_unique($styles) as $style) {
+        foreach (array_unique($styles) as $style) {
             wp_dequeue_style($style);
         }
     }
@@ -174,11 +177,11 @@ class Loader {
     /**
      * Helper function that localizes any scripts that require localization
      * by calling its associated "localizer" function.
-     * @param array $scripts  Array of script handles.
-     * @return void
+     *
+     * @param array $scripts array of script handles
      */
     private function localize($scripts) {
-        foreach(array_unique($scripts) as $script) {
+        foreach (array_unique($scripts) as $script) {
             if (array_key_exists($script, $this->localized)) {
                 $fname = $this->localized[$script][1];
                 $func = "\ALIEM\Scripts\Localizers\\$fname";

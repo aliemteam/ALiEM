@@ -2,11 +2,15 @@
 
 namespace ALIEM\Shortcodes;
 
-if (!defined('ABSPATH')) exit(1);
+if (!defined('ABSPATH')) {
+    exit(1);
+}
 
 add_action('wp_loaded', function () {
     // Only run this on the frontend
-    if (is_admin()) return;
+    if (is_admin()) {
+        return;
+    }
 
     // Stub out all outdated shortcodes
     remove_shortcode('su_youtube');
@@ -21,7 +25,7 @@ add_action('wp_loaded', function () {
     remove_shortcode('su_divider');
 
     // Require all aliem shortcodes
-    foreach(glob(__DIR__ . '/*.php') as $shortcode) {
-        require_once($shortcode);
+    foreach (glob(__DIR__ . '/*.php') as $shortcode) {
+        require_once $shortcode;
     }
 });

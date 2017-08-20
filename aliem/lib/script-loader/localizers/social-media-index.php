@@ -2,7 +2,9 @@
 
 namespace ALIEM\Scripts\Localizers;
 
-if (!defined('ABSPATH')) exit(1);
+if (!defined('ABSPATH')) {
+    exit(1);
+}
 
 function social_media_index() {
     $file1 = file_get_contents('https://raw.githubusercontent.com/aliemteam/datasets/master/social-media-index/social-media-index.csv');
@@ -19,22 +21,22 @@ function social_media_index() {
         '__headings' => array_slice($headings2, 1),
     ];
 
-    $filtered = array_values(array_filter($rows1, function($v) {
-        return count(array_filter(array_slice($v, 2), function($n) {
+    $filtered = array_values(array_filter($rows1, function ($v) {
+        return count(array_filter(array_slice($v, 2), function ($n) {
             return $n !== 'NR' && $n < 26;
         })) > 0;
     }));
 
-    foreach(array_slice($headings1, 2) as $k => $v) {
-        $data1[$k] = [ "date" => $v ];
-        foreach($filtered as $row) {
-            $data1[$k][$row[0]] = $row[$k+2] === 'NR' ? NULL : (int) $row[$k+2];
+    foreach (array_slice($headings1, 2) as $k => $v) {
+        $data1[$k] = ['date' => $v];
+        foreach ($filtered as $row) {
+            $data1[$k][$row[0]] = $row[$k + 2] === 'NR' ? null : (int)$row[$k + 2];
         }
     }
 
     foreach ($rows2 as $row) {
         $data2[$row[0]] = [];
-        foreach(array_slice($row, 1, null, true) as $k => $v) {
+        foreach (array_slice($row, 1, null, true) as $k => $v) {
             $data2[$row[0]][$headings2[$k]] = $v;
         }
     }

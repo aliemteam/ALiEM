@@ -1,7 +1,7 @@
 <?php
 
 class SVGSupport {
-    function __construct() {
+    public function __construct() {
         add_action('admin_init', [$this, 'enable_svg']);
         add_action('after_setup_theme', [$this, 'theme_logo_support'], 99);
     }
@@ -32,10 +32,10 @@ class SVGSupport {
     }
 
     public function set_default_dimensions($html = '') {
-        return str_ireplace([" width=\"1\"", " height=\"1\""], [" width=\"200\"", ""], $html);
+        return str_ireplace([' width="1"', ' height="1"'], [' width="200"', ''], $html);
     }
 
-    public function enable_svg_mime($mimes = []){
+    public function enable_svg_mime($mimes = []) {
         $mimes['svg'] = 'image/svg+xml';
         return $mimes;
     }

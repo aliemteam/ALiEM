@@ -1,10 +1,18 @@
 <?php
 
-if (!defined('ABSPATH')) exit(1);
+if (!defined('ABSPATH')) {
+    exit(1);
+}
 
-/**
- * Actions
- */
+// Actions
+
+// Use SMTP for email
+add_action('phpmailer_init', function ($phpmailer) {
+    $phpmailer->isSMTP();
+    $phpmailer->Host = 'smtp-relay.gmail.com';
+    $phpmailer->Port = 465;
+    $phpmailer->SMTPSecure = 'ssl';
+});
 
 // Load the custom editor style
 add_action('after_setup_theme', function () {
@@ -14,7 +22,7 @@ add_action('after_setup_theme', function () {
 
 // Remove stockpile of image sizes created by Avada
 add_action('init', function () {
-    foreach(get_intermediate_image_sizes() as $size) {
+    foreach (get_intermediate_image_sizes() as $size) {
         if (!in_array($size, ['thumbnail', 'medium', 'medium-large', 'large'])) {
             remove_image_size($size);
         }
@@ -37,10 +45,10 @@ add_action('init', function () {
 
 // Remove mailpoet button from edit pages
 add_action('admin_init', function () {
-    if(defined('WYSIJA')){
-        $helper_back = WYSIJA::get('back' , 'helper');
-        remove_action('admin_head-post-new.php',array($helper_back,'addCodeToPagePost'));
-        remove_action('admin_head-post.php',array($helper_back,'addCodeToPagePost'));
+    if (defined('WYSIJA')) {
+        $helper_back = WYSIJA::get('back', 'helper');
+        remove_action('admin_head-post-new.php', [$helper_back, 'addCodeToPagePost']);
+        remove_action('admin_head-post.php', [$helper_back, 'addCodeToPagePost']);
     }
 });
 
@@ -56,9 +64,7 @@ add_filter('fusion_dynamic_css_cached', function ($css) {
     return '';
 });
 
-/**
- * Filters
- */
+// Filters
 
 // Disable WordPress sanitization to allow more than just $allowedtags
 remove_filter('pre_user_description', 'wp_filter_kses');
@@ -66,7 +72,9 @@ remove_filter('pre_user_description', 'wp_filter_kses');
 
 // Append "Bottom Leaderboard" Adense ad to post content
 add_filter('the_content', function ($content) {
-    if (!is_single()) return $content;
+    if (!is_single()) {
+        return $content;
+    }
     $content .= "<br>
     <script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
     <!-- ALiEM Bottom Leaderboard -->
@@ -108,19 +116,17 @@ add_filter('hidden_meta_boxes', function ($hidden) {
 }, 10, 1);
 
 
-/**
- * HTML-Generating Helper Functions
- */
+// HTML-Generating Helper Functions
 
 /**
- * Renders the social icons
- * @param  string $url   The permalink
- * @param  string $title The post title
+ * Renders the social icons.
+ *
+ * @param string $url   The permalink
+ * @param string $title The post title
  */
 function aliem_social_icons($url, $title) {
     $url = urlencode($url);
-    $title = urlencode($title);
-    ?>
+    $title = urlencode($title); ?>
     <div class='sharing-icons'>
         <!-- Sharingbutton Facebook -->
         <div>

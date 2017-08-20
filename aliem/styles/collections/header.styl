@@ -31,21 +31,33 @@
                 border-color: transparent !important
     .fusion-megamenu-wrapper
         padding-top: 4px
+        left: 0 !important
+        right: 0
+        width: 1100px
+        position: fixed
+        margin: auto
         .fusion-megamenu-holder
+            width: 1100px !important
             background: $secondary
             border-top: 1px solid darken($secondary, 5)
             box-shadow: $shadow-3dp
             .fusion-megamenu
+                width: 1100px
+                display: flex
+                flex-wrap: nowrap
                 .fusion-megamenu-bullet
                     display: none
                 .fusion-megamenu-title
                     font-weight: 600
                     padding-bottom: 5px
                 .fusion-megamenu-submenu
+                    flex: auto
+                    width: 200px
+                    vertical-align: baseline
                     padding: 10px 0
                     background: white
+                    max-width: none !important
                     &:first-of-type
-                        padding: 0
                         background: $tertiary
                         border-right: solid $secondary 1px
                         .sub-menu
@@ -56,13 +68,13 @@
     .sub-menu
         background-color: $secondary
         margin-top: 3px
-        width: 170px
         border-top: 3px solid $primary
         box-shadow: $shadow-6dp
         ul
             left: 170px
             top: -3px
         li>a
+            white-space: nowrap
             border-bottom: 1px solid darken($secondary, 10)
             padding: 7px 10px
             color: $font-primary

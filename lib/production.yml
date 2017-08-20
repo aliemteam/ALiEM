@@ -1,4 +1,4 @@
-version: '3'
+version: '3.1'
 services:
     wordpress:
         image: visiblevc/wordpress:0.15.2-php7.1
@@ -9,8 +9,6 @@ services:
             - ./data:/data
             - ./wp-content/themes:/app/wp-content/themes
             - ./wp-content/plugins/fanciest-author-box:/app/wp-content/plugins/fanciest-author-box
-            - ./wp-content/plugins/fusion-builder:/app/wp-content/plugins/fusion-builder
-            - ./wp-content/plugins/fusion-core:/app/wp-content/plugins/fusion-core
             - ./wp-content/uploads:/app/wp-content/uploads
             - ./letsencrypt:/etc/letsencrypt
         restart: always

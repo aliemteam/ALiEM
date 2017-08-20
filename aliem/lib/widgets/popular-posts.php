@@ -2,48 +2,49 @@
 
 namespace ALIEM\Widgets;
 
-if (!defined('ABSPATH')) exit(1);
+if (!defined('ABSPATH')) {
+    exit(1);
+}
 
 class PopularPosts extends \WP_Widget {
-	public function __construct() {
-		$widgetOps = [
+    public function __construct() {
+        $widgetOps = [
             'classname' => 'fusion-tabs-widget pyre_tabs',
             'description' => 'ALiEM Version of Avada: Tabs - Popular posts, recent post and comments.',
         ];
-		parent::__construct('aliem_tabs-widget', 'ALiEM: Popular Posts', $widgetOps);
-	}
+        parent::__construct('aliem_tabs-widget', 'ALiEM: Popular Posts', $widgetOps);
+    }
 
-	public function widget($args, $instance) {
-		extract($args);
+    public function widget($args, $instance) {
+        extract($args);
 
-		$posts = isset($instance['posts']) ? $instance['posts'] : 3;
-		$comments = isset($instance['comments']) ? $instance['comments'] : '3';
-		$tagsCount = isset($instance['tags']) ? $instance['tags'] : 3;
-		$show_popular_posts = isset($instance['show_popular_posts']) ? 'true' : 'false';
-		$show_recent_posts = isset($instance['show_recent_posts'])  ? 'true' : 'false';
-		$show_comments = isset($instance['show_comments']) ? 'true' : 'false';
+        $posts = isset($instance['posts']) ? $instance['posts'] : 3;
+        $comments = isset($instance['comments']) ? $instance['comments'] : '3';
+        $tagsCount = isset($instance['tags']) ? $instance['tags'] : 3;
+        $show_popular_posts = isset($instance['show_popular_posts']) ? 'true' : 'false';
+        $show_recent_posts = isset($instance['show_recent_posts']) ? 'true' : 'false';
+        $show_comments = isset($instance['show_comments']) ? 'true' : 'false';
 
-		echo $before_widget;
-		?>
+        echo $before_widget; ?>
 		<div class="tab-holder tabs-widget">
 
 			<div class="tab-hold tabs-wrapper">
 
 				<ul id="tabs" class="tabset tabs">
 
-					<?php if ('true' == $show_popular_posts) : ?>
+					<?php if ('true' === $show_popular_posts) : ?>
 						<li>
                             <a href="#tab-popular"><?php esc_attr_e('Popular', 'Avada'); ?></a>
                         </li>
 					<?php endif; ?>
 
-					<?php if ('true' == $show_recent_posts) : ?>
+					<?php if ('true' === $show_recent_posts) : ?>
 						<li>
                             <a href="#tab-recent"><?php esc_attr_e('Recent', 'Avada'); ?></a>
                         </li>
 					<?php endif; ?>
 
-					<?php if ('true' == $show_comments) : ?>
+					<?php if ('true' === $show_comments) : ?>
 						<li>
                             <a href="#tab-comments">
                                 <span class="fusion-icon-bubbles"></span>
@@ -56,7 +57,7 @@ class PopularPosts extends \WP_Widget {
 
 				<div class="tab-box tabs-container">
 
-					<?php if ('true' == $show_popular_posts) : ?>
+					<?php if ('true' === $show_popular_posts) : ?>
 
 						<div id="tab-popular" class="tab tab_content" style="display: none;">
 							<?php
@@ -73,8 +74,7 @@ class PopularPosts extends \WP_Widget {
                                 'order' => 'DESC',
                                 'ignore_sticky_posts' => true,
                             ];
-							$popular_posts = new \WP_Query($queryArgs);
-							?>
+        $popular_posts = new \WP_Query($queryArgs); ?>
                             <div class="popular-post-heading">Most Popular (Last 30 Days)</div>
 							<ul class="news-list">
 								<?php if ($popular_posts->have_posts()) : ?>
@@ -104,7 +104,7 @@ class PopularPosts extends \WP_Widget {
 
 					<?php endif; ?>
 
-					<?php if ('true' == $show_recent_posts) : ?>
+					<?php if ('true' === $show_recent_posts) : ?>
 
 						<div id="tab-recent" class="tab tab_content" style="display: none;">
 							<?php $recent_posts = new \WP_Query('showposts=' . $tagsCount . '&ignore_sticky_posts=1'); ?>
@@ -134,17 +134,16 @@ class PopularPosts extends \WP_Widget {
 						</div>
 					<?php endif; ?>
 
-					<?php if ('true' == $show_comments) : ?>
+					<?php if ('true' === $show_comments) : ?>
 
 						<div id="tab-comments" class="tab tab_content" style="display: none;">
 							<ul class="news-list">
 								<?php
 								global $wpdb;
-								$number = $comments;
+        $number = $comments;
 
-								$recent_comments = "SELECT DISTINCT ID, post_title, post_password, comment_ID, comment_post_ID, comment_author, comment_author_email, comment_date_gmt, comment_approved, comment_type, comment_author_url, SUBSTRING(comment_content,1,150) AS com_excerpt FROM $wpdb->comments LEFT OUTER JOIN $wpdb->posts ON ($wpdb->comments.comment_post_ID = $wpdb->posts.ID) WHERE comment_approved = '1' AND comment_type = '' AND post_password = '' ORDER BY comment_date_gmt DESC LIMIT $number";
-								$the_comments = $wpdb->get_results($recent_comments);
-								?>
+        $recent_comments = "SELECT DISTINCT ID, post_title, post_password, comment_ID, comment_post_ID, comment_author, comment_author_email, comment_date_gmt, comment_approved, comment_type, comment_author_url, SUBSTRING(comment_content,1,150) AS com_excerpt FROM $wpdb->comments LEFT OUTER JOIN $wpdb->posts ON ($wpdb->comments.comment_post_ID = $wpdb->posts.ID) WHERE comment_approved = '1' AND comment_type = '' AND post_password = '' ORDER BY comment_date_gmt DESC LIMIT $number";
+        $the_comments = $wpdb->get_results($recent_comments); ?>
 
 								<?php if ($the_comments) : ?>
 									<?php foreach ($the_comments as $comment) : ?>
@@ -172,30 +171,30 @@ class PopularPosts extends \WP_Widget {
 		</div>
 		<?php
 		echo $after_widget;
-	}
+    }
 
-	public function update($new_instance, $old_instance) {
-		$instance = $old_instance;
-		$instance['posts'] = $new_instance['posts'];
-		$instance['comments'] = $new_instance['comments'];
-		$instance['tags'] = $new_instance['tags'];
-		$instance['show_popular_posts'] = $new_instance['show_popular_posts'];
-		$instance['show_recent_posts'] = $new_instance['show_recent_posts'];
-		$instance['show_comments'] = $new_instance['show_comments'];
-		$instance['orderby'] = $new_instance['orderby'];
-		return $instance;
-	}
+    public function update($new_instance, $old_instance) {
+        $instance = $old_instance;
+        $instance['posts'] = $new_instance['posts'];
+        $instance['comments'] = $new_instance['comments'];
+        $instance['tags'] = $new_instance['tags'];
+        $instance['show_popular_posts'] = $new_instance['show_popular_posts'];
+        $instance['show_recent_posts'] = $new_instance['show_recent_posts'];
+        $instance['show_comments'] = $new_instance['show_comments'];
+        $instance['orderby'] = $new_instance['orderby'];
+        return $instance;
+    }
 
-	public function form($instance) {
-		$defaults = array(
+    public function form($instance) {
+        $defaults = [
 			'posts' => 3,
 			'comments' => '3',
 			'tags' => 3,
 			'show_popular_posts' => 'on',
 			'show_recent_posts' => 'on',
 			'show_comments' => 'on',
-		);
-		$instance = wp_parse_args((array) $instance, $defaults); ?>
+		];
+        $instance = wp_parse_args((array)$instance, $defaults); ?>
 		<p>
 			<label for="<?php echo $this->get_field_id('posts'); ?>"><?php esc_attr_e('Number of popular posts:', 'Avada'); ?></label>
 			<input class="widefat" type="text" style="width: 30px;" id="<?php echo $this->get_field_id('posts'); ?>" name="<?php echo $this->get_field_name('posts'); ?>" value="<?php echo $instance['posts']; ?>" />
@@ -221,5 +220,5 @@ class PopularPosts extends \WP_Widget {
 			<label for="<?php echo $this->get_field_id('show_comments'); ?>"><?php esc_attr_e('Show comments', 'Avada'); ?></label>
 		</p>
 		<?php
-	}
+    }
 }

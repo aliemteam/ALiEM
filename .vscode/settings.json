@@ -6,6 +6,7 @@
         "sync": "shellscript",
         "variables": "shellscript",
         "bundle": "shellscript",
-        ".stylintrc": "json"
+        ".stylintrc": "json",
+        ".php_cs": "php"
     }
 }
