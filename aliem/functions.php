@@ -15,5 +15,3 @@ require_once __DIR__ . '/lib/widgets/index.php';
 require_once __DIR__ . '/lib/avada-overrides.php';
 require_once __DIR__ . '/lib/class-svg-support.php';
 require_once __DIR__ . '/lib/misc.php';
-
-// TODO: add webpack watcher for autoreloads

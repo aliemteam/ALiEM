@@ -1,0 +1,53 @@
+// Get rid of shortcode buttons that shouldn't be used
+
+$disabled-shortcodes: (
+    'Audio',
+    'Carousel',
+    'Column',
+    'Dailymotion',
+    'Divider',
+    'Dropcap',
+    'Dummy image',
+    'Dummy text',
+    'Frame',
+    'Gallery',
+    'Gmap',
+    'Guests',
+    'Heading',
+    'Highlight',
+    'Label',
+    'Lightbox content',
+    'List',
+    'Members',
+    'Menu',
+    'Meta',
+    'Permalink',
+    'Post',
+    'Posts',
+    'Private',
+    'Pullquote',
+    'Row',
+    'RSS Feed',
+    'Screenr',
+    'Service',
+    'Siblings',
+    'Slider',
+    'Spacer',
+    'Sub pages',
+    'Table',
+    'Template',
+    'Tooltip',
+    'User',
+    'Video',
+    'Vimeo',
+    'YouTube Advanced',
+    'YouTube'
+);
+
+#su-generator-choices {
+    @each $name in $disabled-shortcodes {
+        span[data-name='#{$name}'] {
+            display: none !important;
+        }
+    }
+}

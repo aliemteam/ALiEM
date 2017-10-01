@@ -1,0 +1,192 @@
+@import '../variables';
+
+// Logo
+.fusion-logo {
+    max-width: 80%;
+    img {
+        max-height: 40px;
+        width: auto;
+    }
+    a,
+    a img {
+        line-height: 65px;
+        vertical-align: middle;
+    }
+}
+
+.fusion-header-wrapper {
+    position: fixed;
+    width: 100%;
+    box-shadow: $shadow-3dp;
+}
+
+// Desktop Menus
+.fusion-main-menu {
+    top: -1px;
+    ul {
+        &.submenu {
+            border-top: 3px solid $primary;
+        }
+        > li a {
+            color: $font-gray;
+            border-top: 3px solid transparent;
+            height: 60px;
+            line-height: 60px;
+            &:hover {
+                border-color: transparent !important;
+            }
+        }
+    }
+    .fusion-megamenu-wrapper {
+        padding-top: 4px;
+        left: 0 !important;
+        right: 0;
+        width: 1100px;
+        position: fixed;
+        margin: auto;
+        .fusion-megamenu-holder {
+            width: 1100px !important;
+            background: $secondary;
+            border-top: 1px solid darken($secondary, 5);
+            box-shadow: $shadow-3dp;
+            .fusion-megamenu {
+                width: 1100px;
+                display: flex;
+                flex-wrap: nowrap;
+                .fusion-megamenu-bullet {
+                    display: none;
+                }
+                .fusion-megamenu-title {
+                    font-weight: 600;
+                    padding-bottom: 5px;
+                }
+                .fusion-megamenu-submenu {
+                    flex: auto;
+                    width: 200px;
+                    vertical-align: baseline;
+                    padding: 10px 0;
+                    background: white;
+                    max-width: none !important;
+                    &:first-of-type {
+                        background: $tertiary;
+                        border-right: solid $secondary 1px;
+                        .sub-menu {
+                            margin-top: 0;
+                            li > a {
+                                font-size: 0.9em;
+                                line-height: 2em;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .sub-menu {
+        background-color: $secondary;
+        margin-top: 3px;
+        border-top: 3px solid $primary;
+        box-shadow: $shadow-6dp;
+        ul {
+            left: 170px;
+            top: -3px;
+        }
+        li > a {
+            white-space: nowrap;
+            border-bottom: 1px solid darken($secondary, 10);
+            padding: 7px 10px;
+            color: $font-primary;
+            font-size: 0.75em;
+            transition: none !important;
+            &:hover {
+                background-color: darken($secondary, 5);
+                transition: none !important;
+            }
+        }
+    }
+}
+
+// Mobile Menus
+.fusion-mobile-nav-holder {
+    background: white;
+    .sub-menu {
+        box-shadow: inset 0px 2px 2px 0 rgba(0, 0, 0, 0.14);
+    }
+    .fusion-menu {
+        & > li > ul {
+            background: $secondary;
+        }
+        & > li > ul > li > ul {
+            background: white;
+        }
+        & > li:last-of-type {
+            border-bottom: 0;
+        }
+    }
+}
+
+.fusion-mobile-nav-item {
+    border-bottom: 1px solid darken($secondary, 10);
+    a {
+        color: $font-primary;
+        font-size: 12px;
+        height: 35px;
+        line-height: 35px;
+        display: inline-block;
+        &:before {
+            color: $font-primary;
+            content: none !important;
+        }
+    }
+}
+
+.fusion-mobile-menu-icons {
+    height: 60px;
+    width: 0;
+    float: right;
+    a:before {
+        color: $font-gray;
+    }
+    .fusion-icon.fusion-icon-bars {
+        height: 60px;
+        line-height: 60px;
+        padding: 0 10px;
+        margin: 0;
+    }
+}
+
+.fusion-open-submenu {
+    height: 35px;
+    line-height: 35px;
+    &:hover {
+        color: $font-primary;
+    }
+}
+
+// Misc
+.fusion-widget-cart-counter a:hover:before {
+    color: $primary !important;
+}
+
+#aliem-header-searchbar {
+    border-radius: 2px;
+}
+
+@media (max-width: 800px) {
+    .fusion-header {
+        padding: 0 10px !important;
+        background: $secondary !important;
+    }
+    .header-v3 .alignright input {
+        margin: 0;
+    }
+    .fusion-secondary-header {
+        display: none;
+    }
+    .fusion-header-wrapper {
+        position: relative;
+    }
+    .fusion-mobile-menu-design-modern.fusion-header-v3 .fusion-mobile-nav-holder {
+        margin: 0 -10px;
+    }
+}

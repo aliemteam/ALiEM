@@ -1,0 +1,216 @@
+@import 'variables';
+
+body,
+button,
+select,
+textarea {
+    color: $font-primary;
+    font-family: 'Open Sans', 'Helvetica Neue', helvetica, arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+p {
+    margin: 0 0 1.5em !important;
+    padding: 0;
+}
+
+strong {
+    font-weight: 600;
+}
+
+a {
+    color: $primary;
+    text-decoration: none;
+    position: relative;
+    &:hover {
+        color: darken($primary, 15);
+    }
+}
+
+// Headings --------------------------------------------------------------------
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    clear: both;
+    line-height: 1.4;
+    margin: 0 0 0.75em;
+    padding: 1.5em 0 0;
+    &:first-child {
+        padding-top: 0;
+    }
+}
+
+h1 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    &.entry-title {
+        font-weight: 600;
+        margin: 0;
+        a {
+            color: $font-primary;
+            transition: 0.1s;
+            &:hover {
+                text-decoration: none;
+                transition: 0.1s;
+                color: $primary;
+            }
+        }
+    }
+}
+
+h2 {
+    color: $font-secondary;
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+h3 {
+    color: $font-primary;
+    font-size: 1.125rem;
+    font-weight: 300;
+}
+
+h4 {
+    color: $font-primary;
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+h5 {
+    color: $font-secondary;
+    font-size: 0.8125rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+h6 {
+    color: $font-primary;
+    font-size: 0.9375rem;
+    font-weight: 800;
+}
+
+// Lists -----------------------------------------------------------------------
+
+ul,
+ol {
+    margin: 0 0 1.5em;
+}
+
+ul {
+    list-style: disc;
+}
+
+ol {
+    counter-reset: item;
+    li {
+        display: block;
+        position: relative;
+        &:before {
+            content: counter(item) '.';
+            counter-increment: item;
+            font-weight: 600;
+            left: -1.5em;
+            position: absolute;
+        }
+    }
+}
+
+li > ul,
+li > ol {
+    margin-bottom: 0;
+    margin-left: 1.5em;
+}
+
+dt {
+    font-weight: 700;
+}
+
+dd {
+    margin: 0 1.5em 1.5em;
+}
+
+// Misc Elements ---------------------------------------------------------------
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+sub {
+    bottom: -0.25em;
+}
+sup {
+    top: -0.5em;
+}
+
+blockquote {
+    color: $font-secondary !important;
+    border-left: 4px solid $primary !important;
+    background: $tertiary;
+    margin: 0 0 1.5em 0;
+    padding: 1.5em 10px 1px 10px !important;
+    font: italic 1.125rem/1.7 'Open Sans', 'Helvetica Neue', helvetica, arial, sans-serif !important;
+    img {
+        display: inline-block;
+    }
+}
+
+hr {
+    background-color: #bbb;
+    border: 0;
+    height: 1px;
+    margin-bottom: 1.5em;
+}
+
+pre {
+    background: $tertiary;
+    font-family: monospace;
+    border-radius: 2px;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1.6em;
+}
+
+input {
+    &:focus {
+        outline-color: $input-focus;
+        outline-width: medium;
+    }
+}
+
+// Highlight Color
+::selection {
+    background: $primary;
+    color: white;
+}
+
+// Image caption boxes
+.wp-caption {
+    background: $tertiary;
+    padding: 10px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+    color: $font-secondary;
+    font-style: italic;
+    img {
+        box-shadow: $shadow-2dp;
+    }
+}
+
+.wp-caption-text {
+    text-align: justify;
+    margin: 0 !important;
+    padding-top: 5px;
+}

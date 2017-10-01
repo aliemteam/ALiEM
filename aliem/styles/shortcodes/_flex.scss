@@ -1,0 +1,25 @@
+.flex-grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-grid__item {
+    flex: 2 0 10%;
+    width: auto;
+    padding: 10px;
+}
+
+@each $n in (12, 25, 33, 50) {
+    .flex-grid__item--#{$n} {
+        flex: auto;
+        max-width: (($n + 2) / 100) * 1100 + px;
+        min-width: (($n - 2) / 100) * 1100 + px;
+    }
+}
+
+@media (max-width: 480px) {
+    .flex-grid__item {
+        max-width: 300px;
+        min-width: 300px;
+    }
+}

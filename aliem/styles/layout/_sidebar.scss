@@ -1,0 +1,100 @@
+@import '../variables';
+
+#sidebar {
+    margin-top: 20px;
+    font-size: 12px;
+    line-height: 1.5em;
+    h4 {
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 14px;
+        letter-spacing: 0.1em;
+        margin-bottom: 10px;
+    }
+    .widget {
+        background: white;
+        margin: 0 0 15px 0;
+        &.widget_adsense {
+            text-align: center;
+            background: transparent;
+            ins.adsbygoogle {
+                box-shadow: $shadow-2dp;
+                background: white;
+            }
+        }
+        &.widget_text:nth-of-type(2) {
+            padding: 10px 0;
+        }
+        &.widget_text,
+        &.widget_wysija {
+            padding: 10px;
+            box-shadow: $shadow-2dp;
+            border-radius: 2px;
+            p {
+                margin-bottom: 5px !important;
+            }
+            &:last-of-type {
+                margin-bottom: inherit !important;
+            }
+        }
+    }
+    .widget-title {
+        text-align: center;
+    }
+    .tabs-widget {
+        box-shadow: $shadow-2dp;
+        .tabs li {
+            width: 33.3%;
+        }
+        .popular-post-item-container {
+            display: flex;
+            align-items: center;
+        }
+        .popular-post-heading {
+            text-align: center;
+            font-weight: 600;
+            padding: 5px;
+            background: $primary;
+            color: white;
+            min-width: 75px;
+        }
+        .popular-post-holder {
+            padding: 5px;
+            &.comments {
+                padding: 0;
+            }
+        }
+        .popular-post-image {
+            height: 75px;
+            min-width: 75px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .comment-post-title {
+            border-bottom: solid $primary;
+            padding: 2px 0 5px;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+        ul.news-list li {
+            padding: 5px;
+        }
+    }
+    .wysija-submit {
+        background: $primary;
+        color: white;
+        border: 0;
+        padding: 5px 10px;
+        border-radius: 2px;
+        font-weight: bold;
+        margin: 0 auto;
+        cursor: pointer;
+        &:focus {
+            outline: none;
+        }
+    }
+    .fusion-tabs-widget .tab-holder .tabs li a {
+        color: $font-primary;
+    }
+}

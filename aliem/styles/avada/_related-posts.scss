@@ -1,0 +1,42 @@
+@import '../variables';
+
+.fusion-rollover {
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4));
+    .fusion-rollover-link,
+    .fusion-rollover-gallery,
+    .fusion-rollover-sep {
+        display: none;
+    }
+    h4 {
+        margin: 0;
+        padding: 0;
+    }
+    .fusion-rollover-content .fusion-rollover-title a {
+        color: white;
+        font-weight: 600;
+    }
+}
+.fusion-image-wrapper,
+.fusion-image-wrapper img {
+    min-height: 136px;
+    max-height: 136px;
+}
+
+// Carousel next/prev buttons
+.fusion-carousel .fusion-carousel-nav {
+    .fusion-nav-next,
+    .fusion-nav-prev {
+        background-color: $primary;
+        opacity: 1;
+        transition: 0.2s;
+        &::before {
+            color: white;
+        }
+    }
+    .fusion-nav-prev {
+        border-radius: 0 2px 2px 0;
+    }
+    .fusion-nav-next {
+        border-radius: 2px 0 0 2px;
+    }
+}

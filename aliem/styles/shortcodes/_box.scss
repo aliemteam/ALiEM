@@ -1,0 +1,16 @@
+@import '../variables';
+
+.box {
+    margin-bottom: 1.5em;
+    display: inline-block;
+    color: white;
+    background: $blue-1;
+    padding: 20px;
+    p:last-of-type {
+        margin: 0 !important;
+    }
+}
+
+.box--secondary {
+    background: $blue-2;
+}

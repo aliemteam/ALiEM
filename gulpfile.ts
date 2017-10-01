@@ -1,11 +1,11 @@
 // tslint:disable:no-console
-import * as autoprefixer from 'autoprefixer-stylus';
 import { exec as cp_exec, spawn } from 'child_process';
 import * as fs from 'fs';
 import * as gulp from 'gulp';
+import * as autoprefixer from 'gulp-autoprefixer';
 import * as imagemin from 'gulp-imagemin';
+import * as sass from 'gulp-sass';
 import * as sourcemaps from 'gulp-sourcemaps';
-import * as stylus from 'gulp-stylus';
 import * as merge from 'merge-stream';
 import { promisify } from 'util';
 
@@ -52,28 +52,20 @@ export function staticFiles() {
     return merge(php, pages, svg, vendor);
 }
 
-export function styles(cb: () => void) {
-    let stream = gulp.src(
-        ['aliem/styles/style.styl', 'aliem/styles/editor.styl', 'aliem/styles/admin.styl'],
-        {
-            base: './aliem/styles',
-        }
-    );
+export function styles() {
+    let stream = gulp.src('aliem/styles/[^_]*.scss', { base: './aliem/styles' });
 
     if (!IS_PRODUCTION) {
         stream = stream.pipe(sourcemaps.init());
     }
 
-    stream = stream.pipe(
-        stylus({
-            use: [autoprefixer({ browsers: 'last 2 versions' })],
-            compress: IS_PRODUCTION,
-        }).on('error', (e: Error) => {
-            console.error(e.message);
-            if (IS_PRODUCTION) throw e;
-            cb();
-        })
-    );
+    stream = stream
+        .pipe(
+            sass({
+                outputStyle: IS_PRODUCTION ? 'compressed' : 'nested',
+            }).on('error', sass.logError),
+        )
+        .pipe(autoprefixer({ browsers: ['last 2 versions'] }));
 
     if (!IS_PRODUCTION) {
         stream = stream.pipe(sourcemaps.write('.'));
@@ -120,7 +112,7 @@ export function bundle(cb: () => void) {
 
 const main = gulp.series(clean, gulp.parallel(styles, staticFiles), bundle, (cb: () => void) => {
     if (IS_PRODUCTION) return cb();
-    gulp.watch('aliem/styles/**/*.styl', { queue: false }, gulp.series(styles));
+    gulp.watch('aliem/styles/**/*.scss', gulp.series(styles));
     gulp.watch(['aliem/**/*.php'], gulp.series(staticFiles, reload));
 
     browserSync.init({

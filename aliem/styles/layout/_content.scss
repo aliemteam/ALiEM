@@ -1,0 +1,204 @@
+@import '../variables';
+
+// "post" specific
+.single {
+    #content {
+        margin-top: -15px;
+    }
+    // "Next" and "Previous" buttons at the top of posts
+    .single-navigation {
+        margin-bottom: 0 !important;
+        border: none;
+        a:first-of-type {
+            float: left;
+            margin-left: 10px;
+        }
+        a[rel='prev'],
+        a[rel='next'] {
+            color: $font-gray;
+            &:before,
+            &:after {
+                color: $font-gray;
+            }
+            &:hover,
+            &:hover:before,
+            &:hover:after {
+                color: $font-primary;
+            }
+        }
+    }
+    .post {
+        background: white;
+        padding: 20px;
+        border-radius: 2px;
+        box-shadow: $shadow-2dp;
+    }
+}
+
+// "page" specific
+.page {
+    .page {
+        background: white;
+        padding: 20px;
+        border-radius: 2px;
+        box-shadow: $shadow-2dp;
+    }
+    &.page-template-100-width {
+        .fusion-row {
+            max-width: 1300px !important;
+        }
+    }
+}
+
+.search {
+    .fusion-timeline-date {
+        background: transparent;
+    }
+    .fusion-post-timeline {
+        background: white;
+        border: 0;
+        border-radius: 2px;
+        box-shadow: $shadow-2dp;
+        .fusion-post-content-wrapper {
+            padding: 20px;
+            padding-bottom: 5px;
+        }
+        .fusion-meta-info {
+            margin: 0;
+        }
+        .fusion-post-content-container {
+            display: none;
+        }
+        .fusion-content-sep {
+            height: 0;
+        }
+    }
+}
+
+#main {
+    padding-top: 135px;
+    background: $secondary;
+    .post h2 a {
+        color: $primary;
+        &:hover {
+            color: darken($primary, 15);
+        }
+    }
+}
+
+#main .fusion-row,
+#slidingbar-area .fusion-row,
+.fusion-footer-copyright-area .fusion-row,
+.fusion-footer-widget-area .fusion-row,
+.fusion-page-title-row,
+.tfs-slider .slide-content-container .slide-content {
+    max-width: 1100px;
+}
+
+#content {
+    margin-top: 20px;
+    width: 75%;
+    .entry-title {
+        padding: 0;
+    }
+    .post-content {
+        iframe {
+            max-width: 90%;
+            margin: 0 5%;
+        }
+        iframe[src^='https://www.youtube.com/'] {
+            height: 400px;
+        }
+        @each $width, $height in (600, 300), (480, 200) {
+            @media (max-width: $width + px) {
+                iframe[src^='https://www.youtube.com/'] {
+                    height: $height + px;
+                }
+            }
+        }
+        .twitter-tweet-rendered {
+            margin: auto;
+        }
+        .adsbygoogle {
+            width: 100% !important;
+            text-align: center;
+            iframe {
+                max-width: 100%;
+                margin: 0;
+            }
+        }
+    }
+}
+
+.pagination {
+    width: 100%;
+    text-align: center;
+}
+
+.pagination-prev,
+.pagination-next {
+    color: $font-gray;
+    &:before,
+    &:after {
+        color: $font-gray;
+    }
+    &:hover {
+        color: $font-primary;
+        &:before,
+        &:after {
+            color: $font-primary;
+        }
+    }
+}
+
+// Both the "read more" div on the home page and the author meta on posts
+.fusion-meta-info {
+    border: 0;
+    margin: 0;
+}
+
+.fusion-meta-info-wrapper {
+    line-height: 1.5em;
+    > div {
+        padding-bottom: 5px;
+    }
+}
+
+.fusion-single-line-meta {
+    > div {
+        padding-top: 5px;
+    }
+}
+
+// Gigantic image above pages
+.fusion-flexslider {
+    display: none;
+}
+
+// Useless title bar
+.fusion-page-title-bar {
+    display: none;
+}
+
+@media (max-width: 800px) {
+    .single #content {
+        margin-top: 0;
+    }
+
+    #main {
+        padding: 0 !important;
+    }
+
+    .post .post-content img {
+        float: none;
+        display: block;
+        margin: auto auto 1.5em;
+    }
+    #content {
+        margin-top: 0;
+        blockquote {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+}

@@ -1,0 +1,16 @@
+@import 'box';
+@import 'button';
+@import 'flex';
+@import 'flipbox';
+@import 'person';
+
+.MathJax {
+    visibility: visible;
+    &:focus {
+        outline: 0;
+    }
+}
+
+.plot-container.plotly {
+    margin-bottom: 20px !important;
+}
