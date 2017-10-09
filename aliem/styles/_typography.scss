@@ -183,10 +183,26 @@ pre {
     padding: 1.6em;
 }
 
-input {
+input[type='text'],
+input[type='password'],
+input[type='email'],
+input[type='search'] {
+    border: unset;
+    font-size: inherit;
+    color: $font-secondary;
+    padding: 9px 13px;
+    margin: initial;
+    width: initial;
+    box-sizing: inherit;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);
+    transition: box-shadow 0.15s ease;
     &:focus {
-        outline-color: $input-focus;
-        outline-width: medium;
+        box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+        outline: 0;
+    }
+    &::placeholder {
+        color: lighten($font-secondary, 25);
     }
 }
 
