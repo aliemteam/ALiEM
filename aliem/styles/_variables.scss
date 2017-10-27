@@ -55,6 +55,9 @@ $shadow-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 $button-transition: box-shadow 0.2s $animation-curve-fast-out-linear-in,
     background-color 0.2s $animation-curve-default, color 0.2s $animation-curve-default;
 
+// Shared Dimensions -----------------------------------------------------------
+$content-max-width: 1100px;
+
 // Mixins ----------------------------------------------------------------------
 
 @mixin noselect {

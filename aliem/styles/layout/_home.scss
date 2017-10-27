@@ -3,12 +3,16 @@
 .home,
 .archive {
     .post {
+        overflow: hidden;
         margin-bottom: 20px;
         background: white;
-        padding: 20px 20px 0 20px;
+        padding: 10px 20px;
         border-radius: 2px;
         box-shadow: $shadow-2dp;
         .fusion-meta-info {
+            display: none;
+        }
+        .more-link {
             display: none;
         }
     }
@@ -17,22 +21,6 @@
 // Remove date stamps from beside posts
 .fusion-date-and-formats {
     display: none;
-}
-.fusion-post-content.post-content {
-    margin-left: 0;
-}
-
-// Fix duplicate read more tags
-.fusion-post-content-container p:last-of-type {
-    margin-bottom: 0;
-}
-
-// Pagination buttons
-.pagination,
-.page-links,
-.woocommerce-pagination,
-.bbp-pagination .bbp-pagination-links {
-    margin: 0 !important;
 }
 
 // Fix distorted content / images on mobile

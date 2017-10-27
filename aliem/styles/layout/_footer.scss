@@ -1,9 +1,105 @@
 @import '../variables';
 
+// FIXME:
+
+.fusion-footer-copyright-area {
+    z-index: 10;
+    position: relative;
+    padding: 18px 10px 12px;
+    border-top: 1px solid #4b4c4d;
+    background: #282a2b;
+}
+
+.fusion-copyright-content {
+    display: table;
+    width: 100%;
+}
+
+.fusion-copyright-notice {
+    display: table-cell;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    color: #8c8989;
+    font-size: 12px;
+}
+
+.fusion-copyright-notice a {
+    color: #bfbfbf;
+}
+
+.fusion-body .fusion-footer-widget-area-center .fusion-columns .fusion-column {
+    text-align: center;
+}
+
+.fusion-body .fusion-footer-copyright-center .fusion-copyright-content {
+    display: block;
+    text-align: center;
+}
+
+.fusion-body .fusion-footer-copyright-center .fusion-copyright-notice,
+.fusion-body .fusion-footer-copyright-center .fusion-social-links-footer {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.fusion-body .fusion-footer-copyright-center .fusion-social-links-footer {
+    margin-top: 20px;
+}
+
+// end FIXME
+
 .fusion-footer-copyright-area,
 .fusion-footer-widget-area {
     > .fusion-row {
         padding: 0 30px;
+    }
+}
+
+.footer {
+    background-color: #363839;
+}
+
+.footer__container {
+    padding: 80px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.footer__grid {
+    width: 800px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.footer__grid__item {
+    color: white;
+    a {
+        color: #8c8989;
+        &:hover {
+            color: white;
+            text-decoration: underline;
+        }
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    li {
+        font-size: 14px;
+        padding-bottom: 12px;
+    }
+    h3 {
+        font-size: 14px;
+        letter-spacing: 1.2px;
+        color: white;
+        text-transform: uppercase;
+        font-weight: bold;
     }
 }
 
@@ -28,10 +124,6 @@
             }
         }
     }
-}
-
-.fusion-footer-widget-column {
-    margin-bottom: 0;
 }
 
 // Fixes mobile footer padding

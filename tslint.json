@@ -10,6 +10,7 @@
     "member-access": [false],
     "no-angle-bracket-type-assertion": false,
     "no-default-export": false,
+    "no-implicit-dependencies": false,
     "no-object-literal-type-assertion": false,
     "no-reference": false,
     "no-string-literal": false,
@@ -51,7 +52,6 @@
     "prefer-type-cast": true,
     "promise-must-complete": true,
 
-    "react-a11y-anchors": true,
     "react-a11y-aria-unsupported-elements": true,
     "react-a11y-event-has-role": true,
     "react-a11y-lang": true,

@@ -17,6 +17,7 @@ body {
 }
 
 #wrapper {
+    position: relative;
     min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr;
@@ -33,4 +34,8 @@ main {
 
 .footer {
     grid-row: 3;
+}
+
+img[src$='.svg'] {
+    height: auto;
 }

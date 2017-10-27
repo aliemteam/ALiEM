@@ -52,7 +52,6 @@ add_action('admin_init', function () {
     }
 });
 
-
 // Remove the trove of unnecessary admin menus created by lovely Avada
 add_action('admin_menu', function () {
     remove_menu_page('edit.php?post_type=avada_faq');

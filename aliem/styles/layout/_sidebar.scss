@@ -1,7 +1,26 @@
 @import '../variables';
 
+.jetpack_subscription_widget {
+    #subscribe-email {
+        display: flex;
+        padding: 10px 0 5px 0;
+        input[type='email'] {
+            width: 100%;
+        }
+    }
+    #subscribe-submit {
+        margin: 0 !important;
+        input[type='submit'] {
+            @extend .btn;
+            @extend .btn--primary;
+            margin: 0;
+        }
+    }
+}
+
 #sidebar {
-    margin-top: 20px;
+    margin: 20px;
+    width: 250px;
     font-size: 12px;
     line-height: 1.5em;
     h4 {
@@ -26,12 +45,12 @@
             padding: 10px 0;
         }
         &.widget_text,
-        &.widget_wysija {
+        &.jetpack_subscription_widget {
             padding: 10px;
             box-shadow: $shadow-2dp;
             border-radius: 2px;
             p {
-                margin-bottom: 5px !important;
+                margin-bottom: 5px;
             }
             &:last-of-type {
                 margin-bottom: inherit !important;
@@ -79,19 +98,6 @@
         }
         ul.news-list li {
             padding: 5px;
-        }
-    }
-    .wysija-submit {
-        background: $primary;
-        color: white;
-        border: 0;
-        padding: 5px 10px;
-        border-radius: 2px;
-        font-weight: bold;
-        margin: 0 auto;
-        cursor: pointer;
-        &:focus {
-            outline: none;
         }
     }
     .fusion-tabs-widget .tab-holder .tabs li a {

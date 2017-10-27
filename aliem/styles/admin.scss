@@ -51,3 +51,8 @@ $disabled-shortcodes: (
         }
     }
 }
+
+// Get rid of useless Avada admin notices
+#setting-error-tgmpa.error {
+    display: none !important;
+}

@@ -43,6 +43,7 @@ export default <webpack.Configuration>{
     devtool: IS_PRODUCTION ? 'cheap-module-source-map' : 'source-map',
     entry: {
         'social-media-index': './aliem/js/social-media-index/',
+        'header-main': './aliem/js/headers/main/',
     },
     output: {
         filename: '[name].js',

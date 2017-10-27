@@ -3,6 +3,27 @@
 @import 'pagination';
 @import 'person';
 
+// FIXME:
+.screen-reader-text {
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    position: absolute;
+    margin: -1px;
+    padding: 0;
+    height: 1px;
+    width: 1px;
+    word-wrap: normal !important;
+    border: 0 none;
+}
+
+#wp-admin-bar-avada {
+    display: none;
+}
+
+.fusion-row {
+    margin: 0 auto;
+}
+
 .fusion-menu-description {
     display: none;
 }
@@ -19,6 +40,20 @@ a,
 a::after,
 a::before {
     transition: unset;
+}
+
+.fusion-social-network-icon {
+    display: inline-block;
+    margin: 0 10px 10px;
+    font-size: 16px;
+    color: #46494a;
+    text-decoration: none;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.rich-snippet-hidden {
+    display: none;
 }
 
 @font-face {

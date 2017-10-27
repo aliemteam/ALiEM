@@ -1,30 +1,152 @@
 @import '../variables';
 
-.bbp-pagination .bbp-pagination-links a.inactive,
-.bbp-pagination-links span.dots,
-.bbp-topic-pagination .page-numbers,
-.page-links a,
-.pagination a.inactive,
-.woocommerce-pagination .page-numbers {
+.pagination-prev:before,
+.single-navigation a[rel='prev']:before,
+.woocommerce-pagination .prev:before {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: -15px;
+    font-family: 'dashicons';
+    content: '\f341';
+}
+
+.pagination-next:after,
+.single-navigation a[rel='next']:after,
+.woocommerce-pagination .next:after {
+    position: absolute;
+    top: 52%;
+    transform: translateY(-50%);
+    margin-right: -15px;
+    font-family: 'dashicons';
+    content: '\f345';
+}
+
+.single-navigation {
+    display: flex;
+    justify-content: space-between;
+    a {
+        margin: 0 15px;
+        color: $font-secondary !important;
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+    a[rel='prev'] {
+        &::before {
+            left: 2px;
+            transition: left 0.1s;
+        }
+        &:hover::before {
+            left: -2px;
+            transition: left 0.2s;
+        }
+    }
+    a[rel='next'] {
+        &::after {
+            right: 2px;
+            transition: right 0.1s;
+        }
+        &:hover::after {
+            right: -2px;
+            transition: right 0.2s;
+        }
+    }
+}
+
+%pagination-base {
+    padding: 4px 8px;
+    margin-left: 5px;
+    font-weight: 600;
+    color: $font-secondary;
+    &:hover {
+        color: $font-secondary;
+    }
+}
+
+%pagination-inactive {
     background: white;
-    border-color: transparent;
-    border-radius: 2px;
     box-shadow: $shadow-2dp;
+    border-radius: 2px;
     transition: $shadow-transition;
     &:hover {
-        border-color: transparent;
         box-shadow: $shadow-4dp;
         transition: $shadow-transition;
     }
 }
 
-.bbp-pagination .bbp-pagination-links .current,
-.page-links > .page-number,
-.pagination .current,
-.woocommerce-pagination .current {
-    @include noselect;
-    border-color: transparent;
-    box-shadow: $shadow-2dp;
-    border-radius: 2px;
+%pagination-active {
+    @extend %pagination-inactive;
+    background: $primary;
+    color: white;
     cursor: default;
+    &:hover {
+        color: white;
+    }
+}
+
+.pagination {
+    width: 100%;
+    text-align: center;
+    & > a,
+    & > span {
+        @extend %pagination-base;
+        &.inactive {
+            @extend %pagination-inactive;
+        }
+        &.current {
+            @extend %pagination-active;
+        }
+        &.pagination-next {
+            &::after {
+                right: 10px;
+                transition: right 0.1s;
+            }
+            &:hover::after {
+                right: 5px;
+                transition: right 0.2s;
+            }
+        }
+        &.pagination-prev {
+            &::before {
+                left: 10px;
+                transition: left 0.1s;
+            }
+            &:hover::before {
+                left: 5px;
+                transition: left 0.2s;
+            }
+        }
+    }
+}
+
+// Algolia Results Pagination
+.ais-pagination {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.ais-pagination--item__page {
+    a.ais-pagination--link {
+        @extend %pagination-base;
+        @extend %pagination-inactive;
+        color: $font-secondary;
+        &:hover {
+            color: $font-secondary;
+        }
+    }
+    &.ais-pagination--item__active a.ais-pagination--link {
+        @extend %pagination-active;
+    }
+}
+
+.ais-pagination--item__previous,
+.ais-pagination--item__first,
+.ais-pagination--item__next,
+.ais-pagination--item__last {
+    a.ais-pagination--link {
+        @extend %pagination-base;
+        padding: 0;
+    }
 }

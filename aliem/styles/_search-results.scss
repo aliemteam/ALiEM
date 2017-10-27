@@ -1,0 +1,74 @@
+@import 'variables';
+
+#ais-wrapper {
+    max-width: 1100px;
+    margin: auto;
+}
+
+#ais-main {
+    max-width: 850px;
+    padding: 0;
+    margin: 20px;
+    #algolia-search-box {
+        margin-bottom: 60px;
+    }
+}
+
+#ais-facets {
+    padding: 0;
+    margin: 20px;
+    a {
+        color: $font-primary;
+        &:hover {
+            color: $primary;
+        }
+    }
+}
+
+.ais-hits--item,
+.ais-facets {
+    background: white;
+    box-shadow: $shadow-2dp;
+    border-radius: 2px;
+    padding: 20px;
+    margin: 0 0 20px 0;
+    h3.widgettitle {
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+}
+
+.ais-hits--thumbnail {
+    float: right;
+    margin-right: 0;
+    margin-left: 20px;
+    img[src$='.svg'] {
+        max-width: 200px;
+        max-height: 200px;
+    }
+}
+
+.ais-hits--content {
+    h2 {
+        @extend h1.entry-title;
+        margin-bottom: 10px;
+    }
+    .excerpt p {
+        margin: 0;
+    }
+}
+
+.ais-hierarchical-menu--link,
+.ais-refinement-list--label,
+.ais-menu--link {
+    display: flex;
+    align-items: center;
+    .ais-refinement-list--checkbox {
+        margin-right: 10px;
+    }
+    span {
+        flex: auto;
+        text-align: right;
+        margin-left: 10px;
+    }
+}

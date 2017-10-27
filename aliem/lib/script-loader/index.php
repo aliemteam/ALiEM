@@ -19,7 +19,7 @@ class Loader {
     }
 
     public function init_admin($hook) {
-        if (in_array($hook, ['post-new.php', 'post.php', 'page-new.php', 'page.php'])) {
+        if (is_admin()) {
             wp_enqueue_style('aliem_admin_style', ROOT_URI . '/admin.css');
         }
     }
@@ -27,14 +27,17 @@ class Loader {
     public function init() {
         global $current_user, $post;
         wp_register_style('aliem', get_stylesheet_uri());
+        // FIXME: Remove this
         wp_register_script('printfriendly', 'https://pf-cdn.printfriendly.com/ssl/main.js');
         wp_register_script('social-media-index', ROOT_URI . '/js/social-media-index.js', [], false, true);
+        wp_register_script('header-main', ROOT_URI . '/js/header-main.js', [], false);
         wp_register_script('mathjax', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=AM_HTMLorMML', [], false, true);
         $this->delegate($post, $current_user);
     }
 
     private function prepare_localizers() {
         $this->localized = [
+            'header-main' => ['__header', 'header_main'],
             'social-media-index' => ['__smi', 'social_media_index'],
         ];
         foreach (glob(__DIR__ . '/localizers/*') as $localizer) {
@@ -55,7 +58,10 @@ class Loader {
     private function delegate($post, $user) {
         // Always load these
         $load = [
-            ['print-friendly'],
+            [
+                'print-friendly',
+                'header-main',
+            ],
             ['aliem'],
         ];
         // Always unload these
@@ -126,8 +132,8 @@ class Loader {
             ],
             [
                 'fusion-core-style',
-                // 'avada-stylesheet',
-                // 'fusion-builder-shortcodes',
+                'avada-stylesheet',
+                'fusion-builder-shortcodes',
                 'fusion-builder-animations',
                 'fusion-builder-ilightbox',
             ],
