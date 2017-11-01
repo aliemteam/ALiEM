@@ -85,13 +85,10 @@
 }
 
 #content {
-    width: 600px;
+    width: 80%;
     max-width: 825px;
     flex: auto;
     margin: 20px;
-    .entry-title {
-        padding: 0;
-    }
     .post-content {
         iframe {
             max-width: 90%;
@@ -118,6 +115,13 @@
                 margin: 0;
             }
         }
+    }
+}
+
+@media all and (max-width: 600px) {
+    .single #content {
+        margin: 0;
+        padding: 0;
     }
 }
 

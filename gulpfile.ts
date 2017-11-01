@@ -42,6 +42,10 @@ export function staticFiles() {
 
     const pages = gulp.src(['aliem/pages/*.php']).pipe(gulp.dest('dist/aliem'));
 
+    const partials = gulp
+        .src(['aliem/pages/partials/*.php'])
+        .pipe(gulp.dest('dist/aliem/partials'));
+
     const svg = gulp
         .src('aliem/assets/**/*', { base: './' })
         .pipe(imagemin())
@@ -49,7 +53,7 @@ export function staticFiles() {
 
     const vendor = gulp.src('aliem/vendor/**/*', { base: 'aliem' }).pipe(gulp.dest('dist/aliem'));
 
-    return merge(php, pages, svg, vendor);
+    return merge(php, pages, svg, partials, vendor);
 }
 
 export function styles() {

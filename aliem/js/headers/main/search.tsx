@@ -11,7 +11,7 @@ interface State {
 }
 
 export default class SearchBox extends React.Component<Props, State> {
-    static autocompleteId: 'algolia-autocomplete-listbox';
+    static autocompleteId = 'algolia-autocomplete-listbox';
     input: HTMLInputElement;
 
     constructor(props: Props) {
@@ -77,6 +77,8 @@ export default class SearchBox extends React.Component<Props, State> {
                                 aria-autocomplete="list"
                                 aria-expanded={
                                     this.state.value && this.state.value.trim().length > 0
+                                        ? true
+                                        : false
                                 }
                                 aria-owns={`${SearchBox.autocompleteId}-${instance}`}
                                 aria-controls={`${SearchBox.autocompleteId}-${instance}`}
@@ -95,6 +97,7 @@ export default class SearchBox extends React.Component<Props, State> {
                     </div>
                 </form>
                 <button
+                    aria-label="Click to toggle search field"
                     onClick={this.toggleSearch}
                     className={`header__search__button ${this.state.isOpen
                         ? 'header__search__button-hidden'

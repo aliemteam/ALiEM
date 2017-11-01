@@ -1,6 +1,11 @@
 /**
  * Template: Avada
  */
+
+* {
+    box-sizing: border-box;
+}
+
 @import 'avada/avada';
 @import 'plugins';
 @import 'shortcodes/shortcodes';

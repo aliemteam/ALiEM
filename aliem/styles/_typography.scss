@@ -51,6 +51,7 @@ h1 {
     font-weight: 300;
     &.entry-title {
         font-weight: 600;
+        padding: 0;
         margin: 0;
         a {
             color: $font-primary;

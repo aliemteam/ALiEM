@@ -16,6 +16,27 @@ body {
     min-height: 100%;
 }
 
+body {
+    #a11y-skip-link {
+        display: block;
+        left: 0;
+        position: absolute;
+        z-index: 2;
+        padding: 5px 10px;
+        font-weight: bold;
+        background: #282a2b;
+        transform: translateY(-100%);
+        transition: transform 0.2s;
+        &:focus {
+            transform: translateY(0);
+            transition: transform 0.2s;
+        }
+    }
+    &.logged-in #a11y-skip-link {
+        top: 32px;
+    }
+}
+
 #wrapper {
     position: relative;
     min-height: 100vh;
@@ -38,4 +59,5 @@ main {
 
 img[src$='.svg'] {
     height: auto;
+    max-width: 100%;
 }
