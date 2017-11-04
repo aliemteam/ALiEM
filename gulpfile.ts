@@ -35,7 +35,7 @@ export const bump = () =>
 
 export function staticFiles() {
     const php = gulp
-        .src(['aliem/**/*.php', 'aliem/**/*.css', '!aliem/pages/*.php'], {
+        .src(['aliem/**/*.{php,css,json,html}', '!aliem/pages/*.php'], {
             base: './',
         })
         .pipe(gulp.dest('dist'));
@@ -117,11 +117,12 @@ export function bundle(cb: () => void) {
 const main = gulp.series(clean, gulp.parallel(styles, staticFiles), bundle, (cb: () => void) => {
     if (IS_PRODUCTION) return cb();
     gulp.watch('aliem/styles/**/*.scss', gulp.series(styles));
-    gulp.watch(['aliem/**/*.php'], gulp.series(staticFiles, reload));
+    gulp.watch(['aliem/**/*.{php,json,html}'], gulp.series(staticFiles, reload));
 
     browserSync.init({
         proxy: 'localhost:8080',
         open: false,
+        notify: false,
         reloadDebounce: 2000,
     });
 });
