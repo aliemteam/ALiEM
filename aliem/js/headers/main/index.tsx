@@ -1,6 +1,7 @@
 import * as React from 'react';
 import render from '../../utils/render';
-import { LogoIcon, LogoText } from './graphics';
+import { LogoIcon } from '../../utils/svg';
+import { LogoText } from './graphics';
 import SearchBox from './search';
 import SecondaryHeader from './secondary';
 

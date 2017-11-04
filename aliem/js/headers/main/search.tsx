@@ -47,12 +47,9 @@ export default class SearchBox extends React.Component<Props, State> {
     };
 
     render() {
-        const { instance, onUserEvent, ...divProps } = this.props;
+        const { instance, className } = this.props;
         return (
-            <div
-                className="header__search"
-                {...{ ...divProps, className: `header__search ${divProps.className || ''}` }}
-            >
+            <div className={`header__search ${className || ''}`}>
                 <form
                     role="search"
                     className={`searchform ${this.state.isOpen ? 'searchform__open' : ''}`}
