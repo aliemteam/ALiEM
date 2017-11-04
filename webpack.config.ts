@@ -44,6 +44,7 @@ export default <webpack.Configuration>{
     entry: {
         'social-media-index': './aliem/js/social-media-index/',
         'header-main': './aliem/js/headers/main/',
+        'header-posts': './aliem/js/headers/posts/',
     },
     output: {
         filename: '[name].js',
@@ -70,6 +71,26 @@ export default <webpack.Configuration>{
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    {
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true,
+                        },
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true,
+                        },
+                    },
+                ],
             },
         ],
     },

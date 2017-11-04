@@ -18,7 +18,6 @@
 				<span class="entry-title" style="display: none;"><?php the_title(); ?></span>
 			<?php endif; ?>
 
-            <?php echo aliem_social_icons(get_permalink($post->ID), get_the_title($post->ID)); ?>
 			<?php if ('below' === Avada()->settings->get('blog_post_title')) : ?>
 				<?php echo avada_render_post_title($post->ID, false, '', '1'); ?>
 			<?php endif; ?>
