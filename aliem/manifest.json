@@ -1,0 +1,7 @@
+{
+  "$schema": "http://json.schemastore.org/web-manifest",
+  "name": "Academic Life in Emergency Medicine",
+  "short_name": "ALiEM",
+  "start_url": "/?utm_source=homescreen",
+  "theme_color": "#00b092"
+}
