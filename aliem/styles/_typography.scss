@@ -221,13 +221,17 @@ input[type='search'] {
     margin-bottom: 20px;
     color: $font-secondary;
     font-style: italic;
+    max-width: 100%;
+    line-height: initial;
     img {
-        box-shadow: $shadow-2dp;
+        margin: 0 0 10px 0 !important;
+        max-width: 100%;
+        height: auto;
     }
 }
 
 .wp-caption-text {
     text-align: justify;
     margin: 0 !important;
-    padding-top: 5px;
+    font-size: 0.8em;
 }

@@ -27,10 +27,9 @@ class Loader {
     public function init() {
         global $current_user, $post;
         wp_register_style('aliem', get_stylesheet_uri());
-        // FIXME: Remove this
-        wp_register_script('printfriendly', 'https://pf-cdn.printfriendly.com/ssl/main.js');
         wp_register_script('social-media-index', ROOT_URI . '/js/social-media-index.js', [], false, true);
         wp_register_script('header-main', ROOT_URI . '/js/header-main.js', [], false);
+        wp_register_script('header-posts', ROOT_URI . '/js/header-posts.js', [], false);
         wp_register_script('mathjax', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=AM_HTMLorMML', [], false, true);
         $this->delegate($post, $current_user);
     }
@@ -38,6 +37,7 @@ class Loader {
     private function prepare_localizers() {
         $this->localized = [
             'header-main' => ['__header', 'header_main'],
+            'header-posts' => ['__header_posts', 'header_posts'],
             'social-media-index' => ['__smi', 'social_media_index'],
         ];
         foreach (glob(__DIR__ . '/localizers/*') as $localizer) {
@@ -59,7 +59,6 @@ class Loader {
         // Always load these
         $load = [
             [
-                'print-friendly',
                 'header-main',
             ],
             ['aliem'],
@@ -143,6 +142,10 @@ class Loader {
             case 12480:
                 $load[0][] = 'social-media-index';
                 break;
+        }
+
+        if (is_single()) {
+            $load[0][] = 'header-posts';
         }
 
         $this->load(...$load);

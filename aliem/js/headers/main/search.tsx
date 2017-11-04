@@ -47,7 +47,7 @@ export default class SearchBox extends React.Component<Props, State> {
     };
 
     render() {
-        const { instance, ...divProps } = this.props;
+        const { instance, onUserEvent, ...divProps } = this.props;
         return (
             <div
                 className="header__search"

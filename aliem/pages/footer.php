@@ -48,7 +48,7 @@ do_action('avada_after_main_content'); ?>
                         <li><a href="https://www.essentialsofem.com/" target="_blank" rel="noopener noreferrer">Essentials of Emergency Medicine</a></li>
                         <li><a href="https://www.saem.org/" target="_blank" rel="noopener noreferrer">Society for Academic Emergency Medicine</a></li>
                         <li><a href="https://www.usacs.com/" target="_blank" rel="noopener noreferrer">US Acute Care Solutions</a></li>
-                        <li><a href="http://westjem.com/" target="_blank" rel="noopener noreferrer">WestJEM</a></li>
+                        <li><a href="http://westjem.com/" target="_blank" rel="noopener noreferrer">Western Journal of Emergency Medicine</a></li>
                     </ul>
                 </div>
             </div>

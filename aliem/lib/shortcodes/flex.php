@@ -39,10 +39,6 @@ function col_50($atts = [], $content = null) {
 add_shortcode('col-50', 'ALIEM\Shortcodes\col_50');
 
 function col($atts = [], $content = null) {
-    return "
-    <div class='flex-grid__item'>
-        " . do_shortcode($content) . '
-    </div>
-    ';
+    return do_shortcode($content);
 }
 add_shortcode('col', 'ALIEM\Shortcodes\col');

@@ -45,7 +45,7 @@ body {
     grid-template-rows: auto 1fr auto;
 }
 
-header {
+#header__main {
     grid-row: 1;
 }
 
@@ -57,7 +57,13 @@ main {
     grid-row: 3;
 }
 
-img[src$='.svg'] {
+#content img[src$='.svg'] {
     height: auto;
     max-width: 100%;
+}
+
+#wp-toolbar {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
 }

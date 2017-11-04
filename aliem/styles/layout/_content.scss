@@ -90,6 +90,10 @@
     flex: auto;
     margin: 20px;
     .post-content {
+        & > p > img {
+            max-width: 100%;
+            height: auto;
+        }
         iframe {
             max-width: 90%;
             margin: 0 5%;
@@ -106,14 +110,6 @@
         }
         .twitter-tweet-rendered {
             margin: auto;
-        }
-        .adsbygoogle {
-            width: 100% !important;
-            text-align: center;
-            iframe {
-                max-width: 100%;
-                margin: 0;
-            }
         }
     }
 }
@@ -166,7 +162,7 @@
         padding: 0 !important;
     }
 
-    .post .post-content img {
+    .post .post-content > p > img {
         float: none;
         display: block;
         margin: auto auto 1.5em;
@@ -177,4 +173,9 @@
             margin-right: 0;
         }
     }
+}
+
+// Useless smiley face at the bottom of the page added by jetpack
+#wpstats {
+    display: none;
 }
