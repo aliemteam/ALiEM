@@ -26,6 +26,7 @@
   "devDependencies": {
     "@types/gulp": "^4.0.5",
     "@types/gulp-autoprefixer": "0.0.30",
+    "@types/gulp-rename": "0.0.32",
     "@types/gulp-sass": "0.0.30",
     "@types/gulp-sourcemaps": "0.0.31",
     "@types/node": "^8.0.47",
@@ -43,6 +44,7 @@
     "gulp": "gulpjs/gulp#4.0",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-imagemin": "^3.4.0",
+    "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.1",
     "husky": "^0.14.3",

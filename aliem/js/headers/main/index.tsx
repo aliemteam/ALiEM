@@ -47,7 +47,11 @@ class Header extends React.Component<Props, State> {
                     <div className="header-primary__container">
                         <div className="header-primary__left">
                             <h2>
-                                <a className="header-primary__logo" href="/">
+                                <a
+                                    href="/"
+                                    className="header-primary__logo"
+                                    aria-label="Navigate to home page"
+                                >
                                     <LogoIcon />
                                     {!this.state.navOpen && (
                                         <LogoText
@@ -65,7 +69,7 @@ class Header extends React.Component<Props, State> {
                             <SearchBox
                                 className="header__search--desktop"
                                 instance={0}
-                                onUserEvent={this.handleSearchboxEvent}
+                                userEventHandler={this.handleSearchboxEvent}
                             />
                             <button
                                 className={`hamburger hamburger--squeeze ${this.state.navOpen

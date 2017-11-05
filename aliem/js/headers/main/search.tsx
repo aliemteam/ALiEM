@@ -2,7 +2,7 @@ import * as React from 'react';
 
 interface Props extends React.HTMLProps<HTMLDivElement> {
     instance: number;
-    onUserEvent(kind: 'activate' | 'deactivate'): void;
+    userEventHandler(kind: 'activate' | 'deactivate'): void;
 }
 
 interface State {
@@ -25,11 +25,11 @@ export default class SearchBox extends React.Component<Props, State> {
     componentDidUpdate(_: {}, prevState: State) {
         if (prevState.isOpen && !this.state.isOpen) {
             this.input.dispatchEvent(new Event('input'));
-            this.props.onUserEvent('deactivate');
+            this.props.userEventHandler('deactivate');
         }
         if (!prevState.isOpen && this.state.isOpen) {
             this.input.focus();
-            this.props.onUserEvent('activate');
+            this.props.userEventHandler('activate');
         }
     }
 

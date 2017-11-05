@@ -4,6 +4,7 @@ import * as fs from 'fs';
 import * as gulp from 'gulp';
 import * as autoprefixer from 'gulp-autoprefixer';
 import * as imagemin from 'gulp-imagemin';
+import * as rename from 'gulp-rename';
 import * as sass from 'gulp-sass';
 import * as sourcemaps from 'gulp-sourcemaps';
 import * as merge from 'merge-stream';
@@ -51,7 +52,20 @@ export function staticFiles() {
         .pipe(imagemin())
         .pipe(gulp.dest('dist'));
 
-    const vendor = gulp.src('aliem/vendor/**/*', { base: 'aliem' }).pipe(gulp.dest('dist/aliem'));
+    const vendor = gulp
+        .src([
+            'aliem/vendor/**/*',
+            `node_modules/react/umd/react.${IS_PRODUCTION ? 'production.min' : 'development'}.js`,
+            // prettier-ignore
+            `node_modules/react-dom/umd/react-dom.${IS_PRODUCTION ? 'production.min' : 'development'}.js`,
+        ])
+        .pipe(
+            rename(path => {
+                if (!path.basename) return;
+                path.basename = path.basename.split('.')[0];
+            }),
+        )
+        .pipe(gulp.dest('dist/aliem/vendor'));
 
     return merge(php, pages, svg, partials, vendor);
 }

@@ -55,6 +55,10 @@ export default <webpack.Configuration>{
         modules: [resolve(__dirname, 'src'), 'node_modules'],
         plugins: [new TsConfigPathsPlugin()],
     },
+    externals: {
+        react: 'React',
+        'react-dom': 'ReactDOM',
+    },
     plugins: IS_PRODUCTION ? productionPlugins : devPlugins,
     module: {
         rules: [

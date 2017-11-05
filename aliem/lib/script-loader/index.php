@@ -27,10 +27,12 @@ class Loader {
     public function init() {
         global $current_user, $post;
         wp_register_style('aliem', get_stylesheet_uri());
-        wp_register_script('social-media-index', ROOT_URI . '/js/social-media-index.js', [], false, true);
-        wp_register_script('header-main', ROOT_URI . '/js/header-main.js', [], false);
-        wp_register_script('header-posts', ROOT_URI . '/js/header-posts.js', [], false);
-        wp_register_script('mathjax', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=AM_HTMLorMML', [], false, true);
+        wp_register_script('mathjax', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=AM_HTMLorMML', [], '2.7.1', true);
+        wp_register_script('react', ROOT_URI . '/vendor/react.js', [], ALIEM_VERSION);
+        wp_register_script('react-dom', ROOT_URI . '/vendor/react-dom.js', [], ALIEM_VERSION);
+        wp_register_script('social-media-index', ROOT_URI . '/js/social-media-index.js', ['react', 'react-dom'], ALIEM_VERSION, true);
+        wp_register_script('header-main', ROOT_URI . '/js/header-main.js', ['react', 'react-dom'], ALIEM_VERSION);
+        wp_register_script('header-posts', ROOT_URI . '/js/header-posts.js', ['react', 'react-dom'], ALIEM_VERSION);
         $this->delegate($post, $current_user);
     }
 
@@ -61,7 +63,9 @@ class Loader {
             [
                 'header-main',
             ],
-            ['aliem'],
+            [
+                'aliem',
+            ],
         ];
         // Always unload these
         $unload = [
