@@ -84,11 +84,20 @@
             }
         }
         .popular-post-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 75px;
+            width: 75px;
             min-width: 75px;
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
+            img {
+                height: 75px;
+                width: 75px;
+                object-fit: cover;
+            }
         }
         .comment-post-title {
             border-bottom: solid $primary;

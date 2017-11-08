@@ -1,10 +1,10 @@
 <?php
 
+namespace ALIEM\Misc;
+
 if (!defined('ABSPATH')) {
     exit(1);
 }
-
-// Actions
 
 // Use SMTP for email
 add_action('phpmailer_init', function ($phpmailer) {
@@ -29,20 +29,6 @@ add_action('init', function () {
     }
 });
 
-
-// Adjust Avada options to allow for the use of SVG in logos.
-add_action('init', function () {
-    $ops = get_option('avada_theme_options');
-
-    $ops['logo']['url'] = '/wp-content/themes/aliem/assets/aliem-logo-horizontal-full.svg';
-    $ops['logo_retina']['url'] = '/wp-content/themes/aliem/assets/aliem-logo-horizontal-full.svg';
-    $ops['mobile_logo']['url'] = '/wp-content/themes/aliem/assets/aliem-logo-horizontal-full.svg';
-    $ops['mobile_logo_retina']['url'] = '/wp-content/themes/aliem/assets/aliem-logo-horizontal-full.svg';
-
-    update_option('avada_theme_options', $ops);
-});
-
-
 // Remove the trove of unnecessary admin menus created by lovely Avada
 add_action('admin_menu', function () {
     remove_menu_page('edit.php?post_type=avada_faq');
@@ -63,11 +49,8 @@ add_action('admin_bar_menu', function ($bar) {
     $bar->add_node($account_node);
 });
 
-// Filters
-
 // Disable WordPress sanitization to allow more than just $allowedtags
 remove_filter('pre_user_description', 'wp_filter_kses');
-
 
 // Append "Bottom Leaderboard" Adense ad to post content
 add_filter('the_content', function ($content) {
@@ -88,7 +71,6 @@ add_filter('the_content', function ($content) {
     ";
     return $content;
 });
-
 
 // Set default hidden metaboxes
 add_filter('hidden_meta_boxes', function ($hidden) {
@@ -114,3 +96,14 @@ add_filter('hidden_meta_boxes', function ($hidden) {
     );
     return $hidden;
 }, 10, 1);
+
+function filter_lazy_images($content) {
+    $content = preg_replace_callback('/(<img.*)(src="(.+?)")(.*?\/?>)/', function ($matches) {
+        $cleaned = "$matches[1] data-lazy-src='$matches[3]' $matches[4]";
+        $cleaned = preg_replace('/(?:sizes=".*?"|srcset=".*?")/', '', $cleaned);
+        return $cleaned;
+    }, $content);
+    return $content;
+}
+add_filter('the_content', 'ALIEM\Misc\filter_lazy_images');
+add_filter('widget_text_content', 'ALIEM\Misc\filter_lazy_images');

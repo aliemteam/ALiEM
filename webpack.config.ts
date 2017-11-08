@@ -45,6 +45,7 @@ export default <webpack.Configuration>{
         'social-media-index': './aliem/js/social-media-index/',
         'header-main': './aliem/js/headers/main/',
         'header-posts': './aliem/js/headers/posts/',
+        'image-lazy-load': './aliem/js/image-lazy-load/',
     },
     output: {
         filename: '[name].js',
