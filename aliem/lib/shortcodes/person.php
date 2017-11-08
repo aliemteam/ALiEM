@@ -24,9 +24,8 @@ function person($atts = [], $content = null) {
 
     if ($twitter !== '') {
         $twitter = "
-        <div class='person__twitter'>
-            <a aria-label='fusion-twitter' href='https://twitter.com/$twitter' target='_blank' rel='noopener noreferrer'></a>
-        </div>";
+        <a class='person__twitter' href='https://twitter.com/$twitter' target='_blank' rel='noopener noreferrer'></a>
+        ";
     }
 
     return "
@@ -34,12 +33,12 @@ function person($atts = [], $content = null) {
         <div class='person__img'>
             <img src='$image'/>
         </div>
-        <div class='person__details'>
-            <div class='person__meta'>
-                <div class='person__name'>$name</div>
-                <div class='person__title'>$title</div>
+        <div class='person__meta'>
+            <div class='person__name'>
+                $twitter
+                <span>$name</span>
             </div>
-            $twitter
+            <div class='person__title'>$title</div>
         </div>
         <div class='person__background'>$content</div>
     </div>

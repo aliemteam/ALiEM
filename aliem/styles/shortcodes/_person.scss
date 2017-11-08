@@ -6,7 +6,8 @@
     margin: 0 10px 20px 10px;
     box-shadow: $shadow-2dp;
     border-radius: 2px;
-    width: 300px;
+    width: 200px;
+    max-width: 300px;
     flex: auto;
 }
 
@@ -20,25 +21,26 @@
         max-height: 200px;
         height: auto;
     }
-}
-
-.person__details {
-    display: flex;
-    padding: 5px;
+    img[src$='.svg'] {
+        height: 200px !important;
+    }
 }
 
 .person__twitter {
-    a {
-        font-family: icomoon;
-        font-size: 1.5em;
-    }
-    a:before {
+    margin-right: 10px;
+    font-family: icomoon;
+    font-size: 1.5em;
+    &::before {
         content: '\e605';
     }
 }
 
 .person__name {
+    display: flex;
+    align-items: center;
+    min-height: 50px;
     font-weight: 600;
+    padding: 5px 0;
 }
 
 .person__title {
@@ -47,16 +49,10 @@
 
 .person__meta {
     flex: auto;
+    padding: 0 10px;
 }
 
 .person__background {
-    padding: 5px;
+    padding: 10px;
     font-size: 0.8em;
-}
-
-@media (max-width: 600px) {
-    .person {
-        float: none !important;
-        margin: 0 auto 20px auto !important;
-    }
 }
