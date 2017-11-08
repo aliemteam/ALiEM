@@ -25,6 +25,12 @@
 .single-navigation {
     display: flex;
     justify-content: space-between;
+    @include device-medium {
+        display: none;
+    }
+    @include device-large {
+        margin-top: 20px;
+    }
     a {
         margin: 0 15px;
         color: $font-secondary !important;
@@ -51,18 +57,6 @@
             right: -2px;
             transition: right 0.2s;
         }
-    }
-}
-
-@media all and (max-width: 800px) {
-    .single-navigation {
-        margin-top: 20px;
-    }
-}
-
-@media all and (max-width: 600px) {
-    .single-navigation {
-        display: none;
     }
 }
 

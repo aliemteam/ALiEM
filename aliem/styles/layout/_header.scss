@@ -164,19 +164,16 @@ nav {
     font-size: 12px;
     justify-content: center;
     margin-right: 10px;
+    @include device-large {
+        display: none;
+    }
     span {
         white-space: nowrap;
     }
 }
 
-@media screen and (max-width: 800px) {
-    .logo-text__container {
-        display: none;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .logo-text--search-active {
+.logo-text--search-active {
+    @include device-medium {
         display: none;
     }
 }
@@ -223,7 +220,6 @@ nav {
         }
     }
     .searchform__open {
-        // width: 400px;
         width: auto;
         flex: auto;
         transition: 0.2s;

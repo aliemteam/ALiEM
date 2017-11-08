@@ -7,6 +7,12 @@ table {
     margin-bottom: 1.5em;
     border: none;
     box-shadow: $shadow-2dp;
+    @include device-large {
+        position: relative;
+        display: block;
+        max-width: 100%;
+        overflow-x: scroll;
+    }
     thead > tr > td,
     tbody > tr > th {
         background-color: $primary;
@@ -39,15 +45,6 @@ table {
             margin: 10px 0 !important;
             line-height: 1.5em;
         }
-    }
-}
-
-@media (max-width: 800px) {
-    table {
-        position: relative;
-        display: block;
-        max-width: 100%;
-        overflow-x: scroll;
     }
 }
 

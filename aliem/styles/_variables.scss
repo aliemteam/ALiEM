@@ -69,3 +69,21 @@ $content-max-width: 1100px;
     -ms-user-select: none;
     user-select: none;
 }
+
+@mixin device-small {
+    @media (max-width: 400px) {
+        @content;
+    }
+}
+
+@mixin device-medium {
+    @media (max-width: 600px) {
+        @content;
+    }
+}
+
+@mixin device-large {
+    @media (max-width: 800px) {
+        @content;
+    }
+}

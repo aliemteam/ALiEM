@@ -19,6 +19,19 @@
 
 // "post" specific
 .single {
+    #content {
+        @include device-medium {
+            margin: 0;
+            padding: 0;
+        }
+        @include device-large {
+            margin-top: 0;
+            blockquote {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+    }
     .post {
         background: white;
         padding: 20px;
@@ -114,13 +127,6 @@
     }
 }
 
-@media all and (max-width: 600px) {
-    .single #content {
-        margin: 0;
-        padding: 0;
-    }
-}
-
 // Both the "read more" div on the home page and the author meta on posts
 .fusion-meta-info {
     border: 0;
@@ -153,25 +159,11 @@
     display: none;
 }
 
-@media (max-width: 800px) {
-    .single #content {
-        margin-top: 0;
-    }
-
-    #main {
-        padding: 0 !important;
-    }
-
-    .post .post-content > p > img {
+.post .post-content > p > img {
+    @include device-large {
         float: none;
         display: block;
         margin: auto auto 1.5em;
-    }
-    #content {
-        blockquote {
-            margin-left: 0;
-            margin-right: 0;
-        }
     }
 }
 

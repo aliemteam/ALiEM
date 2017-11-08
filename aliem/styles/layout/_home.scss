@@ -28,9 +28,9 @@
     display: none;
 }
 
-// Fix distorted content / images on mobile
-@media (max-width: 800px) {
-    .home .post img {
+.home .post img {
+    // Fix distorted content / images on mobile
+    @include device-large {
         display: block;
         float: none;
         margin: auto auto 20px auto;
