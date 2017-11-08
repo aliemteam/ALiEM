@@ -9,7 +9,9 @@ export default class XAxisLabel extends React.PureComponent<any, any> {
         });
         return (
             <g transform={`translate(${x},${y - 10})`}>
-                <text textAnchor="middle" fill="#666">{date}</text>
+                <text textAnchor="middle" fill="#666">
+                    {date}
+                </text>
             </g>
         );
     }

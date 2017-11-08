@@ -19,11 +19,12 @@ export interface SMIData {
 
 declare const __smi: SMIData;
 
-const SocialMediaIndex = () =>
+const SocialMediaIndex = () => (
     <div>
         <h2 style={{ textAlign: 'center' }}>Top 25 Sites</h2>
         <SMIPlot data={__smi.data} />
         <SMITable rows={__smi.rows} headings={__smi.headings} rawData={__smi.rawData} />
-    </div>;
+    </div>
+);
 
 render(<SocialMediaIndex />, document.getElementById('smi-viz'));

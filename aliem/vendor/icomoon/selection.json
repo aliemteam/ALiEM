@@ -9,9 +9,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "pen"
-        ],
+        "tags": ["pen"],
         "defaultCode": 58880,
         "grid": 0
       },
@@ -36,9 +34,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "yahoo"
-        ],
+        "tags": ["yahoo"],
         "defaultCode": 58881,
         "grid": 0
       },
@@ -63,9 +59,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "pinterest"
-        ],
+        "tags": ["pinterest"],
         "defaultCode": 58882,
         "grid": 0
       },
@@ -90,9 +84,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "myspace"
-        ],
+        "tags": ["myspace"],
         "defaultCode": 58883,
         "grid": 0
       },
@@ -117,9 +109,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "facebook"
-        ],
+        "tags": ["facebook"],
         "defaultCode": 58884,
         "grid": 0
       },
@@ -144,9 +134,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "twitter"
-        ],
+        "tags": ["twitter"],
         "defaultCode": 58885,
         "grid": 0
       },
@@ -171,9 +159,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "feed"
-        ],
+        "tags": ["feed"],
         "defaultCode": 58886,
         "grid": 0
       },
@@ -198,9 +184,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "vimeo"
-        ],
+        "tags": ["vimeo"],
         "defaultCode": 58887,
         "grid": 0
       },
@@ -225,9 +209,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "flickr"
-        ],
+        "tags": ["flickr"],
         "defaultCode": 58888,
         "grid": 0
       },
@@ -252,9 +234,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "dribbble"
-        ],
+        "tags": ["dribbble"],
         "defaultCode": 58889,
         "grid": 0
       },
@@ -279,9 +259,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "blogger"
-        ],
+        "tags": ["blogger"],
         "defaultCode": 58891,
         "grid": 0
       },
@@ -306,9 +284,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "soundcloud"
-        ],
+        "tags": ["soundcloud"],
         "defaultCode": 58892,
         "grid": 0
       },
@@ -333,9 +309,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "reddit"
-        ],
+        "tags": ["reddit"],
         "defaultCode": 58893,
         "grid": 0
       },
@@ -360,9 +334,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "paypal"
-        ],
+        "tags": ["paypal"],
         "defaultCode": 58894,
         "grid": 0
       },
@@ -387,9 +359,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "linkedin"
-        ],
+        "tags": ["linkedin"],
         "defaultCode": 58895,
         "grid": 0
       },
@@ -414,9 +384,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "digg"
-        ],
+        "tags": ["digg"],
         "defaultCode": 58896,
         "grid": 0
       },
@@ -441,9 +409,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "dropbox"
-        ],
+        "tags": ["dropbox"],
         "defaultCode": 58897,
         "grid": 0
       },
@@ -468,9 +434,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "tumblr"
-        ],
+        "tags": ["tumblr"],
         "defaultCode": 58899,
         "grid": 0
       },
@@ -495,9 +459,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "grid"
-        ],
+        "tags": ["grid"],
         "defaultCode": 58900,
         "grid": 0
       },
@@ -522,9 +484,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "mail"
-        ],
+        "tags": ["mail"],
         "defaultCode": 58902,
         "grid": 0
       },
@@ -549,9 +509,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "forrst"
-        ],
+        "tags": ["forrst"],
         "defaultCode": 58903,
         "grid": 0
       },
@@ -576,9 +534,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "skype"
-        ],
+        "tags": ["skype"],
         "defaultCode": 58904,
         "grid": 0
       },
@@ -603,9 +559,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "link"
-        ],
+        "tags": ["link"],
         "defaultCode": 58905,
         "grid": 0
       },
@@ -630,9 +584,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "defaultCode": 58906,
         "grid": 0
       },
@@ -657,9 +609,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "user2"
-        ],
+        "tags": ["user2"],
         "defaultCode": 58907,
         "grid": 0
       },
@@ -684,9 +634,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "minus"
-        ],
+        "tags": ["minus"],
         "defaultCode": 58908,
         "grid": 0
       },
@@ -711,9 +659,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "plus"
-        ],
+        "tags": ["plus"],
         "defaultCode": 58909,
         "grid": 0
       },
@@ -738,9 +684,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "arrow-left"
-        ],
+        "tags": ["arrow-left"],
         "defaultCode": 58910,
         "grid": 0
       },
@@ -765,9 +709,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "arrow-down"
-        ],
+        "tags": ["arrow-down"],
         "defaultCode": 58911,
         "grid": 0
       },
@@ -792,9 +734,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "uniE620"
-        ],
+        "tags": ["uniE620"],
         "defaultCode": 58912,
         "grid": 0
       },
@@ -819,9 +759,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "arrow-down2"
-        ],
+        "tags": ["arrow-down2"],
         "defaultCode": 58913,
         "grid": 0
       },
@@ -846,9 +784,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "youtube"
-        ],
+        "tags": ["youtube"],
         "defaultCode": 58914,
         "grid": 0
       },
@@ -873,9 +809,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "list"
-        ],
+        "tags": ["list"],
         "defaultCode": 58915,
         "grid": 0
       },
@@ -900,9 +834,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "image"
-        ],
+        "tags": ["image"],
         "defaultCode": 58916,
         "grid": 0
       },
@@ -927,9 +859,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "images"
-        ],
+        "tags": ["images"],
         "defaultCode": 58917,
         "grid": 0
       },
@@ -954,9 +884,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "quotes-left"
-        ],
+        "tags": ["quotes-left"],
         "defaultCode": 58919,
         "grid": 0
       },
@@ -981,9 +909,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "film"
-        ],
+        "tags": ["film"],
         "defaultCode": 58920,
         "grid": 0
       },
@@ -1008,9 +934,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "headphones"
-        ],
+        "tags": ["headphones"],
         "defaultCode": 58921,
         "grid": 0
       },
@@ -1036,9 +960,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "bubbles"
-        ],
+        "tags": ["bubbles"],
         "defaultCode": 58922,
         "grid": 0
       },
@@ -1064,9 +986,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "TFicon"
-        ],
+        "tags": ["TFicon"],
         "defaultCode": 58925,
         "grid": 0
       },
@@ -1091,9 +1011,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "googleplus"
-        ],
+        "tags": ["googleplus"],
         "defaultCode": 59648,
         "grid": 0
       },
@@ -1119,9 +1037,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "search"
-        ],
+        "tags": ["search"],
         "defaultCode": 61442,
         "grid": 0
       },
@@ -1147,9 +1063,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "star"
-        ],
+        "tags": ["star"],
         "defaultCode": 61445,
         "grid": 0
       },
@@ -1175,9 +1089,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "star-o"
-        ],
+        "tags": ["star-o"],
         "defaultCode": 61446,
         "grid": 0
       },
@@ -1202,9 +1114,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "gear"
-        ],
+        "tags": ["gear"],
         "defaultCode": 61459,
         "grid": 0
       },
@@ -1230,9 +1140,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "check-square-o"
-        ],
+        "tags": ["check-square-o"],
         "defaultCode": 61510,
         "grid": 0
       },
@@ -1257,9 +1165,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "check-circle-o"
-        ],
+        "tags": ["check-circle-o"],
         "defaultCode": 61533,
         "grid": 0
       },
@@ -1285,9 +1191,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "shopping-cart"
-        ],
+        "tags": ["shopping-cart"],
         "defaultCode": 61562,
         "grid": 0
       },
@@ -1312,9 +1216,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "bars"
-        ],
+        "tags": ["bars"],
         "defaultCode": 61641,
         "grid": 0
       },
@@ -1340,9 +1242,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "caret-left"
-        ],
+        "tags": ["caret-left"],
         "defaultCode": 61657,
         "grid": 0
       },
@@ -1368,9 +1268,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "caret-right"
-        ],
+        "tags": ["caret-right"],
         "defaultCode": 61658,
         "grid": 0
       },
@@ -1396,9 +1294,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "angle-left"
-        ],
+        "tags": ["angle-left"],
         "defaultCode": 61700,
         "grid": 0
       },
@@ -1424,9 +1320,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "angle-right"
-        ],
+        "tags": ["angle-right"],
         "defaultCode": 61701,
         "grid": 0
       },
@@ -1452,9 +1346,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "angle-up"
-        ],
+        "tags": ["angle-up"],
         "defaultCode": 61702,
         "grid": 0
       },
@@ -1480,9 +1372,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "angle-down"
-        ],
+        "tags": ["angle-down"],
         "defaultCode": 61703,
         "grid": 0
       },
@@ -1508,9 +1398,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "spinner"
-        ],
+        "tags": ["spinner"],
         "defaultCode": 61712,
         "grid": 0
       },
@@ -1536,9 +1424,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "vk"
-        ],
+        "tags": ["vk"],
         "defaultCode": 61833,
         "grid": 0
       },
@@ -1565,11 +1451,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "instagram",
-          "brand",
-          "social"
-        ],
+        "tags": ["instagram", "brand", "social"],
         "defaultCode": 60050,
         "grid": 16
       },
@@ -1594,11 +1476,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "deviantart",
-          "brand",
-          "social"
-        ],
+        "tags": ["deviantart", "brand", "social"],
         "defaultCode": 60074,
         "grid": 16
       },
@@ -1623,12 +1501,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "wordpress",
-          "brand",
-          "social",
-          "cms"
-        ],
+        "tags": ["wordpress", "brand", "social", "cms"],
         "defaultCode": 60084,
         "grid": 16
       },
@@ -1653,11 +1526,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "lastfm",
-          "brand",
-          "social"
-        ],
+        "tags": ["lastfm", "brand", "social"],
         "defaultCode": 60107,
         "grid": 16
       },
@@ -1682,12 +1551,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "flattr",
-          "brand",
-          "donate",
-          "social"
-        ],
+        "tags": ["flattr", "brand", "donate", "social"],
         "defaultCode": 60117,
         "grid": 16
       },
@@ -1712,11 +1576,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "foursquare",
-          "brand",
-          "social"
-        ],
+        "tags": ["foursquare", "brand", "social"],
         "defaultCode": 60118,
         "grid": 16
       },
@@ -1741,11 +1601,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "yelp",
-          "brand",
-          "social"
-        ],
+        "tags": ["yelp", "brand", "social"],
         "defaultCode": 60119,
         "grid": 16
       },
@@ -1770,10 +1626,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "xing",
-          "social"
-        ],
+        "tags": ["xing", "social"],
         "defaultCode": 58584,
         "grid": 16
       },
@@ -1797,10 +1650,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "xing",
-          "social"
-        ],
+        "tags": ["xing", "social"],
         "defaultCode": 58585,
         "grid": 16
       },
@@ -1824,11 +1674,7 @@
         "attrs": [],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "tags": [
-          "spotify",
-          "brand",
-          "social"
-        ],
+        "tags": ["spotify", "brand", "social"],
         "defaultCode": 60052,
         "grid": 16
       },

@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { AutoSizer, Column, Table, TableCellDataGetter, TableCellRenderer } from 'react-virtualized';
+import {
+    AutoSizer,
+    Column,
+    Table,
+    TableCellDataGetter,
+    TableCellRenderer,
+} from 'react-virtualized';
 
 interface Props {
     rows: string[][];
@@ -23,9 +29,7 @@ export default class SMITable extends React.PureComponent<Props, State> {
 
     constructor(props: Props) {
         super(props);
-        this.latestDateRaw = this.props.headings[
-            this.props.headings.length - 1
-        ];
+        this.latestDateRaw = this.props.headings[this.props.headings.length - 1];
         const rows = [...this.props.rows]
             .map(row => {
                 const r = row.reduce((prev, curr, i) => {
@@ -84,31 +88,21 @@ export default class SMITable extends React.PureComponent<Props, State> {
 
     renderURL: TableCellRenderer = ({ cellData, rowData }) => {
         return (
-            // tslint:disable-next-line
-            <a
-                href={rowData.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                children={cellData}
-            />
+            <a href={rowData.url} target="_blank" rel="noopener noreferrer" children={cellData} />
         );
     };
 
     render() {
         const { rows } = this.state;
-        const latestDate = new Date(
-            this.latestDateRaw
-        ).toLocaleDateString('en-US', {
+        const latestDate = new Date(this.latestDateRaw).toLocaleDateString('en-US', {
             month: 'long',
             year: 'numeric',
         });
         return (
             <div>
-                <h2 style={{ textAlign: 'center' }}>
-                    Latest Numbers ({latestDate})
-                </h2>
+                <h2 style={{ textAlign: 'center' }}>Latest Numbers ({latestDate})</h2>
                 <AutoSizer disableHeight>
-                    {({ width }) =>
+                    {({ width }) => (
                         <Table
                             width={width}
                             height={500}
@@ -119,9 +113,8 @@ export default class SMITable extends React.PureComponent<Props, State> {
                             sortDirection={this.state.sortDirection}
                             // tslint:disable-next-line
                             rowStyle={({ index }) =>
-                                index % 2 === 0
-                                    ? { backgroundColor: '#f5f5f5' }
-                                    : {}}
+                                index % 2 === 0 ? { backgroundColor: '#f5f5f5' } : {}
+                            }
                             rowCount={rows.length}
                             // tslint:disable-next-line
                             rowGetter={({ index }) => rows[index]}
@@ -148,34 +141,39 @@ export default class SMITable extends React.PureComponent<Props, State> {
                                 cellDataGetter={this.getCellData}
                             />
                             {width > 500 &&
-                                <Column
-                                    flexGrow={1}
-                                    width={40}
-                                    label="Alexa"
-                                    dataKey="alexa"
-                                    cellDataGetter={this.getCellData}
-                                /> as any}
-                            {width > 500 &&
+                                ((
+                                    <Column
+                                        flexGrow={1}
+                                        width={40}
+                                        label="Alexa"
+                                        dataKey="alexa"
+                                        cellDataGetter={this.getCellData}
+                                    />
+                                ) as any)}
+                            {width > 500 && (
                                 <Column
                                     flexGrow={1}
                                     width={40}
                                     label="Facebook"
                                     dataKey="facebook"
                                     cellDataGetter={this.getCellData}
-                                />}
-                            {width > 500 &&
+                                />
+                            )}
+                            {width > 500 && (
                                 <Column
                                     flexGrow={1}
                                     width={40}
                                     label="Twitter"
                                     dataKey="twitter"
                                     cellDataGetter={this.getCellData}
-                                />}
-                        </Table>}
+                                />
+                            )}
+                        </Table>
+                    )}
                 </AutoSizer>
                 <p style={{ fontSize: '0.8em' }}>
-                    * Sites without an Alexa Rank score were given the maximum
-                    rank (the same as the lowest ranked website).
+                    * Sites without an Alexa Rank score were given the maximum rank (the same as the
+                    lowest ranked website).
                 </p>
             </div>
         );

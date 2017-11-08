@@ -20,8 +20,10 @@ const writeFile = promisify(fs.writeFile);
 
 process.env.FORCE_COLOR = '1';
 
-// prettier-ignore
-const reload = (cb: () => void) => { browserSync.reload(); cb(); }
+const reload = (cb: () => void) => {
+    browserSync.reload();
+    cb();
+};
 const clean = () => exec(`rm -rf ${__dirname}/dist/aliem/*`);
 export { clean, reload };
 
@@ -56,8 +58,9 @@ export function staticFiles() {
         .src([
             'aliem/vendor/**/*',
             `node_modules/react/umd/react.${IS_PRODUCTION ? 'production.min' : 'development'}.js`,
-            // prettier-ignore
-            `node_modules/react-dom/umd/react-dom.${IS_PRODUCTION ? 'production.min' : 'development'}.js`,
+            `node_modules/react-dom/umd/react-dom.${
+                IS_PRODUCTION ? 'production.min' : 'development'
+            }.js`,
         ])
         .pipe(
             rename(path => {

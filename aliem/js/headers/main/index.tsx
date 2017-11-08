@@ -72,9 +72,9 @@ class Header extends React.Component<Props, State> {
                                 userEventHandler={this.handleSearchboxEvent}
                             />
                             <button
-                                className={`hamburger hamburger--squeeze ${this.state.navOpen
-                                    ? 'is-active'
-                                    : ''}`}
+                                className={`hamburger hamburger--squeeze ${
+                                    this.state.navOpen ? 'is-active' : ''
+                                }`}
                                 type="button"
                                 aria-label="Menu"
                                 aria-controls="nav-menu"

@@ -81,7 +81,7 @@ export default class SmiPlot extends React.PureComponent<Props, State> {
                             <Line
                                 key={site}
                                 type="linear"
-                                strokeWidth='3'
+                                strokeWidth="3"
                                 activeDot={false}
                                 dot={
                                     <Dot
@@ -91,11 +91,7 @@ export default class SmiPlot extends React.PureComponent<Props, State> {
                                         onMouseOut={this.resetActive}
                                     />
                                 }
-                                opacity={
-                                    activeLine === site || activeLine === ''
-                                        ? '1'
-                                        : '0.3'
-                                }
+                                opacity={activeLine === site || activeLine === '' ? '1' : '0.3'}
                                 dataKey={site}
                                 stroke={c}
                             />
@@ -125,4 +121,4 @@ function* getColors() {
         yield c[i];
         i = i === 49 ? 0 : i + 1;
     }
-};
+}

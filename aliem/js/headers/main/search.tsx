@@ -96,9 +96,9 @@ export default class SearchBox extends React.Component<Props, State> {
                 <button
                     aria-label="Click to toggle search field"
                     onClick={this.toggleSearch}
-                    className={`header__search__button ${this.state.isOpen
-                        ? 'header__search__button-hidden'
-                        : ''}`}
+                    className={`header__search__button ${
+                        this.state.isOpen ? 'header__search__button-hidden' : ''
+                    }`}
                 >
                     <span
                         className={`dashicons dashicons-${this.state.isOpen ? 'no' : 'search'}`}
