@@ -103,6 +103,7 @@
     flex: auto;
     margin: 20px;
     .post-content {
+        position: relative;
         & > p > img {
             max-width: 100%;
             height: auto;
@@ -122,7 +123,7 @@
             }
         }
         .twitter-tweet-rendered {
-            margin: auto;
+            margin: auto !important;
         }
     }
 }

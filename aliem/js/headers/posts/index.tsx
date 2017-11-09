@@ -21,8 +21,8 @@ declare const __header_posts: Props;
 class PostHeader extends React.Component<Props, State> {
     postContentDiv: HTMLDivElement;
 
-    constructor() {
-        super();
+    constructor(props: Props) {
+        super(props);
         this.state = {
             isActive: false,
             progressMax: 0,
