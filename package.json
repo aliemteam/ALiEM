@@ -11,11 +11,12 @@
     "phpcsfix": "php-cs-fixer fix --config=.php_cs -v",
     "start": "gulp",
     "build": "NODE_ENV=production gulp",
-    "deploy": "./lib/scripts/deploy",
-    "deploy-all": "./lib/scripts/deploy -a",
-    "deploy-initial": "./lib/scripts/deploy -ai",
+    "torus": "torus run 'echo test' &>/dev/null || torus login",
+    "deploy": "npm run torus && torus run ./lib/scripts/deploy",
+    "deploy-all": "npm run torus && torus run ./lib/scripts/deploy -a",
+    "deploy-initial": "npm run torus && torus run ./lib/scripts/deploy -ai",
     "sync": "./lib/scripts/sync $@",
-    "version": "gulp bump"
+    "version": "gulp bump && git add -A"
   },
   "dependencies": {
     "intersection-observer": "^0.4.2",

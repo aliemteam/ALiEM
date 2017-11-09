@@ -83,3 +83,10 @@ h2 "Adjusting filesystem permissions on remote host"
 docker-machine ssh "$machine_name" "
     sudo chown -R www-data:$machine_user /home/$machine_user/app
 "
+
+h2 "Clearing CloudFlare cache"
+curl -X DELETE "https://api.cloudflare.com/client/v4/zones/9ed14373e1590bdd17bbe973c458bb69/purge_cache" \
+     -H "X-Auth-Email: mlin@aliem.com" \
+     -H "X-Auth-Key: $CLOUDFLARE_KEY" \
+     -H "Content-Type: application/json" \
+     --data '{"purge_everything":true}'
