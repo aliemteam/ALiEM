@@ -3,12 +3,15 @@
 .person {
     display: flex;
     flex-flow: column nowrap;
-    margin: 0 10px 20px 10px;
+    flex: auto;
+    margin: 10px;
     box-shadow: $shadow-2dp;
     border-radius: 2px;
-    width: 200px;
-    max-width: 300px;
-    flex: auto;
+    width: 300px;
+    max-width: 350px;
+    @at-root .flex-grid & {
+        width: 200px;
+    }
 }
 
 .person__img {
@@ -26,33 +29,40 @@
     }
 }
 
-.person__twitter {
-    margin-right: 10px;
-    font-family: icomoon;
-    font-size: 1.5em;
-    &::before {
-        content: '\e605';
-    }
+.person__meta {
+    flex: auto;
+    padding: 10px;
 }
 
 .person__name {
-    display: flex;
-    align-items: center;
-    min-height: 50px;
     font-weight: 600;
-    padding: 5px 0;
 }
 
 .person__title {
+    font-size: 0.9em;
     font-style: italic;
-}
-
-.person__meta {
-    flex: auto;
-    padding: 0 10px;
+    margin-bottom: 10px;
 }
 
 .person__background {
-    padding: 10px;
     font-size: 0.8em;
+}
+
+.person__social-media {
+    border-top: solid $secondary 1px;
+    display: flex;
+    padding: 5px;
+    min-height: 40px;
+    a {
+        display: flex;
+        margin: 0 5px;
+        height: 100%;
+        height: 30px;
+        width: 30px;
+        justify-content: center;
+        align-items: center;
+        &:hover {
+            opacity: 0.8;
+        }
+    }
 }
