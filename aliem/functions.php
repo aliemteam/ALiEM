@@ -6,7 +6,7 @@ if (!defined('ABSPATH')) {
     exit(1);
 }
 
-define('ALIEM_VERSION', '0.8.1');
+define('ALIEM_VERSION', '0.8.2');
 define('ROOT_URI', get_stylesheet_directory_uri());
 
 require_once __DIR__ . '/lib/script-loader/index.php';
