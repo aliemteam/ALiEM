@@ -1,9 +1,0 @@
-# shellcheck shell=bash disable=2034
-
-base_theme_name='Avada'
-machine_name='aliem'
-machine_user='aliem'
-theme_name='aliem'
-local_plugins=(
-    fanciest-author-box
-)
