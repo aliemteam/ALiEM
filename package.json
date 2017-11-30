@@ -3,6 +3,11 @@
   "version": "0.8.2",
   "license": "MIT",
   "private": true,
+  "server": {
+    "name": "aliem",
+    "base_theme": "Avada",
+    "plugins": ["fanciest-author-box"]
+  },
   "scripts": {
     "precommit": "lint-staged",
     "prepush": "npm run lint",
@@ -12,10 +17,9 @@
     "start": "gulp",
     "build": "NODE_ENV=production gulp",
     "torus": "torus run 'echo test' &>/dev/null || torus login",
-    "deploy": "npm run torus && torus run ./lib/scripts/deploy",
-    "deploy-all": "npm run torus && torus run ./lib/scripts/deploy -a",
-    "deploy-initial": "npm run torus && torus run ./lib/scripts/deploy -ai",
-    "sync": "./lib/scripts/sync $@",
+    "deploy": "./lib/scripts/deploy",
+    "update-subtree": "git subtree pull --squash -P lib/scripts devops master",
+    "sync": "./lib/scripts/sync",
     "version": "gulp bump && git add -A"
   },
   "dependencies": {
@@ -35,6 +39,7 @@
     "@types/react": "^16.0.22",
     "@types/react-dom": "^16.0.3",
     "@types/react-virtualized": "^9.7.6",
+    "@types/recharts": "^1.0.6",
     "@types/webpack": "^3.8.1",
     "awesome-typescript-loader": "^3.3.0",
     "babel-core": "^6.26.0",

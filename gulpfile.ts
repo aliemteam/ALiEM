@@ -3,17 +3,18 @@ import { exec as cp_exec, spawn } from 'child_process';
 import * as fs from 'fs';
 import * as gulp from 'gulp';
 import * as autoprefixer from 'gulp-autoprefixer';
-import * as imagemin from 'gulp-imagemin';
 import * as rename from 'gulp-rename';
 import * as sass from 'gulp-sass';
 import * as sourcemaps from 'gulp-sourcemaps';
-import * as merge from 'merge-stream';
 import { promisify } from 'util';
+
+const merge = require('merge-stream');
+const imagemin = require('gulp-imagemin');
+const browserSync = require('browser-sync').create();
 
 const VERSION = require('./package.json').version;
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
-const browserSync = require('browser-sync').create();
 const exec = promisify(cp_exec);
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);

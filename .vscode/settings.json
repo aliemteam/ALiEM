@@ -1,12 +1,8 @@
 // Place your settings in this file to overwrite default and user settings.
 {
-    "files.associations": {
-        "deploy": "shellscript",
-        "helpers": "shellscript",
-        "sync": "shellscript",
-        "variables": "shellscript",
-        "bundle": "shellscript",
-        ".stylintrc": "json",
-        ".php_cs": "php"
-    }
+  "files.associations": {
+    "{sync,create,deploy}": "python",
+    ".stylintrc": "json",
+    ".php_cs": "php"
+  }
 }
