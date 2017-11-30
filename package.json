@@ -6,28 +6,29 @@
   "server": {
     "name": "aliem",
     "base_theme": "Avada",
-    "plugins": ["fanciest-author-box"]
+    "plugins": [
+      "fanciest-author-box"
+    ]
   },
   "scripts": {
+    "build": "NODE_ENV=production gulp",
+    "deploy": "./lib/scripts/deploy",
+    "lint": "tslint -p . -t codeFrame && php-cs-fixer fix --config=.php_cs -vvv --dry-run --stop-on-violation --using-cache=no",
+    "phpcsfix": "php-cs-fixer fix --config=.php_cs -v",
     "precommit": "lint-staged",
     "prepush": "npm run lint",
-    "lint":
-      "tslint -p . -t codeFrame && php-cs-fixer fix --config=.php_cs -vvv --dry-run --stop-on-violation --using-cache=no",
-    "phpcsfix": "php-cs-fixer fix --config=.php_cs -v",
+    "pull-subtree": "git subtree pull --squash -P lib/scripts devops master",
     "start": "gulp",
-    "build": "NODE_ENV=production gulp",
-    "torus": "torus run 'echo test' &>/dev/null || torus login",
-    "deploy": "./lib/scripts/deploy",
-    "update-subtree": "git subtree pull --squash -P lib/scripts devops master",
     "sync": "./lib/scripts/sync",
+    "torus": "torus run 'echo test' &>/dev/null || torus login",
     "version": "gulp bump && git add -A"
   },
   "dependencies": {
-    "intersection-observer": "^0.4.2",
-    "react": "^16.1.0",
-    "react-dom": "^16.1.0",
-    "react-virtualized": "^9.12.0",
-    "recharts": "^1.0.0-alpha.2"
+    "intersection-observer": "^0.4.3",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-virtualized": "^9.13.0",
+    "recharts": "^1.0.0-beta.5"
   },
   "devDependencies": {
     "@types/gulp": "^4.0.5",
@@ -35,20 +36,20 @@
     "@types/gulp-rename": "0.0.33",
     "@types/gulp-sass": "0.0.31",
     "@types/gulp-sourcemaps": "0.0.32",
-    "@types/node": "^8.0.50",
-    "@types/react": "^16.0.22",
+    "@types/node": "^8.0.53",
+    "@types/react": "^16.0.25",
     "@types/react-dom": "^16.0.3",
-    "@types/react-virtualized": "^9.7.6",
+    "@types/react-virtualized": "^9.7.7",
     "@types/recharts": "^1.0.6",
     "@types/webpack": "^3.8.1",
-    "awesome-typescript-loader": "^3.3.0",
+    "awesome-typescript-loader": "^3.4.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "browser-sync": "^2.18.13",
     "css-loader": "^0.28.7",
-    "gulp": "gulpjs/gulp#4.0",
+    "gulp": "github:gulpjs/gulp#4.0",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-imagemin": "^3.4.0",
     "gulp-rename": "^1.2.2",
@@ -57,7 +58,7 @@
     "husky": "^0.14.3",
     "lint-staged": "^4.3.0",
     "merge-stream": "^1.0.1",
-    "node-sass": "^4.6.0",
+    "node-sass": "^4.7.2",
     "prettier": "^1.8.2",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.0",
@@ -65,11 +66,17 @@
     "tslint": "^5.8.0",
     "tslint-microsoft-contrib": "^5.0.1",
     "tslint-react": "^3.2.0",
-    "typescript": "^2.6.1",
+    "typescript": "^2.6.2",
     "webpack": "^3.8.1"
   },
   "lint-staged": {
-    "*.{js,json,scss,ts,tsx}": ["prettier --write", "git add"],
-    "*.php": ["php-cs-fixer fix --config=.php_cs -v", "git add"]
+    "*.{js,json,scss,ts,tsx}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.php": [
+      "php-cs-fixer fix --config=.php_cs -v",
+      "git add"
+    ]
   }
 }
