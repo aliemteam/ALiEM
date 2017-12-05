@@ -24,7 +24,7 @@
     "version": "gulp bump && git add -A"
   },
   "dependencies": {
-    "intersection-observer": "^0.4.3",
+    "intersection-observer": "^0.5.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-virtualized": "^9.13.0",
@@ -36,13 +36,13 @@
     "@types/gulp-rename": "0.0.33",
     "@types/gulp-sass": "0.0.31",
     "@types/gulp-sourcemaps": "0.0.32",
-    "@types/node": "^8.0.53",
-    "@types/react": "^16.0.25",
+    "@types/node": "^8.0.54",
+    "@types/react": "^16.0.27",
     "@types/react-dom": "^16.0.3",
-    "@types/react-virtualized": "^9.7.7",
-    "@types/recharts": "^1.0.6",
+    "@types/react-virtualized": "^9.7.8",
+    "@types/recharts": "^1.0.7",
     "@types/webpack": "^3.8.1",
-    "awesome-typescript-loader": "^3.4.0",
+    "awesome-typescript-loader": "^3.4.1",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
@@ -51,12 +51,12 @@
     "css-loader": "^0.28.7",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-autoprefixer": "^4.0.0",
-    "gulp-imagemin": "^3.4.0",
+    "gulp-imagemin": "^4.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.1",
     "husky": "^0.14.3",
-    "lint-staged": "^4.3.0",
+    "lint-staged": "^6.0.0",
     "merge-stream": "^1.0.1",
     "node-sass": "^4.7.2",
     "prettier": "^1.8.2",
@@ -67,7 +67,7 @@
     "tslint-microsoft-contrib": "^5.0.1",
     "tslint-react": "^3.2.0",
     "typescript": "^2.6.2",
-    "webpack": "^3.8.1"
+    "webpack": "^3.10.0"
   },
   "lint-staged": {
     "*.{js,json,scss,ts,tsx}": [
