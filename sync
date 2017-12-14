@@ -9,7 +9,7 @@ No deletions occur at any point
 from argparse import ArgumentParser
 from os import remove, rename
 
-from shared import CommandRunner, prechecks
+from shared import CommandRunner, Has
 
 
 def parse_args():
@@ -40,6 +40,11 @@ class Sync(object):
             'root': self.cmd.dirs.root,
         }
         self.calls = 0
+        self.cmd.run(('mkdir -p '
+                      '{root}/data '
+                      '{root}/wp-content/themes '
+                      '{root}/wp-content/plugins '
+                      '{root}/wp-content/uploads').format(**self.meta))
 
     def uploads(self) -> 'Sync':
         """Pull all uploads."""
@@ -73,9 +78,15 @@ class Sync(object):
 
     def database(self) -> 'Sync':
         """Rotate backup database and pull database."""
-        remove('{root}/data/database.sql.bak'.format(**self.meta))
-        rename('{root}/data/database.sql'.format(**self.meta),
-               '{root}/data/database.sql.bak'.format(**self.meta))
+        try:
+            remove('{root}/data/database.sql.bak'.format(**self.meta))
+        except FileNotFoundError:
+            pass
+        try:
+            rename('{root}/data/database.sql'.format(**self.meta),
+                   '{root}/data/database.sql.bak'.format(**self.meta))
+        except FileNotFoundError:
+            pass
 
         print('Exporting database...')
         self.cmd.ssh((
@@ -96,7 +107,7 @@ class Sync(object):
 def main():
     """Main entrypoint."""
     args = parse_args()
-    prechecks()
+    Has.executable('docker-machine', 'rsync')
     sync = Sync()
     if args.init:
         return sync.database().plugins().theme().uploads()
