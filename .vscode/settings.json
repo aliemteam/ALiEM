@@ -4,5 +4,7 @@
     "{sync,create,deploy}": "python",
     ".stylintrc": "json",
     ".php_cs": "php"
-  }
+  },
+  "phpcs.standard": "WordPress",
+  "phpcbf.standard": "WordPress"
 }

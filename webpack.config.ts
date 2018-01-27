@@ -42,14 +42,14 @@ export default <webpack.Configuration>{
     // context: __dirname,
     devtool: IS_PRODUCTION ? 'cheap-module-source-map' : 'source-map',
     entry: {
-        'social-media-index': './aliem/js/social-media-index/',
-        'header-main': './aliem/js/headers/main/',
-        'header-posts': './aliem/js/headers/posts/',
-        'image-lazy-load': './aliem/js/image-lazy-load/',
+        'social-media-index': './src/js/social-media-index/',
+        'header-main': './src/js/headers/main/',
+        'header-posts': './src/js/headers/posts/',
+        'image-lazy-load': './src/js/image-lazy-load/',
     },
     output: {
         filename: '[name].js',
-        path: resolve(__dirname, 'dist/aliem/js'),
+        path: resolve(__dirname, 'dist/js'),
     },
     resolve: {
         extensions: ['*', '.ts', '.tsx', '.js', '.jsx'],

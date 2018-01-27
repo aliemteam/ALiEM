@@ -25,13 +25,18 @@ const reload = (cb: () => void) => {
     browserSync.reload();
     cb();
 };
-const clean = () => exec(`rm -rf ${__dirname}/dist/aliem/*`);
+const clean = () => exec(`rm -rf ${__dirname}/dist/*`);
 export { clean, reload };
 
 export const bump = () =>
-    readFile(`${__dirname}/aliem/functions.php`, 'utf-8')
-        .then(file => file.replace(/(define\('ALIEM_VERSION', ')(.+?)('\);)/, `$1${VERSION}$3`))
-        .then(file => writeFile(`${__dirname}/aliem/functions.php`, file))
+    readFile(`${__dirname}/src/functions.php`, 'utf-8')
+        .then(file =>
+            file.replace(
+                /(define\('ALIEM_VERSION', ')(.+?)('\);)/,
+                `$1${VERSION}$3`,
+            ),
+        )
+        .then(file => writeFile(`${__dirname}/src/functions.php`, file))
         .catch(e => {
             console.log(e);
             throw e;
@@ -39,26 +44,28 @@ export const bump = () =>
 
 export function staticFiles() {
     const php = gulp
-        .src(['aliem/**/*.{php,css,json,html}', '!aliem/pages/*.php'], {
-            base: './',
+        .src(['src/**/*.{php,css,json,html}', '!src/pages/*.php'], {
+            base: './src',
         })
         .pipe(gulp.dest('dist'));
 
-    const pages = gulp.src(['aliem/pages/*.php']).pipe(gulp.dest('dist/aliem'));
+    const pages = gulp.src(['src/pages/*.php']).pipe(gulp.dest('dist'));
 
     const partials = gulp
-        .src(['aliem/pages/partials/*.php'])
-        .pipe(gulp.dest('dist/aliem/partials'));
+        .src(['src/pages/partials/*.php'])
+        .pipe(gulp.dest('dist/partials'));
 
     const svg = gulp
-        .src('aliem/assets/**/*', { base: './' })
+        .src('src/assets/**/*', { base: './src' })
         .pipe(imagemin())
         .pipe(gulp.dest('dist'));
 
     const vendor = gulp
         .src([
-            'aliem/vendor/**/*',
-            `node_modules/react/umd/react.${IS_PRODUCTION ? 'production.min' : 'development'}.js`,
+            'src/vendor/**/*',
+            `node_modules/react/umd/react.${
+                IS_PRODUCTION ? 'production.min' : 'development'
+            }.js`,
             `node_modules/react-dom/umd/react-dom.${
                 IS_PRODUCTION ? 'production.min' : 'development'
             }.js`,
@@ -69,13 +76,13 @@ export function staticFiles() {
                 path.basename = path.basename.split('.')[0];
             }),
         )
-        .pipe(gulp.dest('dist/aliem/vendor'));
+        .pipe(gulp.dest('dist/vendor'));
 
     return merge(php, pages, svg, partials, vendor);
 }
 
 export function styles() {
-    let stream = gulp.src('aliem/styles/[^_]*.scss', { base: './aliem/styles' });
+    let stream = gulp.src('src/styles/[^_]*.scss', { base: './src/styles' });
 
     if (!IS_PRODUCTION) {
         stream = stream.pipe(sourcemaps.init());
@@ -93,7 +100,7 @@ export function styles() {
         stream = stream.pipe(sourcemaps.write('.'));
     }
 
-    stream = stream.pipe(gulp.dest('dist/aliem'));
+    stream = stream.pipe(gulp.dest('dist'));
 
     if (!IS_PRODUCTION) {
         stream = stream.pipe(browserSync.stream({ match: '**/*.css' }));
@@ -112,7 +119,9 @@ export function bundle(cb: () => void) {
     });
     child.on('exit', (code, signal) => {
         if (code !== 0) {
-            console.error(`Exited with non-zero exit code (${code}): ${signal}`);
+            console.error(
+                `Exited with non-zero exit code (${code}): ${signal}`,
+            );
             process.exit(1);
         }
         cb();
@@ -132,17 +141,25 @@ export function bundle(cb: () => void) {
     if (!IS_PRODUCTION) return cb();
 }
 
-const main = gulp.series(clean, gulp.parallel(styles, staticFiles), bundle, (cb: () => void) => {
-    if (IS_PRODUCTION) return cb();
-    gulp.watch('aliem/styles/**/*.scss', gulp.series(styles));
-    gulp.watch(['aliem/**/*.{php,json,html}'], gulp.series(staticFiles, reload));
+const main = gulp.series(
+    clean,
+    gulp.parallel(styles, staticFiles),
+    bundle,
+    (cb: () => void) => {
+        if (IS_PRODUCTION) return cb();
+        gulp.watch('src/styles/**/*.scss', gulp.series(styles));
+        gulp.watch(
+            ['src/**/*.{php,json,html}'],
+            gulp.series(staticFiles, reload),
+        );
 
-    browserSync.init({
-        proxy: 'localhost:8080',
-        open: false,
-        notify: false,
-        reloadDebounce: 2000,
-    });
-});
+        browserSync.init({
+            proxy: 'localhost:8080',
+            open: false,
+            notify: false,
+            reloadDebounce: 2000,
+        });
+    },
+);
 
 export default main;
