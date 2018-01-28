@@ -12,13 +12,13 @@
   },
   "scripts": {
     "build": "NODE_ENV=production gulp",
-    "deploy": "./lib/scripts/deploy",
+    "deploy": "./lib/scripts/deploy.py",
     "lint": "tslint -p . -t codeFrame",
     "precommit": "lint-staged",
     "prepush": "npm run lint",
     "pull-subtree": "git subtree pull --squash -P lib/scripts devops master",
     "start": "gulp",
-    "sync": "./lib/scripts/sync",
+    "sync": "./lib/scripts/sync.py",
     "torus": "torus run 'echo test' &>/dev/null || torus login",
     "version": "gulp bump && git add -A"
   },
