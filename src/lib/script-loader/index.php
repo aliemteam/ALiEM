@@ -39,9 +39,9 @@ class Loader {
 	/**
 	 * Modifies the script tag of select scripts to add async and defer attributes.
 	 *
-	 * @param string $tag    The unmodified raw html script tag
-	 * @param string $handle The scripts registered handle
-	 * @param string $src    The script's src url
+	 * @param string $tag    The unmodified raw html script tag.
+	 * @param string $handle The scripts registered handle.
+	 * @param string $src    The script's src url.
 	 */
 	public function handle_async_defer( string $tag, string $handle, string $src ) : string {
 		$async_scripts = [
@@ -92,11 +92,11 @@ class Loader {
 	 *
 	 * Loads/Unloads scripts and styles based on the current page.
 	 *
-	 * @param object $user Current WordPress user
-	 * @param mixed  $post
+	 * @param mixed  $post The post.
+	 * @param object $user Current WordPress user.
 	 */
 	private function delegate( $post, $user ) {
-		// Always load these
+		// Always load these.
 		$load = [
 			[
 				'header-main',
@@ -106,7 +106,7 @@ class Loader {
 				'aliem',
 			],
 		];
-		// Always unload these
+		// Always unload these.
 		$unload = [
 			[
 				// 'avada-tabs-widget',
@@ -212,8 +212,8 @@ class Loader {
 	/**
 	 * Helper function that loads scripts/styles from an array of handles.
 	 *
-	 * @param array $scripts array of script handles
-	 * @param array $styles  array of style handles
+	 * @param array $scripts array of script handles.
+	 * @param array $styles  array of style handles.
 	 */
 	private function load( $scripts, $styles ) {
 		foreach ( array_reverse( array_unique( $styles ) ) as $style ) {
@@ -227,8 +227,8 @@ class Loader {
 	/**
 	 * Helper function that unloads scripts/styles from an array of handles.
 	 *
-	 * @param array $scripts array of script handles
-	 * @param array $styles  array of style handles
+	 * @param array $scripts array of script handles.
+	 * @param array $styles  array of style handles.
 	 */
 	private function unload( $scripts, $styles ) {
 		foreach ( array_unique( $scripts ) as $script ) {
@@ -243,7 +243,7 @@ class Loader {
 	 * Helper function that localizes any scripts that require localization
 	 * by calling its associated "localizer" function.
 	 *
-	 * @param array $scripts array of script handles
+	 * @param array $scripts array of script handles.
 	 */
 	private function localize( $scripts ) {
 		foreach ( array_unique( $scripts ) as $script ) {

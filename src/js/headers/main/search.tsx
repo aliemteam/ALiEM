@@ -12,7 +12,7 @@ interface State {
 
 export default class SearchBox extends React.Component<Props, State> {
     static autocompleteId = 'algolia-autocomplete-listbox';
-    input: HTMLInputElement;
+    input!: HTMLInputElement;
 
     constructor(props: Props) {
         super(props);

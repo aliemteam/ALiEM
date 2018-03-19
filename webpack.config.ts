@@ -17,17 +17,6 @@ const devPlugins: webpack.Plugin[] = [...sharedPlugins];
 
 const productionPlugins: webpack.Plugin[] = [
     ...sharedPlugins,
-    new webpack.optimize.UglifyJsPlugin({
-        beautify: false,
-        mangle: {
-            screw_ie8: true,
-            keep_fnames: true,
-        },
-        compress: {
-            screw_ie8: true,
-        },
-        comments: false,
-    }),
     new webpack.LoaderOptionsPlugin({
         minimize: true,
         debug: false,
@@ -36,10 +25,10 @@ const productionPlugins: webpack.Plugin[] = [
 
 export default <webpack.Configuration>{
     watch: !IS_PRODUCTION,
+    mode: IS_PRODUCTION ? 'production' : 'development',
     watchOptions: {
         ignored: /(node_modules|gulpfile|dist|lib|webpack.config)/,
     },
-    // context: __dirname,
     devtool: IS_PRODUCTION ? 'cheap-module-source-map' : 'source-map',
     entry: {
         'social-media-index': './src/js/social-media-index/',
