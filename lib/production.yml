@@ -1,7 +1,7 @@
 version: '3'
 services:
     wordpress:
-        image: visiblevc/wordpress:0.17.0-php7.2
+        image: visiblevc/wordpress:0.18.0-php7.2
         ports:
             - 443:443
             - 80:80
@@ -18,18 +18,18 @@ services:
             DB_PASS: ${DB_PASS}
             DB_USER: root
             PLUGINS: >-
-                academic-bloggers-toolkit,
-                [abt-deprecated-peer-review]https://github.com/dsifford/abt-deprecated-peer-review/archive/master.zip,
-                broken-link-checker,
-                co-authors-plus,
-                disqus-comment-system,
-                jetpack,
-                mce-table-buttons,
-                search-by-algolia-instant-relevant-results,
-                shortcodes-ultimate,
-                w3-total-cache,
-                wp-smushit,
-                wordpress-seo,
+                academic-bloggers-toolkit
+                [abt-deprecated-peer-review]https://github.com/dsifford/abt-deprecated-peer-review/archive/master.zip
+                broken-link-checker
+                co-authors-plus
+                disqus-comment-system
+                jetpack
+                mce-table-buttons
+                search-by-algolia-instant-relevant-results
+                shortcodes-ultimate
+                w3-total-cache
+                wp-smushit
+                wordpress-seo
     db:
         image: mariadb:10
         restart: always
