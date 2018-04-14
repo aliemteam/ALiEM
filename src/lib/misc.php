@@ -76,11 +76,11 @@ function remove_admin_bar_fluff( $bar ) {
 add_action( 'admin_bar_menu', __NAMESPACE__ . '\remove_admin_bar_fluff' );
 
 // Append "Bottom Leaderboard" Adense ad to post content
-add_filter( 'the_content', __NAMESPACE__ . '\google_ads_bottom_leaderboard');
+add_filter( 'the_content', __NAMESPACE__ . '\google_ads_bottom_leaderboard' );
 function google_ads_bottom_leaderboard( $content ) {
-		if ( ! is_single() ) {
-			return $content;
-		}
+	if ( ! is_single() ) {
+		return $content;
+	}
 		$content .= "
 			<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
 			<ins class='adsbygoogle'
@@ -149,9 +149,11 @@ add_filter( 'widget_text_content', __NAMESPACE__ . '\filter_lazy_images' );
  * Apply theme customizations.
  */
 function setup_theme() {
-	register_nav_menus([
-		'menu-footer' => esc_html__( 'Footer Links', 'aliem' ),
-	]);
+	register_nav_menus(
+		[
+			'menu-footer' => esc_html__( 'Footer Links', 'aliem' ),
+		]
+	);
 }
 add_action( 'after_setup_theme', __NAMESPACE__ . '\setup_theme' );
 
