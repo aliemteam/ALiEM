@@ -194,10 +194,12 @@ class Loader {
 			],
 		];
 
-		switch ( $post->ID ) {
-			case 12480:
-				$load[0][] = 'social-media-index';
-				break;
+		if ( $post ) {
+			switch ( $post->ID ) {
+				case 12480:
+					$load[0][] = 'social-media-index';
+					break;
+			}
 		}
 
 		if ( is_single() ) {

@@ -1,21 +1,9 @@
 version: '3'
 services:
     wordpress:
-        image: visiblevc/wordpress:0.18.0-php7.2
-        ports:
-            - 8080:80
-        volumes:
-            # Database
-            - ./data:/data
-            # Plugins
-            - ./wp-content/plugins/fanciest-author-box:/app/wp-content/plugins/fanciest-author-box
-            # Themes
-            - ./dist:/app/wp-content/themes/aliem
-            - ./wp-content/themes/Avada:/app/wp-content/themes/Avada
-            # Uploads
-            - ./wp-content/uploads:/app/wp-content/uploads
         environment:
-            DB_NAME: wordpress
+            ALIEM_API_KEY: ${ALIEM_API_KEY?ALIEM_API_KEY key not defined in .env}
+            DB_NAME: aliem
             DB_PASS: root
             DB_USER: root
             PLUGINS: >-
@@ -29,24 +17,25 @@ services:
                 search-by-algolia-instant-relevant-results
                 shortcodes-ultimate
                 w3-total-cache
-                wp-smushit
                 wordpress-seo
-                query-monitor
-            URL_REPLACE: http://localhost:8080
-            WP_DEBUG_DISPLAY: 'true'
-            WP_DEBUG: 'true'
-            ALIEM_API_KEY: ${ALIEM_API_KEY}
+                wp-smushit
+        image: visiblevc/wordpress:0.18.0-php7.2
+        volumes:
+            - ./data:/data
+            - ./wp-content/plugins/fanciest-author-box:/app/wp-content/plugins/fanciest-author-box
+            - ./wp-content/uploads:/app/wp-content/uploads
 
     db:
-        image: mariadb:10
         environment:
             MYSQL_ROOT_PASSWORD: root
+        image: mariadb:10
         volumes:
             - data:/var/lib/mysql
+
     phpmyadmin:
-        image: phpmyadmin/phpmyadmin
         environment:
             MYSQL_ROOT_PASSWORD: root
+        image: phpmyadmin/phpmyadmin
         ports:
             - 22222:80
 volumes:

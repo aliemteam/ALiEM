@@ -1,48 +1,23 @@
 version: '3'
 services:
     wordpress:
-        image: visiblevc/wordpress:0.18.0-php7.2
+        environment:
+            SERVER_NAME: aliem.com
+            DB_PASS: ${DB_PASS?DB_PASS not defined in .env}
         ports:
             - 443:443
             - 80:80
+        restart: always
         volumes:
-            - ./data:/data
             - ./wp-content/themes:/app/wp-content/themes
-            - ./wp-content/plugins/fanciest-author-box:/app/wp-content/plugins/fanciest-author-box
-            - ./wp-content/uploads:/app/wp-content/uploads
             - ./letsencrypt:/etc/letsencrypt
-        restart: always
-        environment:
-            DB_NAME: aliem
-            SERVER_NAME: aliem.com
-            DB_PASS: ${DB_PASS}
-            DB_USER: root
-            PLUGINS: >-
-                academic-bloggers-toolkit
-                [abt-deprecated-peer-review]https://github.com/dsifford/abt-deprecated-peer-review/archive/master.zip
-                broken-link-checker
-                co-authors-plus
-                disqus-comment-system
-                jetpack
-                mce-table-buttons
-                search-by-algolia-instant-relevant-results
-                shortcodes-ultimate
-                w3-total-cache
-                wp-smushit
-                wordpress-seo
+
     db:
-        image: mariadb:10
-        restart: always
         environment:
-            MYSQL_ROOT_PASSWORD: ${DB_PASS}
-        volumes:
-            - data:/var/lib/mysql
+            MYSQL_ROOT_PASSWORD: ${DB_PASS?DB_PASS not defined in .env}
+        restart: always
+
     phpmyadmin:
-        image: phpmyadmin/phpmyadmin
-        restart: always
         environment:
-            MYSQL_ROOT_PASSWORD: ${DB_PASS}
-        ports:
-            - 22222:80
-volumes:
-    data:
+            MYSQL_ROOT_PASSWORD: ${DB_PASS?DB_PASS not defined in .env}
+        restart: always

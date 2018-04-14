@@ -25,7 +25,7 @@ function enable_gmail( $phpmailer ) {
 }
 add_action( 'phpmailer_init', __NAMESPACE__ . '\enable_gmail' );
 
-// Load the custom editor style
+// Load the custom editor style.
 add_action(
 	'after_setup_theme', function () {
 		add_editor_style( [ ALIEM_ROOT_URI . '/editor.css' ] );
@@ -75,23 +75,26 @@ function remove_admin_bar_fluff( $bar ) {
 }
 add_action( 'admin_bar_menu', __NAMESPACE__ . '\remove_admin_bar_fluff' );
 
-/**
- * Add Google AutoAds tracking scripts to single posts
- */
-function google_ads_script() {
-	if ( is_single() || is_page() ) {
-		?>
-			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+// Append "Bottom Leaderboard" Adense ad to post content
+add_filter( 'the_content', __NAMESPACE__ . '\google_ads_bottom_leaderboard');
+function google_ads_bottom_leaderboard( $content ) {
+		if ( ! is_single() ) {
+			return $content;
+		}
+		$content .= "
+			<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
+			<ins class='adsbygoogle'
+				style='display:block; text-align:center;'
+				data-ad-layout='in-article'
+				data-ad-format='fluid'
+				data-ad-client='ca-pub-5143351525726802'
+				data-ad-slot='6412752031'></ins>
 			<script>
-				(adsbygoogle = window.adsbygoogle || []).push({
-					google_ad_client: "ca-pub-5143351525726802",
-					enable_page_level_ads: true
-				});
+				(adsbygoogle = window.adsbygoogle || []).push({});
 			</script>
-		<?php
-	}
+		";
+		return $content;
 }
-add_action( 'wp_head', __NAMESPACE__ . '\google_ads_script' );
 
 /**
  * Set default hidden metaboxes
@@ -141,4 +144,14 @@ function filter_lazy_images( $content ) {
 }
 add_filter( 'the_content', __NAMESPACE__ . '\filter_lazy_images' );
 add_filter( 'widget_text_content', __NAMESPACE__ . '\filter_lazy_images' );
+
+/**
+ * Apply theme customizations.
+ */
+function setup_theme() {
+	register_nav_menus([
+		'menu-footer' => esc_html__( 'Footer Links', 'aliem' ),
+	]);
+}
+add_action( 'after_setup_theme', __NAMESPACE__ . '\setup_theme' );
 

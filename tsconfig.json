@@ -9,7 +9,8 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": true,
+    /* FIXME: waiting for @types/react-virtualized to be updated */
+    "noImplicitAny": false,
     "experimentalDecorators": true
   },
   "include": ["gulpfile.ts", "webpack.config.ts", "aliem/js/**/*"]

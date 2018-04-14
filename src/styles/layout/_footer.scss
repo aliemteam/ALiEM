@@ -27,32 +27,36 @@
     justify-content: center;
     grid-template-columns: repeat(auto-fit, 200px);
     grid-gap: 20px;
+    * {
+        list-style: none;
+    }
 }
 
-.footer__grid__item {
+.footer__grid > li > a {
+    display: block;
+    clear: both;
+    line-height: 1.4;
+    margin: 0 0 0.75em;
+    font-size: 14px;
+    letter-spacing: 1.2px;
     color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.footer__grid .sub-menu {
+    padding: 0;
+    margin: 0;
+    li {
+        font-size: 14px;
+        padding-bottom: 12px;
+    }
     a {
         color: #8c8989;
         &:hover {
             color: white;
             text-decoration: underline;
         }
-    }
-    ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    li {
-        font-size: 14px;
-        padding-bottom: 12px;
-    }
-    h3 {
-        font-size: 14px;
-        letter-spacing: 1.2px;
-        color: white;
-        text-transform: uppercase;
-        font-weight: bold;
     }
 }
 
