@@ -4,6 +4,9 @@ services:
         environment:
             SERVER_NAME: aliem.com
             DB_PASS: ${DB_PASS?DB_PASS not defined in .env}
+        logging:
+            options:
+                max-size: 1m
         ports:
             - 443:443
             - 80:80
@@ -11,12 +14,10 @@ services:
         volumes:
             - ./wp-content/themes:/app/wp-content/themes
             - ./letsencrypt:/etc/letsencrypt
-
     db:
         environment:
             MYSQL_ROOT_PASSWORD: ${DB_PASS?DB_PASS not defined in .env}
         restart: always
-
     phpmyadmin:
         environment:
             MYSQL_ROOT_PASSWORD: ${DB_PASS?DB_PASS not defined in .env}

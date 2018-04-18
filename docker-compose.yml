@@ -1,6 +1,7 @@
 version: '3'
 services:
     wordpress:
+        image: visiblevc/wordpress:0.18.0-php7.2
         environment:
             ALIEM_API_KEY: ${ALIEM_API_KEY?ALIEM_API_KEY key not defined in .env}
             DB_NAME: aliem
@@ -19,23 +20,20 @@ services:
                 w3-total-cache
                 wordpress-seo
                 wp-smushit
-        image: visiblevc/wordpress:0.18.0-php7.2
         volumes:
             - ./data:/data
             - ./wp-content/plugins/fanciest-author-box:/app/wp-content/plugins/fanciest-author-box
             - ./wp-content/uploads:/app/wp-content/uploads
-
     db:
+        image: mariadb:10
         environment:
             MYSQL_ROOT_PASSWORD: root
-        image: mariadb:10
         volumes:
             - data:/var/lib/mysql
-
     phpmyadmin:
+        image: phpmyadmin/phpmyadmin
         environment:
             MYSQL_ROOT_PASSWORD: root
-        image: phpmyadmin/phpmyadmin
         ports:
             - 22222:80
 volumes:
