@@ -25,6 +25,9 @@ class Loader {
 	public function init() {
 		global $current_user, $post;
 		wp_register_style( 'aliem', get_stylesheet_uri() );
+		wp_register_style( 'social-media-index-style', ALIEM_ROOT_URI . '/js/social-media-index.css' );
+		wp_register_style( 'header-posts-style', ALIEM_ROOT_URI . '/js/header-posts.css' );
+
 		wp_register_script( 'mathjax', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=AM_HTMLorMML', [], '2.7.1', true );
 		wp_register_script( 'react', ALIEM_ROOT_URI . '/vendor/react.js', [], ALIEM_VERSION );
 		wp_register_script( 'react-dom', ALIEM_ROOT_URI . '/vendor/react-dom.js', [], ALIEM_VERSION );
@@ -165,12 +168,14 @@ class Loader {
 			switch ( $post->ID ) {
 				case 12480:
 					$load[0][] = 'social-media-index';
+					$load[1][] = 'social-media-index-style';
 					break;
 			}
 		}
 
 		if ( is_single() ) {
 			$load[0][] = 'header-posts';
+			$load[1][] = 'header-posts-style';
 		}
 
 		$this->load( ...$load );

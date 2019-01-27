@@ -4,6 +4,7 @@
     "license": "MIT",
     "private": true,
     "scripts": {
+        "test": "echo no tests available yet",
         "lint:scss": "stylelint ./src/**/*.scss",
         "lint:ts": "tslint -p . -t stylish",
         "lint": "npm run lint:scss && npm run lint:ts",
