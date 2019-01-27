@@ -8,47 +8,57 @@
         // FIXME: Try these globally
         position: relative;
         overflow-y: hidden;
+
         .fusion-row {
             max-width: 1400px;
         }
     }
+
     .page-aliemx__heading {
         text-align: center;
         width: 100%;
         margin-top: 40px;
     }
+
     .page-aliemx {
         background: $secondary;
         display: flex;
     }
+
     .coming-soon__heading {
         font-size: 3em;
         padding: 0;
         color: white;
     }
+
     .page-aliemx__boxes {
         margin: 10px;
         flex: auto;
     }
+
     .page-aliemx__boxes__intro {
         padding: 20px;
         color: white;
         margin-bottom: 40px;
         text-align: initial;
     }
+
     .page-aliemx__boxes__features {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         grid-gap: 10px;
     }
+
     .page-aliemx__box {
         position: relative;
         padding: 20px;
+
         h3 {
             color: $primary;
             font-weight: 600;
         }
     }
+
     .notify-box__container {
         max-width: 500px;
         min-width: 300px;
@@ -56,6 +66,7 @@
         margin: 10px;
         position: relative;
     }
+
     .notify-box {
         background-color: #fff;
         border-radius: 4px;
@@ -64,6 +75,7 @@
         top: -50px;
         position: absolute;
     }
+
     .notify-box__email-input {
         display: flex;
     }

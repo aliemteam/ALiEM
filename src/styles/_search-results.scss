@@ -9,6 +9,7 @@
     max-width: 850px;
     padding: 0;
     margin: 20px;
+
     #algolia-search-box {
         margin-bottom: 60px;
     }
@@ -17,8 +18,10 @@
 #ais-facets {
     padding: 0;
     margin: 20px;
+
     a {
         color: $font-primary;
+
         &:hover {
             color: $primary;
         }
@@ -32,6 +35,7 @@
     border-radius: 2px;
     padding: 20px;
     margin: 0 0 20px 0;
+
     h3.widgettitle {
         font-weight: 600;
         margin-bottom: 10px;
@@ -42,6 +46,7 @@
     float: right;
     margin-right: 0;
     margin-left: 20px;
+
     img[src$='.svg'] {
         max-width: 200px;
         max-height: 200px;
@@ -53,6 +58,7 @@
         @extend h1.entry-title;
         margin-bottom: 10px;
     }
+
     .excerpt p {
         margin: 0;
     }
@@ -63,9 +69,11 @@
 .ais-menu--link {
     display: flex;
     align-items: center;
+
     .ais-refinement-list--checkbox {
         margin-right: 10px;
     }
+
     span {
         flex: auto;
         text-align: right;

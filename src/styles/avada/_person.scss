@@ -1,23 +1,31 @@
 @import '../variables';
 
+.fusion-author {
+    display: none;
+}
+
 .fusion-person {
     .person-img {
         max-width: 275px;
     }
+
     .person-desc {
         .person-author {
             .person-author-wrapper {
                 .person-name {
                     font-weight: 600;
                 }
+
                 .person-title {
                     font-style: italic;
                 }
             }
+
             .fusion-social-network-icon:hover {
                 color: $primary !important;
             }
         }
+
         .person-content {
             margin-top: 10px;
             font-size: 0.8em;

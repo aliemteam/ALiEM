@@ -43,8 +43,9 @@ export default class SmiPlot extends React.PureComponent<Props, State> {
     };
 
     resetActive = () => {
-        if (this.state.activeLine === '') return;
-        this.setState(prevState => ({ ...prevState, activeLine: '' }));
+        if (this.state.activeLine !== '') {
+            this.setState(prevState => ({ ...prevState, activeLine: '' }));
+        }
     };
 
     render() {

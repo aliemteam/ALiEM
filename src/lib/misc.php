@@ -27,7 +27,8 @@ add_action( 'phpmailer_init', __NAMESPACE__ . '\enable_gmail' );
 
 // Load the custom editor style.
 add_action(
-	'after_setup_theme', function () {
+	'after_setup_theme',
+	function () {
 		add_editor_style( [ ALIEM_ROOT_URI . '/editor.css' ] );
 	}
 );
@@ -134,11 +135,13 @@ add_filter( 'hidden_meta_boxes', __NAMESPACE__ . '\default_hidden_metaboxes' );
  */
 function filter_lazy_images( $content ) {
 	$content = preg_replace_callback(
-		'/(<img.*)(src="(.+?)")(.*?\/?>)/', function ( $matches ) {
+		'/(<img.*)(src="(.+?)")(.*?\/?>)/',
+		function ( $matches ) {
 			$cleaned = "$matches[1] data-lazy-src='$matches[3]' $matches[4]";
 			$cleaned = preg_replace( '/(?:sizes=".*?"|srcset=".*?")/', '', $cleaned );
 			return $cleaned;
-		}, $content
+		},
+		$content
 	);
 	return $content;
 }

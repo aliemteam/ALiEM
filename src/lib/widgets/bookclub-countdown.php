@@ -24,7 +24,7 @@ class BookclubCountdown extends \WP_Widget {
 			<h4 class="widget-title">Book Club Countdown</h4>
 		</div>
 		<div class="bookclub-widget">
-			<img class="alignright" alt="Book Logo" src="/wp-content/themes/aliem/assets/bookclub-book.svg" width="52" />
+			<img class="alignright" alt="Book Logo" src="/wp-content/themes/aliem.com/assets/bookclub-book.svg" width="52" />
 			<strong>Next book</strong>: <a href="/aliem-book-club/"><?php echo $title; ?></a><br>
 
 			<strong>Discussion: </strong><?php echo $date; ?><br>

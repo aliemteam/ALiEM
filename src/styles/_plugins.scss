@@ -1,7 +1,6 @@
 @import 'variables';
 
 // Academic Bloggers Toolkit ---------------------------------------------------
-
 .abt_PR_heading {
     border-bottom: 4px solid $primary;
 }
@@ -31,13 +30,13 @@
 }
 
 // Shortcodes Ultimate ---------------------------------------------------------
-
 .su-lightbox {
     display: block;
     position: fixed !important;
     z-index: 999;
     bottom: -5px !important;
     left: 2% !important;
+
     span {
         line-height: 40px !important;
         font-size: 1.3em !important;

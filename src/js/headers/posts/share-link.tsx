@@ -35,10 +35,11 @@ export default class ShareLink extends React.PureComponent<Props, {}> {
 
     render() {
         const { kind, title } = this.props;
+        const href = resolvers[kind](title);
         return (
             <a
                 className={`header__posts__share-link header__posts__share-link--${kind}`}
-                href={resolvers[kind](title)}
+                href={href}
                 onClick={this.handleClick}
             >
                 <img

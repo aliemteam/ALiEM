@@ -13,15 +13,19 @@ export default class extends React.PureComponent {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Facebook Page"
+                        title="Facebook"
                     >
-                        <Icons.facebook />
+                        <Icons.Facebook />
                     </a>
                     <a
                         className="header__social-icon"
-                        href="/feed"
-                        aria-label="RSS Feed Page"
+                        href="https://www.instagram.com/aliemteam/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Instagram Page"
+                        title="Instagram"
                     >
-                        <Icons.rss />
+                        <Icons.Instagram />
                     </a>
                     <a
                         className="header__social-icon"
@@ -29,17 +33,9 @@ export default class extends React.PureComponent {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Twitter Page"
+                        title="Twitter"
                     >
-                        <Icons.twitter />
-                    </a>
-                    <a
-                        className="header__social-icon"
-                        href="https://plus.google.com/+Academiclifeinem"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Google Plus Page"
-                    >
-                        <Icons.googleplus />
+                        <Icons.Twitter />
                     </a>
                     <a
                         className="header__social-icon"
@@ -47,8 +43,17 @@ export default class extends React.PureComponent {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="SoundCloud Page"
+                        title="Soundcloud"
                     >
-                        <Icons.soundcloud />
+                        <Icons.Soundcloud />
+                    </a>
+                    <a
+                        className="header__social-icon"
+                        href="/feed"
+                        aria-label="RSS Feed Page"
+                        title="RSS Feed"
+                    >
+                        <Icons.RSS />
                     </a>
                 </div>
             </div>

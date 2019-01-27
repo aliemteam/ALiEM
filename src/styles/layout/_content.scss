@@ -26,12 +26,14 @@
         }
         @include device-large {
             margin-top: 0;
+
             blockquote {
                 margin-left: 0;
                 margin-right: 0;
             }
         }
     }
+
     .post {
         background: white;
         padding: 20px;
@@ -48,6 +50,7 @@
         border-radius: 2px;
         box-shadow: $shadow-2dp;
     }
+
     &.page-template-100-width {
         .fusion-row {
             max-width: 1300px !important;
@@ -59,21 +62,26 @@
     .fusion-timeline-date {
         background: transparent;
     }
+
     .fusion-post-timeline {
         background: white;
         border: 0;
         border-radius: 2px;
         box-shadow: $shadow-2dp;
+
         .fusion-post-content-wrapper {
             padding: 20px;
             padding-bottom: 5px;
         }
+
         .fusion-meta-info {
             margin: 0;
         }
+
         .fusion-post-content-container {
             display: none;
         }
+
         .fusion-content-sep {
             height: 0;
         }
@@ -89,8 +97,10 @@
     min-height: 100vh;
     padding: 0;
     background: transparent;
+
     .post h2 a {
         color: $primary;
+
         &:hover {
             color: darken($primary, 15);
         }
@@ -98,20 +108,28 @@
 }
 
 #content {
+    &.full-width {
+        width: 100%;
+        max-width: 1100px;
+    }
     width: 80%;
     max-width: 825px;
     flex: auto;
     margin: 20px;
+
     .post-content {
         position: relative;
+
         & > p > img {
             max-width: 100%;
             height: auto;
         }
+
         iframe {
             max-width: 90%;
             margin: 0 5%;
         }
+
         iframe[src^='https://www.youtube.com/'] {
             height: 400px;
         }
@@ -122,6 +140,7 @@
                 }
             }
         }
+
         .twitter-tweet-rendered {
             margin: auto !important;
         }
@@ -136,9 +155,11 @@
 
 .fusion-meta-info-wrapper {
     line-height: 1.5em;
+
     > div {
         padding-bottom: 5px;
     }
+
     .updated {
         display: none;
     }

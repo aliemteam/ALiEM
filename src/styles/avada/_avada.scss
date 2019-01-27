@@ -3,7 +3,6 @@
 @import 'pagination';
 @import 'person';
 
-// FIXME:
 .screen-reader-text {
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
@@ -30,6 +29,7 @@
 
 .fusion-content-widget-area .widget li a {
     @extend a;
+
     &:hover {
         transition: unset;
     }
@@ -53,6 +53,10 @@ a::before {
 }
 
 .rich-snippet-hidden {
+    display: none;
+}
+
+.fusion-privacy-bar {
     display: none;
 }
 

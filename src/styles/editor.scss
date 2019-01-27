@@ -46,46 +46,15 @@ object {
     }
 }
 
-.wp-playlist-light {
-    border-color: $tertiary;
-    color: $font-primary;
-    .wp-playlist-current-item {
-        .wp-playlist-item-album {
-            color: $font-primary;
-        }
-        .wp-playlist-item-artist {
-            color: $font-gray;
-        }
-    }
-    .wp-playlist-item {
-        border-bottom: 1px dotted $tertiary;
-        transition: background-color 0.2s ease-in-out,
-            border-color 0.2s ease-in-out, color 0.3s ease-in-out;
-        &:hover,
-        &:focus {
-            border-bottom-color: transparent;
-            background-color: $tertiary;
-            color: white;
-        }
-    }
-    a.wp-playlist-caption:hover,
-    .wp-playlist-item:hover a,
-    .wp-playlist-item:focus a {
-        color: white;
-    }
-}
-
-.wp-playlist {
-    padding: 0.625em 0.625em 0.3125em;
-}
-
 .wp-playlist-current-item {
     .wp-playlist-item-title {
         font-weight: 700;
     }
+
     .wp-playlist-item-album {
         font-style: normal;
     }
+
     .wp-playlist-item-artist {
         font-size: 0.625rem;
         font-weight: 800;
@@ -97,19 +66,60 @@ object {
 .wp-playlist-item {
     padding: 0 0.3125em;
     cursor: pointer;
+
     &:last-of-type {
         border-bottom: none;
     }
+
     a {
         padding: 0.3125em 0;
         border-bottom: none;
         box-shadow: none;
+
         &:focus,
         &:hover {
             box-shadow: none;
             background: transparent;
         }
     }
+}
+
+.wp-playlist-light {
+    border-color: $tertiary;
+    color: $font-primary;
+
+    .wp-playlist-current-item {
+        .wp-playlist-item-album {
+            color: $font-primary;
+        }
+
+        .wp-playlist-item-artist {
+            color: $font-gray;
+        }
+    }
+
+    .wp-playlist-item {
+        border-bottom: 1px dotted $tertiary;
+        transition: background-color 0.2s ease-in-out,
+            border-color 0.2s ease-in-out, color 0.3s ease-in-out;
+
+        &:hover,
+        &:focus {
+            border-bottom-color: transparent;
+            background-color: $tertiary;
+            color: white;
+        }
+    }
+
+    a.wp-playlist-caption:hover,
+    .wp-playlist-item:hover a,
+    .wp-playlist-item:focus a {
+        color: white;
+    }
+}
+
+.wp-playlist {
+    padding: 0.625em 0.625em 0.3125em;
 }
 
 .wp-playlist-item-length {

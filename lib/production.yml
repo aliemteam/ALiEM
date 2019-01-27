@@ -1,24 +1,53 @@
-version: '3'
+version: '3.7'
+x-shared-options:
+    &shared
+    logging:
+        driver: json-file
+        options:
+            max-size: 10m
+    restart: always
+
 services:
     wordpress:
+        <<: *shared
+        security_opt:
+            - apparmor:unconfined
         environment:
             SERVER_NAME: aliem.com
-            DB_PASS: ${DB_PASS?DB_PASS not defined in .env}
-        logging:
-            options:
-                max-size: 1m
+            DB_PASS: ${DB_PASS}
+            EXTRA_PHP: |
+                define( 'ALIEM_API_KEY', '${ALIEM_API_KEY?ALIEM_API_KEY not defined in .env}' );
+                define( 'IMAGE_EDIT_OVERWRITE', true );
+                define( 'WP_POST_REVISIONS', 3 );
+                if ( defined( 'WP_CLI' ) && WP_CLI && ! isset( $$_SERVER['HTTP_HOST'] ) ) {
+                    $$_SERVER['HTTP_HOST'] = 'aliem.com';
+                }
+            PLUGINS: >-
+                academic-bloggers-toolkit
+                broken-link-checker
+                co-authors-plus
+                crazyegg-heatmap-tracking
+                disqus-comment-system
+                jetpack
+                search-by-algolia-instant-relevant-results
+                shortcodes-ultimate
+                w3-total-cache
+                wordpress-seo
+                wp-smushit
         ports:
             - 443:443
             - 80:80
-        restart: always
         volumes:
             - ./wp-content/themes:/app/wp-content/themes
             - ./letsencrypt:/etc/letsencrypt
+
     db:
+        <<: *shared
         environment:
             MYSQL_ROOT_PASSWORD: ${DB_PASS?DB_PASS not defined in .env}
-        restart: always
+
     phpmyadmin:
-        environment:
-            MYSQL_ROOT_PASSWORD: ${DB_PASS?DB_PASS not defined in .env}
-        restart: always
+        <<: *shared
+
+    redis:
+        <<: *shared

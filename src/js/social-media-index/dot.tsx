@@ -12,8 +12,7 @@ export default class Dot extends React.PureComponent<any> {
             onMouseOut,
             value,
         } = this.props;
-        if (!value) return null;
-        return (
+        return value ? (
             <circle
                 onClick={onMouseOver}
                 onMouseOver={onMouseOver}
@@ -27,6 +26,6 @@ export default class Dot extends React.PureComponent<any> {
                 stroke={fill}
                 fill={fill}
             />
-        );
+        ) : null;
     }
 }

@@ -14,7 +14,6 @@ class Loader {
 		$this->prepare_localizers();
 		add_action( 'admin_enqueue_scripts', [ $this, 'init_admin' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'init' ], 999 );
-		add_filter( 'script_loader_tag', [ $this, 'handle_async_defer' ], 10, 3 );
 	}
 
 	public function init_admin( $hook ) {
@@ -34,37 +33,6 @@ class Loader {
 		wp_register_script( 'header-posts', ALIEM_ROOT_URI . '/js/header-posts.js', [ 'react', 'react-dom' ], ALIEM_VERSION );
 		wp_register_script( 'image-lazy-load', ALIEM_ROOT_URI . '/js/image-lazy-load.js', [], ALIEM_VERSION, true );
 		$this->delegate( $post, $current_user );
-	}
-
-	/**
-	 * Modifies the script tag of select scripts to add async and defer attributes.
-	 *
-	 * @param string $tag    The unmodified raw html script tag.
-	 * @param string $handle The scripts registered handle.
-	 * @param string $src    The script's src url.
-	 */
-	public function handle_async_defer( string $tag, string $handle, string $src ) : string {
-		$async_scripts = [
-			'header-main',
-		];
-
-		$defer_scripts = [
-			'underscore',
-			'wp-util',
-			'algolia-search',
-			'algolia-autocomplete',
-			'algolia-autocomplete-noconflict',
-		];
-
-		if ( in_array( $handle, $async_scripts, true ) ) {
-			return "<script async type='text/javascript' src='$src'></script>";
-		}
-
-		if ( in_array( $handle, $defer_scripts, true ) ) {
-			return "<script defer type='text/javascript' src='$src'></script>";
-		}
-
-		return $tag;
 	}
 
 	/**
@@ -109,7 +77,6 @@ class Loader {
 		// Always unload these.
 		$unload = [
 			[
-				// 'avada-tabs-widget',
 				'avada-comments',
 				'avada-drop-down',
 				'avada-faqs',

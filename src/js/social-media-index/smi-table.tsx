@@ -42,9 +42,7 @@ export default class SMITable extends React.PureComponent<Props, State> {
             .sort((a, b) => {
                 const left = parseInt(a[this.latestDateRaw], 10);
                 const right = parseInt(b[this.latestDateRaw], 10);
-                if (left < right) return -1;
-                if (left > right) return 1;
-                return 0;
+                return left < right ? -1 : left > right ? 1 : 0;
             });
         this.state = {
             rows,
@@ -72,8 +70,12 @@ export default class SMITable extends React.PureComponent<Props, State> {
                     left = parseInt(a[sortBy], 10);
                     right = parseInt(b[sortBy], 10);
             }
-            if (left < right) return LT;
-            if (left > right) return GT;
+            if (left < right) {
+                return LT;
+            }
+            if (left > right) {
+                return GT;
+            }
             return 0;
         });
         this.setState(prevState => ({
