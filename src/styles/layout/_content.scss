@@ -88,6 +88,14 @@
     }
 }
 
+.searchform {
+    width: 100%;
+    display: grid;
+    grid-template: 'input button' / 1fr max-content;
+    gap: 5px;
+    align-items: center;
+}
+
 #main {
     display: flex;
     flex-wrap: wrap;
@@ -148,7 +156,9 @@
 }
 
 // Both the "read more" div on the home page and the author meta on posts
-.fusion-meta-info {
+.fusion-meta-info,
+.fusion-single-line-meta {
+    font-size: 14px;
     border: 0;
     margin: 0;
 }
@@ -163,10 +173,6 @@
     .updated {
         display: none;
     }
-}
-
-.fusion-single-line-meta {
-    font-size: 0.8em;
 }
 
 // Gigantic image above pages
