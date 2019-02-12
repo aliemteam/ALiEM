@@ -15,10 +15,12 @@
     line-height: 35px;
     display: flex;
     justify-content: center;
+
     svg {
         height: 18px;
         width: 18px;
         fill: $secondary;
+
         &:hover {
             fill: darken($secondary, 10);
         }
@@ -36,14 +38,17 @@
     height: 65px;
     display: flex;
     justify-content: center;
+
     h2 {
         margin: 0;
         display: flex;
         align-items: center;
+
         & > a {
             margin-right: 10px;
         }
     }
+
     svg {
         margin-right: 10px;
     }
@@ -61,32 +66,39 @@
 nav {
     & > ul[role='menubar'] {
         margin: 0;
+
         & > li {
             margin-right: 20px !important;
         }
     }
+
     ul[role='menubar'] li,
     ul[role='menu'] {
         list-style: none;
         margin: 0;
         padding: 0;
     }
+
     ul[role='menubar'] > li {
         display: inline-block;
         position: relative;
+
         & > a {
             color: $font-gray;
             font-size: 14px;
         }
     }
+
     ul[role='menubar'] ul[role='menu'] {
         position: absolute;
         top: 0;
     }
+
     ul[role='menubar'] ul[role='menu'] li a {
         display: block;
         width: 300px;
     }
+
     ul[role='menubar'] [role='menuitem'] {
         padding: 0.25em;
     }
@@ -106,26 +118,32 @@ nav {
 .nav-menu__container {
     width: 100%;
     max-width: 800px;
+
     a {
         color: $font-primary;
         font-size: 0.9em;
+
         &:hover {
             color: $primary;
         }
     }
+
     & > ul {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+
         & > li {
             padding: 20px;
             flex: auto;
             width: 225px;
+
             & > a,
             & > span {
                 font-size: 1.1em;
                 font-weight: 600;
             }
+
             & > ul {
                 border-top: solid black 1px;
                 margin-top: 5px;
@@ -139,6 +157,7 @@ nav {
     display: flex;
     align-items: center;
     width: auto;
+
     nav > ul {
         padding-left: 20px;
     }
@@ -167,6 +186,7 @@ nav {
     @include device-large {
         display: none;
     }
+
     span {
         white-space: nowrap;
     }
@@ -192,12 +212,14 @@ nav {
     width: auto;
     flex: auto;
     justify-content: flex-end;
+
     button {
         background: 0;
         border: 0;
         cursor: pointer;
         line-height: 30px;
         padding: 0;
+
         span.dashicons {
             font-size: 30px !important;
             line-height: 30px;
@@ -205,20 +227,24 @@ nav {
             height: 30px;
         }
     }
+
     .searchform {
         overflow: hidden;
         width: 0;
         transition: 0.2s;
         flex: 0;
+
         .search-field {
             display: flex;
             justify-content: flex-end;
             width: 100%;
         }
+
         input[type='text'] {
             width: 100%;
         }
     }
+
     .searchform__open {
         width: auto;
         flex: auto;
