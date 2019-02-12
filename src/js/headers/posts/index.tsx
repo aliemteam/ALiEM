@@ -4,7 +4,7 @@ import render from '../../utils/render';
 import { LogoIcon } from '../../utils/svg';
 import ShareLink from './share-link';
 
-import './posts-header.scss';
+import './posts-header.scss?global';
 
 interface Props {
     title: string;

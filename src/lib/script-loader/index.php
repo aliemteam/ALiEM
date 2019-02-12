@@ -24,7 +24,7 @@ class Loader {
 
 	public function init() {
 		global $current_user, $post;
-		wp_register_style( 'aliem', get_stylesheet_uri() );
+		wp_register_style( 'aliem', get_stylesheet_uri(), [ 'dashicons' ] );
 		wp_register_style( 'social-media-index-style', ALIEM_ROOT_URI . '/js/social-media-index.css' );
 		wp_register_style( 'header-posts-style', ALIEM_ROOT_URI . '/js/header-posts.css' );
 
